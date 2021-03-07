@@ -3,10 +3,15 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Panel;
 
 class User extends Resource
 {
@@ -16,6 +21,8 @@ class User extends Resource
      * @var string
      */
     public static $model = \App\Models\User::class;
+
+    public static $with = ['profile'];
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -36,7 +43,7 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -60,13 +67,44 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            BelongsTo::make('Region', 'region'),
+
+            new Panel('Profile', $this->profileFields()),
+
+            HasMany::make('Courses'),
+
+            MorphMany::make('Social Links', 'socialLinks'),
+        ];
+    }
+
+    protected function profileFields(): array
+    {
+        return [
+            Text::make('Phone', 'profile.phone')
+                ->rules('string'),
+
+            Text::make('Company reg no', 'profile.company_reg_no')
+                ->rules('string'),
+
+            Text::make('Brand name', 'profile.brand_name')
+                ->rules('string'),
+
+            Text::make('City', 'profile.city')
+                ->rules('string'),
+
+            Text::make('Address', 'profile.address')
+                ->rules('string'),
+
+            Textarea::make('Additional info', 'profile.additional_info')
+                ->rules('required', 'string', 'profile.'),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -77,7 +115,7 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -88,7 +126,7 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -99,7 +137,7 @@ class User extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

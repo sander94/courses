@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('article', ArticleController::class);
+
+Route::resource('event', EventController::class);
+
+Route::resource('course', CourseController::class);
+
+
+Route::resource('article', 'ArticleController');
+
+Route::resource('event', 'EventController');
+
+Route::resource('course', 'CourseController');

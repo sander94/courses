@@ -1,0 +1,19 @@
+created:
+    - database/factories/UserProfileFactory.php
+    - database/factories/SocialLinkFactory.php
+    - database/migrations/2021_03_07_141705_create_user_profiles_table.php
+    - database/migrations/2021_03_07_141706_create_social_links_table.php
+    - app/Models/UserProfile.php
+    - app/Models/SocialLink.php
+    - app/Nova/UserProfile.php
+    - app/Nova/SocialLink.php
+models:
+    Article: { title: 'string:400', content: longtext, published_at: 'nullable timestamp' }
+    CourseCategory: { title: 'string:400', is_buyable: boolean, relationships: { hasMany: Course, belongsTo: User } }
+    Course: { title: 'string:400', featuring_ended_at: 'nullable timestamp', duration_seconds: integer, relationships: { belongsTo: 'CourseCategory, User' } }
+    Event: { title: 'string:400', relationships: { belongsTo: 'User, Region', belongsToMany: ExtraService } }
+    ExtraService: { title: 'string:400', relationships: { belongsToMany: Event } }
+    Region: { title: 'string:400', relationships: { HasMany: Event } }
+    AdvertisementBanner: { note: 'string:400', type: tinyInteger }
+    UserProfile: { phone: 'nullable string', company_reg_no: 'nullable string', brand_name: 'nullable string', county: 'nullable string', city: 'nullable string', address: 'nullable string', additional_info: longText, relationships: { hasMany: SocialLink } }
+    SocialLink: { url: string, type: tinyInt }

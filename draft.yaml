@@ -1,5 +1,14 @@
 models:
-  # ...
-
-controllers:
-  # ...
+  UserProfile:
+    phone: nullable string
+    company_reg_no: nullable string
+    brand_name: nullable string
+    county: nullable string
+    city: nullable string
+    address: nullable string
+    additional_info: longText
+    relationships:
+      hasMany: SocialLink
+  SocialLink:
+    url: string
+    type: tinyInt

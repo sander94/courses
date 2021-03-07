@@ -11,17 +11,23 @@
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "genealabs/nova-prepopulate-searchable": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "khalin/nova-link-field": "^1.2",
         "laravel/framework": "^8.12",
+        "laravel/nova": "*",
+        "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
-        "laravel/nova": "*"
+        "simplesquid/nova-enum-field": "^2.3"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel-shift/blueprint": "^1.22",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
+        "naoray/blueprint-nova-addon": "^1.5",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },

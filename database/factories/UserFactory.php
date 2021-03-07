@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -14,6 +16,22 @@ class UserFactory extends Factory
      * @var string
      */
     protected $model = User::class;
+
+    /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterMaking(function (User $user) {
+            $region = Region::factory()->create();
+
+            $user->region()->associate($region);
+        })->afterCreating(function (User $user) {
+            $user->profile()->save(UserProfile::factory()->make());
+        });
+    }
 
     /**
      * Define the model's default state.
