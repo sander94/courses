@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,5 @@ Route::resource('article', 'ArticleController');
 Route::resource('event', 'EventController');
 
 Route::resource('course', 'CourseController');
+
+Route::get('/search', 'App\Http\Controllers\PageController@index')->name('search');
