@@ -10,7 +10,7 @@ class PageController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function search(Request $request)
     {
     	return view('search');
     }
@@ -18,5 +18,10 @@ class PageController extends Controller
     public function courses(Request $request)
     {
     	return view('courses');
+    }
+
+    public function articles(Request $request)
+    {
+        return view('articles');
     }
 }

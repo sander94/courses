@@ -165,6 +165,26 @@ a.table-readmore {
 .advert {
     width: 100%;
 }
+.blog-image-container {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+}
+a.blog-title {
+    font-size: 20px;
+    color: #000000;
+    line-height: 24px;
+    font-weight: 500;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+}
+a.blog-title:hover {
+    text-decoration: none;
+}
+.blog-archive .col-4 {
+    margin-bottom: 40px;
+}
 </style>
 
 
