@@ -12,6 +12,7 @@
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script src="https://kit.fontawesome.com/9c72c241e1.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -25,11 +26,14 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 <style>
 * {
     font-family: 'Work Sans';
 }
+
 body {
     background-color: #FAF8ED;
     padding-bottom: 150px;
@@ -80,6 +84,13 @@ body {
 }
 .logo-container {
     width: 400px;
+}
+.logo-container a {
+    color: inherit;
+}
+.logo-container a:hover {
+    color: inherit;
+    text-decoration: none;
 }
 .search-container {
     width: 600px;
@@ -147,6 +158,13 @@ a.table-readmore {
 .pagination {
     margin-top: 30px;
 }
+.text-3xl {
+    font-size: 65px;
+    font-weight: 700;
+}
+.advert {
+    width: 100%;
+}
 </style>
 
 
@@ -155,9 +173,11 @@ a.table-readmore {
 <div class="header">
     <div class="navigation">
         <div class="logo-container">
-            <div class="logo pt-2">
-                <span class="text-orange">Koolitused</span><span>.ee</span>
-            </div>
+            <a href="/">
+                <div class="logo pt-2">
+                    <span class="text-orange">Koolitused</span><span>.ee</span>
+                </div>
+            </a>
         </div>
         <div class="search-container">
             <div class="search pt-2">
@@ -167,7 +187,7 @@ a.table-readmore {
         </div>
         <div class="menu-container">
             <div class="menu">
-                <a href="#">Koolitused</a>
+                <a href="{{ route('courses') }}">Koolitused</a>
                 <a href="#">Koolitajad</a>
                 <a href="#">Artiklid</a>
                 <a href="#">Ruumid</a>

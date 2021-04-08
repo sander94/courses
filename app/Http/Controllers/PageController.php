@@ -14,4 +14,9 @@ class PageController extends Controller
     {
     	return view('search');
     }
+
+    public function courses(Request $request)
+    {
+    	return view('courses');
+    }
 }

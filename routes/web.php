@@ -35,4 +35,4 @@ Route::resource('event', 'EventController');
 
 Route::resource('course', 'CourseController');
 
-Route::get('/search', 'App\Http\Controllers\PageController@index')->name('search');
+Route::get('/courses', 'App\Http\Controllers\PageController@courses')->name('courses');
