@@ -29,14 +29,8 @@ Route::resource('event', EventController::class);
 Route::resource('course', CourseController::class);
 
 
-Route::resource('article', 'ArticleController');
+Route::get('/search', 'PageController@search')->name('search');
 
-Route::resource('event', 'EventController');
+Route::get('/articles', 'PageController@articles')->name('articles');
 
-Route::resource('course', 'CourseController');
-
-Route::get('/search', 'App\Http\Controllers\PageController@search')->name('search');
-
-Route::get('/articles', 'App\Http\Controllers\PageController@articles')->name('articles');
-
-Route::get('/courses', 'App\Http\Controllers\PageController@courses')->name('courses');
+Route::get('/courses', 'PageController@courses')->name('courses');

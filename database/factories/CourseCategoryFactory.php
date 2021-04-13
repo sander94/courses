@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\CourseCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\CourseCategory;
 
 class CourseCategoryFactory extends Factory
 {
@@ -25,6 +25,7 @@ class CourseCategoryFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'is_buyable' => $this->faker->boolean,
+            'course_category_id' => $this->faker->boolean ? CourseCategory::factory()->create() : null,
         ];
     }
 }

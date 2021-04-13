@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
+use App\Models\CourseCategory;
+use App\Models\Region;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Course;
 
 class CourseFactory extends Factory
 {
@@ -22,10 +24,18 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'title' => $this->faker->sentence(4),
             'featuring_ended_at' => $this->faker->dateTime(),
-            'duration_seconds' => $this->faker->numberBetween(-10000, 10000),
+            'price' => $this->faker->numberBetween(300, 1500),
+            'duration_minutes' => $this->faker->numberBetween(3600, 96000),
+            'started_at' => $this->faker->dateTime('+1 day'),
+            'ended_at' => $this->faker->dateTime('+1 week'),
+
+            'course_category_id' => CourseCategory::factory()->create(),
+            'region_id' => Region::factory()->create(),
+            'user_id' => User::factory()->create(),
         ];
     }
 }

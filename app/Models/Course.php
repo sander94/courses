@@ -18,7 +18,8 @@ class Course extends Model
     protected $fillable = [
         'title',
         'featuring_ended_at',
-        'duration_seconds',
+        'duration_minutes',
+        'price',
     ];
 
     /**
@@ -31,6 +32,10 @@ class Course extends Model
         'featuring_ended_at' => 'timestamp',
     ];
 
+    protected $dates = [
+        'started_at',
+        'ended_at'
+    ];
 
     public function courseCategory(): BelongsTo
     {
@@ -40,5 +45,10 @@ class Course extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(Region::class);
     }
 }

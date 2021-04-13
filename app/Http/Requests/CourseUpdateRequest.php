@@ -26,7 +26,7 @@ class CourseUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:400'],
             'featuring_ended_at' => [''],
-            'duration_seconds' => ['required', 'integer'],
+            'duration_minutes' => ['required', 'integer'],
         ];
     }
 }

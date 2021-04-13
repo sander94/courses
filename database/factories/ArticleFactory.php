@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Article;
+use App\Models\Article;
 
 class ArticleFactory extends Factory
 {
@@ -27,5 +27,12 @@ class ArticleFactory extends Factory
             'content' => $this->faker->paragraphs(3, true),
             'published_at' => $this->faker->dateTime(),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Article $article) {
+            $article->addMediaFromUrl($this->faker->imageUrl())->toMediaCollection('cover');
+        });
     }
 }

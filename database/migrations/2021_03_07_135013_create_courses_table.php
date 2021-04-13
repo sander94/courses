@@ -16,9 +16,14 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title', 400);
+            $table->decimal('price', 12, 4);
             $table->timestamp('featuring_ended_at')->nullable();
-            $table->integer('duration_seconds');
+            $table->integer('duration_minutes');
+            $table->dateTime('started_at');
+            $table->dateTime('ended_at');
             $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\Region::class);
+            $table->foreignIdFor(\App\Models\CourseCategory::class);
             $table->timestamps();
         });
     }

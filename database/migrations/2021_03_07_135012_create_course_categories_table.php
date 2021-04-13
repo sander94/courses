@@ -17,6 +17,7 @@ class CreateCourseCategoriesTable extends Migration
             $table->id();
             $table->string('title', 400);
             $table->boolean('is_buyable');
+            $table->foreignIdFor(\App\Models\CourseCategory::class)->nullable();
             $table->timestamps();
         });
     }

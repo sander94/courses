@@ -50,12 +50,23 @@ class Course extends Resource
 
             DateTime::make('Featuring ended at'),
 
-            Number::make('Duration seconds')
+            Number::make('Duration Minutes')
                 ->rules('required', 'integer'),
+
+            Number::make('Price')
+                ->rules('required', 'integer'),
+
+            DateTime::make('Started At'),
+            DateTime::make('Ended At'),
 
             BelongsTo::make('Course Category', 'courseCategory')
                 ->searchable()
                 ->prepopulate(),
+
+            BelongsTo::make('Region', 'region')
+                ->searchable()
+                ->prepopulate(),
+
             BelongsTo::make('User')
                 ->searchable()
                 ->prepopulate(),
