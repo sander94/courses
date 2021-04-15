@@ -17,6 +17,7 @@ class CreateAdvertisementBannersTable extends Migration
             $table->id();
             $table->string('note', 400);
             $table->tinyInteger('type');
+            $table->string('url');
             $table->timestamps();
         });
     }

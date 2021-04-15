@@ -33,6 +33,10 @@ class ArticleFactory extends Factory
     {
         return $this->afterCreating(function (Article $article) {
             $article->addMediaFromUrl($this->faker->imageUrl())->toMediaCollection('cover');
+
+            for ($i = 1; $i <= 5; $i++) {
+                $article->addMediaFromUrl($this->faker->imageUrl())->toMediaCollection('gallery');
+            }
         });
     }
 }

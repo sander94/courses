@@ -1,4 +1,10 @@
-@extends('layouts/web')
+@extends('layouts.web')
+
+@php
+    /** @var \App\Services\BannerService $bannerService */
+    $bannerService = app(\App\Services\BannerService::class);
+    $banner = $bannerService->randomBanner();
+@endphp
 
 @section('content')
 
@@ -7,11 +13,13 @@
             <div class="col-4 pt-4">
                 <h1 class="text-3xl">Eesti<br>suurim<br>koolituste<br>andmebaas</h1>
             </div>
-            <div class="col-8">
-                <a href="#">
-                    <img src="{{ asset('images/advert-ebs.png') }}" class="advert">
-                </a>
-            </div>
+            @if($banner)
+                <div class="col-8">
+                    <a href="{{ route('ad', $banner) }}">
+                        <img src="{{ $banner->getFirstMediaUrl('banner') }}" class="advert">
+                    </a>
+                </div>
+            @endif
         </div>
         <style>
             .filter-container {

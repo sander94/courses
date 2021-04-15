@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cyrildewit/eloquent-viewable": "^6.0",
+        "ebess/advanced-nova-media-library": "^3.6",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "genealabs/nova-prepopulate-searchable": "^2.0",

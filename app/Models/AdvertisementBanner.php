@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class AdvertisementBanner extends Model
+class AdvertisementBanner extends Model implements Viewable, HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithViews, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +21,7 @@ class AdvertisementBanner extends Model
     protected $fillable = [
         'note',
         'type',
+        'url'
     ];
 
     /**

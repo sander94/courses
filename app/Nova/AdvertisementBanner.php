@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -35,13 +36,21 @@ class AdvertisementBanner extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
     {
         return [
             ID::make()->sortable(),
+
+            Text::make('Url'),
+
+            Text::make('Views', function () {
+                return views($this->model())->count();
+            })->exceptOnForms(),
+
+            Images::make('Banner')->required(),
 
             Text::make('Note')
                 ->rules('required', 'string', 'max:400'),
@@ -55,7 +64,7 @@ class AdvertisementBanner extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -66,7 +75,7 @@ class AdvertisementBanner extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -77,7 +86,7 @@ class AdvertisementBanner extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -88,11 +97,16 @@ class AdvertisementBanner extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function uriKey()
+    {
+        return 'ads';
     }
 }

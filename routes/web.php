@@ -22,15 +22,13 @@ Route::get('/', function () {
 });
 
 
-Route::resource('article', ArticleController::class);
+Route::resource('articles', 'ArticleController');
 
-Route::resource('event', EventController::class);
+Route::resource('events', 'EventController');
 
-Route::resource('course', CourseController::class);
+Route::resource('courses', 'CourseController');
 
 
-Route::get('/search', 'PageController@search')->name('search');
+Route::get('/search/{type?}', 'PageController@search')->name('search');
 
-Route::get('/articles', 'PageController@articles')->name('articles');
-
-Route::get('/courses', 'PageController@courses')->name('courses');
+Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');

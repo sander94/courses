@@ -1,4 +1,4 @@
-@extends('layouts/web')
+@extends('layouts.web')
 
 @section('content')
 
@@ -10,11 +10,12 @@
 
             @foreach($articles as $article)
                 <div class="col-4">
-
-                    <div class="blog-image-container"
-                         style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
-                    <a href="#" class="blog-title">{{ $article->title }}</a>
-                    <p>{{ $article->content }}</p>
+                    <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
+                        <div class="blog-image-container"
+                             style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
+                        <span class="blog-title">{{ $article->title }}</a>
+                        <p>{{ $article->content }}</p>
+                    </a>
 
                 </div>
             @endforeach

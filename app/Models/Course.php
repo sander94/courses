@@ -29,7 +29,7 @@ class Course extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'featuring_ended_at' => 'timestamp',
+        'featuring_ended_at' => 'datetime',
     ];
 
     protected $dates = [

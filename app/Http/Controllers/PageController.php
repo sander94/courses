@@ -5,44 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\Event;
 use App\Models\Region;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
+    public static $types = [
+        'courses' => Course::class,
+        'articles' => Article::class
+    ];
+
     /**
+     * @param string $type
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function search(string $type = 'courses', Request $request)
     {
-        return view('search');
+        /** @var Model $model */
+        $model = app($this->getModelFroMType($type));
+
+        $searchQuery = $request->get('search');
+
+        $result = $model->newQuery()
+            ->where('title', 'LIKE', "{$searchQuery}%")
+            ->paginate();
+
+        $counters[$type] = $result->total();
+        foreach (static::$types as $keyType => $model) {
+            if ($keyType !== $type) {
+                $counters[$keyType] = app($model)->newQuery()->where('title', 'LIKE', "{$searchQuery}%")->count();
+            }
+        }
+
+        return view('search', compact('result', 'type', 'counters', 'searchQuery'));
     }
 
     public function courses(Request $request)
     {
-        $categories = CourseCategory::query()->whereNull('course_category_id')->with('children')->get();
 
-        $selectedCategory = $request->has('category') ? CourseCategory::query()->find($request->get('category')) : null;
-        $selectedRegion = $request->has('region') ? Region::query()->find($request->get('region')) : null;
-        $selectedStartedAt = $request->has('started_at') ? Carbon::parse($request->get('started_at')) : null;
-
-        $regions = Region::query()->get();
-
-        $courses = Course::query()
-            ->when($selectedCategory, function ($query, $selectedCategory) {
-                return $query->where('course_category_id', $selectedCategory->getKey());
-            })
-            ->when($selectedRegion, function ($query, $selectedRegion) {
-                return $query->where('region_id', $selectedRegion->getKey());
-            })
-            ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
-                return $query->where('started_at', '>=', $selectedStartedAt);
-            })
-            ->paginate();
-
-        return view('courses', compact('categories', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }
 
     public function articles(Request $request)
@@ -50,5 +55,10 @@ class PageController extends Controller
         $articles = Article::query()->paginate();
 
         return view('articles', compact('articles'));
+    }
+
+    private function getModelFromType(string $type)
+    {
+        return static::$types[$type];
     }
 }

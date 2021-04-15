@@ -52,7 +52,9 @@ class Article extends Resource
             Trix::make('Content')
                 ->rules('required', 'string'),
 
-            Images::make('Cover'),
+            Images::make('Cover')->required(),
+
+            Images::make('Gallery'),
 
             DateTime::make('Published at'),
 

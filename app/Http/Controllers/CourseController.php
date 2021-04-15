@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Http\Requests\CourseStoreRequest;
-use App\Http\Requests\CourseUpdateRequest;
+use App\Models\Course;
+use App\Models\CourseCategory;
+use App\Models\Region;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -15,36 +16,33 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        $courses = Course::all();
+        $categories = CourseCategory::query()->whereNull('course_category_id')->with('children')->get();
 
-        return view('course.index', compact('courses'));
+        $selectedCategory = $request->has('category') ? CourseCategory::query()->find($request->get('category')) : null;
+        $selectedRegion = $request->has('region') ? Region::query()->find($request->get('region')) : null;
+        $selectedStartedAt = $request->has('started_at') ? Carbon::parse($request->get('started_at')) : null;
+
+        $regions = Region::query()->get();
+
+        $courses = \App\Models\Course::query()
+            ->when($selectedCategory, function ($query, $selectedCategory) {
+                return $query->where('course_category_id', $selectedCategory->getKey());
+            })
+            ->when($selectedRegion, function ($query, $selectedRegion) {
+                return $query->where('region_id', $selectedRegion->getKey());
+            })
+            ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
+                return $query->where('started_at', '>=', $selectedStartedAt);
+            })
+            ->paginate();
+
+        return view('courses.index', compact('categories', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }
+
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        return view('course.create');
-    }
-
-    /**
-     * @param \App\Http\Requests\CourseStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CourseStoreRequest $request)
-    {
-        $course = Course::create($request->validated());
-
-        $request->session()->flash('course.id', $course->id);
-
-        return redirect()->route('course.index');
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Course $course
+     * @param Course $course
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Course $course)
@@ -52,39 +50,4 @@ class CourseController extends Controller
         return view('course.show', compact('course'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Course $course
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, Course $course)
-    {
-        return view('course.edit', compact('course'));
-    }
-
-    /**
-     * @param \App\Http\Requests\CourseUpdateRequest $request
-     * @param \App\Course $course
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CourseUpdateRequest $request, Course $course)
-    {
-        $course->update($request->validated());
-
-        $request->session()->flash('course.id', $course->id);
-
-        return redirect()->route('course.index');
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Course $course
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Course $course)
-    {
-        $course->delete();
-
-        return redirect()->route('course.index');
-    }
 }
