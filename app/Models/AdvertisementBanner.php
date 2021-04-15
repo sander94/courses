@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\AdTypeEnum;
+use BenSampo\Enum\Traits\CastsEnums;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class AdvertisementBanner extends Model implements Viewable, HasMedia
 {
-    use HasFactory, InteractsWithViews, InteractsWithMedia;
+    use HasFactory, InteractsWithViews, InteractsWithMedia, CastsEnums;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +33,6 @@ class AdvertisementBanner extends Model implements Viewable, HasMedia
      */
     protected $casts = [
         'id' => 'integer',
-        'type' => 'integer',
+        'type' => AdTypeEnum::class,
     ];
 }

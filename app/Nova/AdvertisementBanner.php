@@ -2,11 +2,13 @@
 
 namespace App\Nova;
 
+use App\Enums\AdTypeEnum;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use SimpleSquid\Nova\Fields\Enum\Enum;
 
 class AdvertisementBanner extends Resource
 {
@@ -55,8 +57,8 @@ class AdvertisementBanner extends Resource
             Text::make('Note')
                 ->rules('required', 'string', 'max:400'),
 
-            Number::make('Type')
-                ->rules('required', 'integer'),
+            Enum::make('Type')->attach(AdTypeEnum::class)
+                ->rules('required', 'string'),
 
         ];
     }
