@@ -50,6 +50,16 @@ class PageController extends Controller
 
     }
 
+    public function companies(Request $request)
+    {
+        return view('companies.index');
+    }
+
+    public function company(Request $request)
+    {
+        return view('companies.single');
+    }
+
     public function articles(Request $request)
     {
         $articles = Article::query()->paginate();

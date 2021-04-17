@@ -14,10 +14,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/9c72c241e1.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 
 
     <!-- Fonts -->
@@ -30,6 +33,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
 
 
     <style>
@@ -165,6 +170,7 @@
 
         .results-table-container {
             margin-top: 70px;
+            width: 100%;
         }
 
         .results-table {
@@ -212,6 +218,15 @@
             background-size: cover;
         }
 
+        .company-image-container {
+            width: 100%;
+            height: 200px;
+            background-color: #FFFFFF;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
         a.blog-title {
             font-size: 20px;
             color: #000000;
@@ -226,8 +241,16 @@
             text-decoration: none;
         }
 
-        .blog-archive .col-4 {
+        .blog-archive .col-4, .company-archive .col-3 {
             margin-bottom: 40px;
+        }
+        .footer {
+            background-color: #F66F4D;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        .footer a {
+            color: #FFFFFF;
         }
     </style>
 
@@ -248,22 +271,47 @@
                 <form action="{{ route('search') }}">
                     <input type="text" value="{{ request()->query('search') }}" name="search"
                            placeholder="Leia sobiv koolitus">
+
                     <button class="search-icon"><i class="fas fa-search text-orange"> </i></button>
                 </form>
             </div>
         </div>
         <div class="menu-container">
             <div class="menu">
-                <a href="{{ route('courses.index') }}">Koolitused</a>
-                <a href="#">Koolitajad</a>
-                <a href="{{ route('articles.index') }}">Artiklid</a>
-                <a href="#">Ruumid</a>
-                <a href="#">Kontakt</a>
+                <a href="{{ route('courses.index') }}">Courses</a>
+                <a href="{{ route('companies') }}">Companies</a>
+                <a href="{{ route('articles.index') }}">Articles</a>
+                <a href="#">Rooms</a>
+                <a href="#">Contact</a>
             </div>
         </div>
     </div>
 </div>
 @yield('content')
+
+
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                Ka Company OÜ<br>
+                Mahla 82-78, Tallinn 11215<br>
+                info@koolitused.ee<br>
+                +372 5646 0814<br>
+            </div>
+            <div class="col-6">
+                <a href="{{ route('login') }}">User log in</a><br><br>
+                <a href="{{ route('courses.index') }}">Courses</a><br>
+                <a href="{{ route('companies') }}">Companies</a><br>
+                <a href="{{ route('articles.index') }}">Articles</a><br>
+                <a href="#">Rooms</a><br>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

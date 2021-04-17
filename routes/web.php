@@ -32,3 +32,9 @@ Route::resource('courses', 'CourseController');
 Route::get('/search/{type?}', 'PageController@search')->name('search');
 
 Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
+
+Route::get('/companies', 'PageController@companies')->name('companies');
+
+Route::get('/companies/{slug}', 'PageController@company')->name('company');
+
+Route::get('/login', 'AdminController@login')->name('login');

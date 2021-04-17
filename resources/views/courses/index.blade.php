@@ -77,7 +77,7 @@
                 list-style-type: none;
             }
 
-            }
+            
         </style>
         <form action="" method="GET">
             <div class="filter-container">
