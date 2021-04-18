@@ -38,3 +38,5 @@ Route::get('/companies', 'PageController@companies')->name('companies');
 Route::get('/companies/{slug}', 'PageController@company')->name('company');
 
 Route::get('/login', 'AdminController@login')->name('login');
+
+Route::get('/admin/profile', 'AdminController@profile')->name('profile');

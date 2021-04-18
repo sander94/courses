@@ -18,4 +18,10 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
 }
