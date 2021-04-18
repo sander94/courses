@@ -21,9 +21,23 @@
 	    </div>
 	</div>
 
+	<div class="row mt-5">
 
-        <div class="row">
-        	<h3 class="mt-5">This company's upcoming events!</h3>
+		<div class="col-12">
+			Description (Wysiwyg text). Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text).Description (Wysiwyg text). Description (Wysiwyg text). Description (Wysiwyg text).Description (Wysiwyg text).  Description (Wysiwyg text). Description (Wysiwyg text). Description (Wysiwyg text). Description (Wysiwyg text). Description (Wysiwyg text).
+		</div>
+
+
+	</div>
+
+	<div class="row">
+        	<div class="button-container">
+        		<a href="#" class="active">Live courses</a>
+        		<a href="#">E-courses</a>
+        	</div>
+        	<div class="col-12">
+        		<h3 class="mt-5">Company Name Upcoming events</h3>
+        	</div>
         <div class="results-table-container">
 
             <table border="0" cellpadding="0" cellspacing="0" class="results-table">
