@@ -22,7 +22,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -33,8 +32,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 
     <style>
@@ -244,17 +243,20 @@
         .blog-archive .col-4, .company-archive .col-3 {
             margin-bottom: 40px;
         }
+
         .footer {
             background-color: #F66F4D;
             padding-top: 30px;
             padding-bottom: 30px;
         }
+
         .footer a {
             color: #FFFFFF;
         }
+
         .admin-menu a {
-        	color: #000000;
-        	margin-right: 10px;
+            color: #000000;
+            margin-right: 10px;
         }
     </style>
 
@@ -287,30 +289,28 @@
                 <a href="{{ route('articles.index') }}">Articles</a>
                 <a href="#">Rooms</a>
                 <a href="#">Contact</a>
-                <form action="" method="post">
-                	@csrf
-                	<button type="submit">Log out</button>
-                </form>
+                @auth('company')
+                    <a href="{{ route('logout') }}">Logout</a>
+                @endauth
             </div>
         </div>
     </div>
 </div>
 
 <div class="content">
-<div class="row">
-	<div class="col-12 admin-menu mb-5">
-		<a href="{{ route('profile') }}">My profile</a>
-		<a href="{{ route('description') }}">Additional information</a>
-		<a href="#">Tags</a>
-		<a href="{{ route('statistics') }}">Statistics</a>
-		<a href="#">Courses</a>
-	</div>
+    <div class="row">
+        <div class="col-12 admin-menu mb-5">
+            <a href="{{ route('profile') }}">My profile</a>
+            <a href="{{ route('description') }}">Additional information</a>
+            <a href="#">Tags</a>
+            <a href="{{ route('statistics') }}">Statistics</a>
+            <a href="#">Courses</a>
+        </div>
 
-</div>
+    </div>
 </div>
 
 @yield('content')
-
 
 
 <div class="footer">

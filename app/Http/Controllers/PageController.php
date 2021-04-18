@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Event;
 use App\Models\Region;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,12 +54,22 @@ class PageController extends Controller
 
     public function companies(Request $request)
     {
-        return view('companies.index');
+        $companies = Company::query()
+            ->when($request->get('search'), function (Builder $query, $search) {
+                return $query->where('name', 'like', "%$search%");
+            })
+            ->paginate();
+
+        return view('companies.index', compact('companies'));
     }
 
-    public function company(Request $request)
+    public function company(Company $company, Request $request)
     {
-        return view('companies.single');
+        views($company)->record();
+
+        $courses = $company->courses()->paginate();
+
+        return view('companies.single', compact('company', 'courses'));
     }
 
     public function articles(Request $request)

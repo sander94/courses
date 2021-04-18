@@ -35,12 +35,21 @@ Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
 
 Route::get('/companies', 'PageController@companies')->name('companies');
 
-Route::get('/companies/{slug}', 'PageController@company')->name('company');
+Route::get('/companies/{company}', 'PageController@company')->name('company');
 
-Route::get('/login', 'AdminController@login')->name('login');
+Route::prefix('company')->group(function () {
 
-Route::get('/admin/profile', 'AdminController@profile')->name('profile');
 
-Route::get('/admin/statistics', 'AdminController@statistics')->name('statistics');
+    Route::get('login', 'CompanyController@login')->middleware('guest')->name('login');
+    Route::post('login', 'CompanyController@authenticate')->middleware('guest')->name('authenticate');
 
-Route::get('/admin/description', 'AdminController@description')->name('description');
+    Route::middleware('auth:company')->group(function () {
+        Route::get('profile', 'CompanyController@profile')->name('profile');
+        Route::post('profile', 'CompanyController@update')->name('company.update');
+        Route::get('statistics', 'CompanyController@statistics')->name('statistics');
+        Route::get('description', 'CompanyController@description')->name('description');
+
+        Route::get('logout', 'CompanyController@logout')->name('logout');
+    });
+
+});

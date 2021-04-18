@@ -1,52 +1,35 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="content">
-	<div class="row">
-		<div class="col-12">
-(clicks on company profile)
-<table class="mt-5">
-	<tr>
-		<td style="width: 100px;">
-			<strong>Month</strong>
-		</td>
-		<td style="width: 100px;">
-			<strong>Views</strong>
-		</td>
-	</tr>
+    <div class="content">
+        <div class="row">
+            @foreach($views as $month => $viewItems)
+                <div class="col-12">
+                    {{ $month }}
+                    <table class="mt-5">
+                        <tr>
+                            <td style="width: 100px;">
+                                <strong>Date</strong>
+                            </td>
+                            <td style="width: 100px;">
+                                <strong>Views</strong>
+                            </td>
+                        </tr>
+                        @foreach($viewItems as $view)
+                            <tr>
+                                <td>
+                                    {{ $view->date }}
+                                </td>
+                                <td>
+                                    {{ $view->views }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
 
-
-	<tr>
-		<td>
-			04.2021
-		</td>
-		<td>
-			306
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-			03.2021
-		</td>
-		<td>
-			504
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-			02.2021
-		</td>
-		<td>
-			189
-		</td>
-	</tr>
-
-</table>
-
-</div>
-</div>
-</div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 
 @endsection

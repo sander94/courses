@@ -44,7 +44,7 @@ class Course extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function region(): BelongsTo

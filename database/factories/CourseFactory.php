@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Region;
@@ -35,7 +36,7 @@ class CourseFactory extends Factory
 
             'course_category_id' => CourseCategory::factory()->create(),
             'region_id' => Region::factory()->create(),
-            'user_id' => User::factory()->create(),
+            'company_id' => Company::factory()->create(),
         ];
     }
 }

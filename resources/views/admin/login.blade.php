@@ -9,10 +9,10 @@
 
 		<div class="col-6 text-center">
 
-			<form action="" method="">
+			<form action="{{ route('authenticate') }}" method="POST">
 				@csrf
 				<p>Username</p>
-				<input type="text" name="user"><br>
+				<input type="text" name="email"><br>
 				<p>Password</p>
 				<input type="password" name="password"><br>
 				<input type="submit" value="LOG IN" class="mt-5">
@@ -23,7 +23,7 @@
 		<div class="col-3">
 
 		</div>
-	
+
 	</div>
 
 

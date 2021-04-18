@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->integer('duration_minutes');
             $table->dateTime('started_at');
             $table->dateTime('ended_at');
-            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\Company::class);
             $table->foreignIdFor(\App\Models\Region::class);
             $table->foreignIdFor(\App\Models\CourseCategory::class);
             $table->timestamps();
