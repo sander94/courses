@@ -298,11 +298,11 @@
 
 <div class="content">
 <div class="row">
-	<div class="col-12 admin-menu">
-		<a href="#">My profile</a>
-		<a href="#">Additional information</a>
+	<div class="col-12 admin-menu mb-5">
+		<a href="{{ route('profile') }}">My profile</a>
+		<a href="{{ route('description') }}">Additional information</a>
 		<a href="#">Tags</a>
-		<a href="#">Statistics</a>
+		<a href="{{ route('statistics') }}">Statistics</a>
 		<a href="#">Courses</a>
 	</div>
 

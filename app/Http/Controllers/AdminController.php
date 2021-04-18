@@ -24,4 +24,14 @@ class AdminController extends Controller
         return view('admin.profile');
     }
 
+    public function statistics()
+    {
+        return view('admin.statistics');
+    }
+
+    public function description()
+    {
+        return view('admin.description');
+    }
+
 }
