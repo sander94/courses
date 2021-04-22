@@ -79,6 +79,26 @@ class PageController extends Controller
         return view('articles', compact('articles'));
     }
 
+    public function home(Request $request) {
+
+        $courses = \App\Models\Course::get();
+        // TODO: Show only 15 courses here. 3 courses that are LOCKED in place, in top.
+
+        $articles = \App\Models\Article::orderBy('id', 'desc')->take(3)->get();
+
+        return view('home')->with([
+            'courses' => $courses,
+            'articles' => $articles
+            ]);
+
+    }
+
+    function contact(Request $request) {
+
+        return view('contact');
+
+    }
+
     private function getModelFromType(string $type)
     {
         return static::$types[$type];

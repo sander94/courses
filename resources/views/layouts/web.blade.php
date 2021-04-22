@@ -44,7 +44,28 @@
 
         body {
             background-color: #FAF8ED;
-            padding-bottom: 150px;
+        }
+
+        .mt-10 {
+            margin-top: 100px;
+        }
+
+        .text-xl {
+            font-size: 18px;
+        }
+
+        .font-bold {
+            font-weight: 600;
+        }
+
+        .font-extrabold {
+            font-weight: 700;
+        }
+
+        .medium-title {
+            font-size: 30x;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .logo {
@@ -168,6 +189,11 @@
             color: #FFFFFF;
         }
 
+        .button-container .xl {
+            font-size: 18px;
+            padding: 13px 40px;
+        }
+
         .results-table-container {
             margin-top: 70px;
             width: 100%;
@@ -227,7 +253,7 @@
             background-position: center center;
         }
 
-        a.blog-title {
+        span.blog-title {
             font-size: 20px;
             color: #000000;
             line-height: 24px;
@@ -237,7 +263,7 @@
             display: block;
         }
 
-        a.blog-title:hover {
+        span.blog-title:hover {
             text-decoration: none;
         }
 
@@ -245,13 +271,79 @@
             margin-bottom: 40px;
         }
         .footer {
-            background-color: #F66F4D;
-            padding-top: 30px;
-            padding-bottom: 30px;
+            background-color: #272424;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            margin-top: 150px;
+            color: #FFFFFF;
         }
         .footer a {
             color: #FFFFFF;
         }
+        .popular-courses-container a {
+            margin-right: 20px;
+            margin-left: 20px;
+            color: #000000;
+            line-height: 55px;
+        }
+        .card-rounded {
+            background-color: #FFFFFF;
+            border-radius: 30px;
+            padding: 40px 40px;
+        }
+        .mx-auto {
+            margin: 0 auto;
+        }
+        form.login input[type="text"], form.login input[type="password"] {
+            -webkit-appearance: none;
+            background: transparent;
+            border-radius: 30px;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+            padding: 5px 18px;
+            margin-bottom: 16px;
+            outline: none;
+            width: 100%;
+        }
+        form.login input[type="submit"] {
+            background-color: #F66F4D;
+            color: #FFFFFF;
+            border-radius: 30px;
+            float: right;
+            -webkit-appearance: none;
+            border: 0;
+            outline: none;
+            padding: 5px 20px;
+        }
+
+        .contactform input[type="text"], .contactform textarea {
+            border: 2px solid #F66F4D;
+            border-radius: 30px;
+            font-size: 18px;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            width: 100%;
+            background: transparent;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .contactform textarea {
+            height: 200px;
+            resize: none;
+        }
+
+        .contactform input[type="submit"] {
+            background-color: #F66F4D;
+            -webkit-appearance: none;
+            color: #FFFFFF;
+            border-radius: 30px;
+            font-size: 18px;
+            border: 0;
+            padding: 10px 30px;
+            float: right;
+        }
+
     </style>
 
 
@@ -282,7 +374,7 @@
                 <a href="{{ route('companies') }}">Companies</a>
                 <a href="{{ route('articles.index') }}">Articles</a>
                 <a href="#">Rooms</a>
-                <a href="#">Contact</a>
+                <a href="{{ route('contact') }}">Contact</a>
             </div>
         </div>
     </div>
@@ -294,19 +386,28 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 Ka Company OÜ<br>
                 Mahla 82-78, Tallinn 11215<br>
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
             </div>
-            <div class="col-6">
+            <div class="col-5"> <!-- 
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
                 <a href="{{ route('articles.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
-                <a href="#">Contact</a>
+                <a href="#">Contact</a> -->
+                <p style="position: absolute; bottom: 0;">Koolitused.ee © 2021 - Ka Company OÜ</p>
+            </div>
+            <div class="col-3">
+                <form action="{{ route('authenticate') }}" method="POST" class="login">
+                    @csrf
+                    <input type="text" name="email" placeholder="Username">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="LOG IN" class="">
+                </form>
             </div>
         </div>
     </div>

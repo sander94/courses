@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::resource('articles', 'ArticleController');
 
@@ -28,6 +24,9 @@ Route::resource('events', 'EventController');
 
 Route::resource('courses', 'CourseController');
 
+Route::get('/', 'PageController@home')->name('home');
+
+Route::get('/contact', 'PageController@contact')->name('contact');
 
 Route::get('/search/{type?}', 'PageController@search')->name('search');
 
