@@ -1,6 +1,18 @@
-@extends('layouts.admin')
+@extends('layouts.web')
 
 @section('content')
+
+@include('partials.admin.submenu')
+
+<div class="content">
+
+    <h1 class="entry-title">Kasutaja: {{ Auth::user()->email }}</h1>
+    <div class="separator-orange"></div>
+
+
+
+
+
     <form action="{{ route('company.update') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content">
@@ -112,6 +124,6 @@
         <button>Submit</button>
 
     </form>
-
+</div>  
 
 @endsection

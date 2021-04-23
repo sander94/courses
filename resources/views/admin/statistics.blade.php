@@ -1,6 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.web')
 
 @section('content')
+
+@include('partials.admin.submenu')
+
+
     <div class="content">
         <div class="row">
             @foreach($views as $month => $viewItems)

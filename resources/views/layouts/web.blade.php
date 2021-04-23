@@ -46,6 +46,10 @@
             background-color: #FAF8ED;
         }
 
+        .text-red {
+            color: red;
+        }
+
         .mt-10 {
             margin-top: 100px;
         }
@@ -276,6 +280,8 @@
             padding-bottom: 50px;
             margin-top: 150px;
             color: #FFFFFF;
+            font-weight: 300;
+            line-height: 28px;
         }
         .footer a {
             color: #FFFFFF;
@@ -344,6 +350,31 @@
             float: right;
         }
 
+        .logout {
+            float: right;
+            border: 2px solid #FFFFFF;
+            padding: 5px 25px;
+            border-radius: 30px;
+        }
+        
+        .admin-menu a {
+            margin-right: 20px;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: #000000;
+        }
+
+        .admin-menu a:hover {
+            text-decoration: none;
+        }
+
+        .admin-menu a.active {
+            background-color: #F66F4D;
+            border-color: #F66F4D;
+            color: #FFFFFF;
+        }
+
     </style>
 
 
@@ -401,13 +432,21 @@
                 <a href="#">Contact</a> -->
                 <p style="position: absolute; bottom: 0;">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-3">
+            <div class="col-3 text-right">
+                @auth('company')
+                <p><span class="font-bold">Kasutaja: </span> {{ Auth::user()->email ?? 'SOME ERROR' }} <br>
+                <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
+                <br><br><br>
+                <a href="{{ route('logout') }}" class="logout">Logout</a>
+                @endauth
+                @guest
                 <form action="{{ route('authenticate') }}" method="POST" class="login">
                     @csrf
                     <input type="text" name="email" placeholder="Username">
                     <input type="password" name="password" placeholder="Password">
                     <input type="submit" value="LOG IN" class="">
                 </form>
+                @endguest
             </div>
         </div>
     </div>

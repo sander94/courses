@@ -46,6 +46,7 @@ Route::prefix('company')->group(function () {
         Route::get('profile', 'CompanyController@profile')->name('profile');
         Route::post('profile', 'CompanyController@update')->name('company.update');
         Route::get('statistics', 'CompanyController@statistics')->name('statistics');
+        Route::get('courses', 'CompanyController@mycourses')->name('mycourses');
         Route::get('description', 'CompanyController@description')->name('description');
 
         Route::get('logout', 'CompanyController@logout')->name('logout');

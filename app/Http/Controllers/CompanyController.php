@@ -107,4 +107,9 @@ class CompanyController extends Controller
         return redirect()->to('/');
     }
 
+    public function mycourses(Request $request)
+    {
+        return view('admin.mycourses');
+    }
+
 }

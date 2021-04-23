@@ -33,7 +33,7 @@
         <div class="row">
             <div class="button-container">
                 <a href="#" class="active">Live courses</a>
-                <a href="#">E-courses</a>
+                <a href="#">Orderable courses</a>
             </div>
             <div class="col-12">
                 <h3 class="mt-5">Company Name Upcoming events</h3>

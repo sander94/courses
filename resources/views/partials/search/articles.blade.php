@@ -2,14 +2,15 @@
     <div class="row blog-archive mt-5">
 
         @foreach($result as $article)
-            <div class="col-4">
+                <div class="col-4">
+                    <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
+                        <div class="blog-image-container"
+                             style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
+                        <span class="blog-title">{{ $article->title }}</span></a>
+                        <p>{{ substr($article->content, 0, 300) }}...</p>
+                    
 
-                <div class="blog-image-container"
-                     style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
-                <a href="{{ route('articles.show', $article) }}" class="blog-title">{{ $article->title }}</a>
-                <p>{{ $article->content }}</p>
-
-            </div>
+                </div>
         @endforeach
 
 

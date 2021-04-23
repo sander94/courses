@@ -46,11 +46,11 @@
 
 
 
-    <div class="row mt-10 text-center">
+    <div class="row mt-10">
 
     	<div class="col-12">
 
-    		<h2 class="medium-title">New Courses</h2>
+    		<h2 class="medium-title text-center">New Courses</h2>
     		<div class="separator-orange mx-auto mt-3 mb-5"></div>
 
 	    		<div class="results-table-container">
@@ -139,7 +139,7 @@
 
 	    	<div class="col-3">
 	    		<div class="button-container mx-auto mt-5">
-	    			<a href="#" class="active xl">Kirjuta meile</a>
+	    			<a href="{{ route('contact') }}" class="active xl">Kirjuta meile</a>
 	    		</div>
 	    	</div>
 	    </div>

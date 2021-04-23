@@ -8,6 +8,8 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Event;
 use App\Models\Region;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
