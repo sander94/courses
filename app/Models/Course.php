@@ -75,7 +75,7 @@ class Course extends Model implements Viewable
         ];
     }
 
-    public function getRouteKey()
+    public function getRouteKeyName()
     {
         return 'slug';
     }

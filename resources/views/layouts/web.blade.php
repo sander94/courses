@@ -22,7 +22,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -33,8 +32,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 
     <style>
@@ -274,6 +273,7 @@
         .blog-archive .col-4, .company-archive .col-3 {
             margin-bottom: 40px;
         }
+
         .footer {
             background-color: #272424;
             padding-top: 50px;
@@ -283,23 +283,28 @@
             font-weight: 300;
             line-height: 28px;
         }
+
         .footer a {
             color: #FFFFFF;
         }
+
         .popular-courses-container a {
             margin-right: 20px;
             margin-left: 20px;
             color: #000000;
             line-height: 55px;
         }
+
         .card-rounded {
             background-color: #FFFFFF;
             border-radius: 30px;
             padding: 40px 40px;
         }
+
         .mx-auto {
             margin: 0 auto;
         }
+
         form.login input[type="text"], form.login input[type="password"] {
             -webkit-appearance: none;
             background: transparent;
@@ -311,6 +316,7 @@
             outline: none;
             width: 100%;
         }
+
         form.login input[type="submit"] {
             background-color: #F66F4D;
             color: #FFFFFF;
@@ -376,7 +382,7 @@
         }
 
     </style>
-
+    @stack('css-after')
 
 </head>
 <body>
@@ -413,7 +419,6 @@
 @yield('content')
 
 
-
 <div class="footer">
     <div class="container">
         <div class="row">
@@ -434,19 +439,19 @@
             </div>
             <div class="col-3 text-right">
                 @auth('company')
-                <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
-                <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
-                <br><br><br>
-                <a href="{{ route('logout') }}" class="logout">Logout</a>
+                    <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
+                        <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
+                        <br><br><br>
+                        <a href="{{ route('logout') }}" class="logout">Logout</a>
                 @endauth
 
                 @guest('company')
-                <form action="{{ route('authenticate') }}" method="POST" class="login">
-                    @csrf
-                    <input type="text" name="email" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="submit" value="LOG IN" class="">
-                </form>
+                    <form action="{{ route('authenticate') }}" method="POST" class="login">
+                        @csrf
+                        <input type="text" name="email" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="LOG IN" class="">
+                    </form>
                 @endguest
             </div>
         </div>
@@ -454,5 +459,6 @@
 
 </div>
 
+@stack('js')
 </body>
 </html>

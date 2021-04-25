@@ -57,7 +57,7 @@ class Company extends Authenticatable implements HasMedia, Viewable
         ];
     }
 
-    public function getRouteKey()
+    public function getRouteKeyName()
     {
         return 'slug';
     }
