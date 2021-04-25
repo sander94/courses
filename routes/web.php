@@ -24,6 +24,8 @@ Route::resource('events', 'EventController');
 
 Route::resource('courses', 'CourseController');
 
+Route::post('contact', 'ContactController')->name('contact');
+
 Route::get('/', 'PageController@home')->name('home');
 
 Route::get('/contact', 'PageController@contact')->name('contact');

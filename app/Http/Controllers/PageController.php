@@ -20,7 +20,14 @@ class PageController extends Controller
 {
     public static $types = [
         'courses' => Course::class,
-        'articles' => Article::class
+        'articles' => Article::class,
+        'companies' => Company::class,
+    ];
+
+    public static $titles = [
+        'courses' => 'title',
+        'articles' => 'title',
+        'companies' => 'name',
     ];
 
     /**
@@ -36,13 +43,13 @@ class PageController extends Controller
         $searchQuery = $request->get('search');
 
         $result = $model->newQuery()
-            ->where('title', 'LIKE', "{$searchQuery}%")
+            ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
             ->paginate();
 
         $counters[$type] = $result->total();
         foreach (static::$types as $keyType => $model) {
             if ($keyType !== $type) {
-                $counters[$keyType] = app($model)->newQuery()->where('title', 'LIKE', "{$searchQuery}%")->count();
+                $counters[$keyType] = app($model)->newQuery()->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")->count();
             }
         }
 
@@ -81,27 +88,33 @@ class PageController extends Controller
         return view('articles', compact('articles'));
     }
 
-    public function home(Request $request) {
+    public function home(Request $request)
+    {
 
-        $courses = \App\Models\Course::get();
-        // TODO: Show only 15 courses here. 3 courses that are LOCKED in place, in top.
+        $popularCourses = Course::query()->orderByUniqueViews()->limit(13)->get();
+
+        $courses = \App\Models\Course::query()->ordered()
+            ->limit(15)->get();
 
         $articles = \App\Models\Article::orderBy('id', 'desc')->take(3)->get();
 
         return view('home')->with([
             'courses' => $courses,
-            'articles' => $articles
-            ]);
+            'articles' => $articles,
+            'popularCourses' => $popularCourses
+        ]);
 
     }
 
-    function contact(Request $request) {
+    function contact(Request $request)
+    {
 
         return view('contact');
 
     }
 
-    function rooms(Request $request) {
+    function rooms(Request $request)
+    {
 
         return view('rooms.index');
 

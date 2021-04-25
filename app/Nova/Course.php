@@ -8,9 +8,12 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class Course extends Resource
 {
+    use HasSortableRows;
+
     /**
      * The model the resource corresponds to.
      *

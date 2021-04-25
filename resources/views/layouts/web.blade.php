@@ -356,7 +356,7 @@
             padding: 5px 25px;
             border-radius: 30px;
         }
-        
+
         .admin-menu a {
             margin-right: 20px;
             border: 2px solid #000000;
@@ -423,7 +423,7 @@
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
             </div>
-            <div class="col-5"> <!-- 
+            <div class="col-5"> <!--
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
@@ -434,12 +434,13 @@
             </div>
             <div class="col-3 text-right">
                 @auth('company')
-                <p><span class="font-bold">Kasutaja: </span> {{ Auth::user()->email ?? 'SOME ERROR' }} <br>
+                <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
                 <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
                 <br><br><br>
                 <a href="{{ route('logout') }}" class="logout">Logout</a>
                 @endauth
-                @guest
+
+                @guest('company')
                 <form action="{{ route('authenticate') }}" method="POST" class="login">
                     @csrf
                     <input type="text" name="email" placeholder="Username">

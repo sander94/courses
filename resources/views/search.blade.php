@@ -8,8 +8,9 @@
             <div class="separator-orange"></div>
         @endif
         <div class="button-container">
-
-            {{--            <a href="#" class="{{ $type ==='companies' ? 'active' : null }}">Koolitajad ({{ $counters['companies'] }})</a>--}}
+            <a href="{{ route('search', ['type' => 'companies', 'search' => $searchQuery]) }}"
+               class="{{ $type ==='companies' ? 'active' : null }}">Koolitajad
+                ({{ $counters['companies'] }})</a>
             <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery]) }}"
                class="{{ $type ==='courses' ? 'active' : null }}">Koolitused
                 ({{ $counters['courses'] }})</a>
@@ -21,6 +22,7 @@
 
         @includeWHen($type === 'courses', 'partials.search.courses')
         @includeWHen($type === 'articles', 'partials.search.articles')
+        @includeWHen($type === 'companies', 'partials.search.companies')
 
     </div>
 

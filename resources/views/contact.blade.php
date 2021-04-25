@@ -30,11 +30,20 @@
 
 		<div class="col-4">
 
-			<form action="" method="POST" class="contactform">
+			<form action="{{ route('contact') }}" method="POST" class="contactform">
 				@csrf
-				<input type="text" placeholder="Nimi" name="name">
-				<input type="text" placeholder="E-mail või telefon" name="emailphone">
-				<textarea type="text" placeholder="Sõnum..." name="message"></textarea>
+				<input type="text" placeholder="Nimi" name="name" value="{{ old('name') }}">
+                @if($errors->has('name'))
+                    <span>{{ $errors->first('name') }}</span>
+                @endif
+				<input type="text" placeholder="E-mail või telefon" name="email" value="{{ old('email') }}">
+                @if($errors->has('email'))
+                    <span>{{ $errors->first('email') }}</span>
+                @endif
+				<textarea type="text" placeholder="Sõnum..." name="text">{{ old('text') }}</textarea>
+                @if($errors->has('text'))
+                    <span>{{ $errors->first('text') }}</span>
+                @endif
 				<input type="submit" value="Saada">
 			</form>
 
