@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Spatie\EloquentSortable\SortableTrait;
 
 class Course extends Model implements Viewable
 {
-    use HasFactory, SortableTrait, InteractsWithViews;
+    use HasFactory, SortableTrait, InteractsWithViews, Sluggable;
 
     public $sortable = [
         'order_column_name' => 'sort_order',
@@ -58,5 +59,24 @@ class Course extends Model implements Viewable
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getRouteKey()
+    {
+        return 'slug';
     }
 }

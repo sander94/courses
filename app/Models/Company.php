@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Company extends Authenticatable implements HasMedia, Viewable
 {
-    use HasFactory, InteractsWithMedia, InteractsWithViews;
+    use HasFactory, InteractsWithMedia, InteractsWithViews, Sluggable;
 
     protected $fillable = [
         'name',
@@ -40,5 +41,24 @@ class Company extends Authenticatable implements HasMedia, Viewable
     {
         $this->addMediaCollection('cover')
             ->singleFile();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+    public function getRouteKey()
+    {
+        return 'slug';
     }
 }
