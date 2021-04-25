@@ -101,6 +101,12 @@ class PageController extends Controller
 
     }
 
+    function rooms(Request $request) {
+
+        return view('rooms.index');
+
+    }
+
     private function getModelFromType(string $type)
     {
         return static::$types[$type];

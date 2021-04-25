@@ -34,6 +34,8 @@ Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
 
 Route::get('/companies', 'PageController@companies')->name('companies');
 
+Route::get('/rooms', 'PageController@rooms')->name('rooms');
+
 Route::get('/companies/{company}', 'PageController@company')->name('company');
 
 Route::prefix('company')->group(function () {
