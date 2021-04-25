@@ -17,6 +17,7 @@ class ContactController extends Controller
             $user->notify(new ContactNotification($request->get('name'), $request->get('email'), $request->get('text')));
         });
 
-        return redirect()->to('/');
-    }
+        return redirect()->back()->withSuccess('Aitäh! Sõnum on edastatud!');
+}
+
 }

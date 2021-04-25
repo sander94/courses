@@ -29,7 +29,7 @@
 		</div>
 
 		<div class="col-4">
-
+			@if(Session::get('success')) {{ Session::get('success') }} @endif
 			<form action="{{ route('contact') }}" method="POST" class="contactform">
 				@csrf
 				<input type="text" placeholder="Nimi" name="name" value="{{ old('name') }}">
