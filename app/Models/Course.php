@@ -51,7 +51,7 @@ class Course extends Model implements Viewable
         return $this->belongsTo(CourseCategory::class);
     }
 
-    public function user(): BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }

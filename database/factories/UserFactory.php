@@ -28,8 +28,6 @@ class UserFactory extends Factory
             $region = Region::factory()->create();
 
             $user->region()->associate($region);
-        })->afterCreating(function (User $user) {
-            $user->profile()->save(UserProfile::factory()->make());
         });
     }
 

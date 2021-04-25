@@ -57,7 +57,7 @@ class Course extends Resource
                 ->rules('required', 'integer'),
 
             Number::make('Price')
-                ->rules('required', 'integer'),
+                ->rules('required'),
 
             DateTime::make('Started At'),
             DateTime::make('Ended At'),
@@ -70,7 +70,7 @@ class Course extends Resource
                 ->searchable()
                 ->prepopulate(),
 
-            BelongsTo::make('User')
+            BelongsTo::make('Company')
                 ->searchable()
                 ->prepopulate(),
 
