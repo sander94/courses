@@ -24,7 +24,7 @@ class Article extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -33,6 +33,7 @@ class Article extends Resource
      */
     public static $search = [
         'id',
+        'title',
     ];
 
     /**

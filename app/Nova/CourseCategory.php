@@ -23,7 +23,7 @@ class CourseCategory extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -32,6 +32,7 @@ class CourseCategory extends Resource
      */
     public static $search = [
         'id',
+        'title'
     ];
 
     /**

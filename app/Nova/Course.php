@@ -26,7 +26,7 @@ class Course extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -35,6 +35,7 @@ class Course extends Resource
      */
     public static $search = [
         'id',
+        'title'
     ];
 
     /**
