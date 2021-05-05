@@ -28,10 +28,12 @@ class StoreCourseRequest extends FormRequest
                 'email'
             ],
             'started_at' => [
-                'required',
+                'sometimes',
+                'required'
             ],
             'ended_at' => [
-                'required',
+                'sometimes',
+                'required'
             ],
             'price' => [
                 'required',

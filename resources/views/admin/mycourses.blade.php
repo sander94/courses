@@ -28,14 +28,17 @@
                     <multiselect :options="categories" v-model="model.category" label="title"></multiselect>
                 </div>
 
-                <div class="row mt-3">
+                <label for="is_buyable">Is Orderable</label>
+                <input type="checkbox" id="is_buyable" name="is_buyable" v-model="model.is_buyable">
+
+                <div class="row mt-3" v-if="!model.is_buyable">
                     <div class="col-12">
                         Starts at:
                         <datepicker v-model="model.started_at" type="datetime" value-type="format"></datepicker>
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-3" v-if="!model.is_buyable">
                     <div class="col-12">
                         Ends at:
                         <datepicker v-model="model.ended_at" type="datetime" value-type="format"></datepicker>
@@ -94,6 +97,7 @@
             data() {
                 return {
                     model: {
+                        is_buyable: @json(old('is_buyable') ?? false),
                         category: null,
                         region: null,
                         started_at: @json(old('started_at')),
