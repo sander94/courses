@@ -34,7 +34,7 @@ class CourseController extends Controller
             ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
-            ->whereDate('ended_at', '<', now())
+            ->whereDate('ended_at', '>', now())
             ->ordered()
             ->paginate();
 
