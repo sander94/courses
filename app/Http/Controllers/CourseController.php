@@ -20,7 +20,7 @@ class CourseController extends Controller
 
         $selectedCategory = $request->has('category') ? CourseCategory::query()->find($request->get('category')) : null;
         $selectedRegion = $request->has('region') ? Region::query()->find($request->get('region')) : null;
-        $selectedStartedAt = $request->has('started_at') ? Carbon::parse($request->get('started_at')) : null;
+        $selectedStartedAt = $request->get('started_at') ? Carbon::parse($request->get('started_at')) : null;
 
         $regions = Region::query()->get();
 
