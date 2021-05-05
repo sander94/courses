@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Company\UpdateRequest;
+use App\Http\Requests\StoreCourseRequest;
 use App\Models\Company;
+use App\Models\Course;
+use App\Models\CourseCategory;
 use App\Models\Region;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -109,7 +112,21 @@ class CompanyController extends Controller
 
     public function mycourses(Request $request)
     {
-        return view('admin.mycourses');
+        $categories = CourseCategory::query()->with('children')->get();
+        $regions = Region::query()->get();
+
+        return view('admin.mycourses', compact('categories', 'regions'));
+    }
+
+    public function storeCourse(StoreCourseRequest $request)
+    {
+        /** @var Company $company */
+        $company = $request->user();
+        $course = Course::query()->make($request->validated());
+
+        $company->courses()->save($course);
+
+        return redirect()->route('profile');
     }
 
 }

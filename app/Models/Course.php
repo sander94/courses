@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
@@ -29,6 +30,10 @@ class Course extends Model implements Viewable
         'featuring_ended_at',
         'duration_minutes',
         'price',
+        'course_category_id',
+        'region_id',
+        'started_at',
+        'ended_at',
     ];
 
     /**
