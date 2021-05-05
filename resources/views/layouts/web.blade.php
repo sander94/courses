@@ -366,7 +366,7 @@
 
         .admin-menu a {
             margin-right: 20px;
-            border: 2px solid #000000;
+            border: 2px solid #969696;
             padding: 10px 20px;
             border-radius: 30px;
             color: #000000;
@@ -381,6 +381,53 @@
             border-color: #F66F4D;
             color: #FFFFFF;
         }
+
+.title-container {
+    display: flex;
+}
+.title-logo {
+    margin-right: 15px;
+}
+.title {
+    margin-top: 15px;
+}
+.profile-input-row {
+    display: flex;
+}
+.input-desc {
+    width: 150px;
+    line-height: 40px;
+
+}
+.profile-input-row input[type="text"], .profile-input-row input[type="email"], .profile-input-row select {
+    width: 60%;
+    border: 2px solid #969696;
+    background: transparent;
+    border-radius: 30px;
+    padding: 7px 10px;
+    outline: none;
+}
+
+.profile-row {
+    margin-top: 15px;
+}
+
+.logo-pilt {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+}
+
+button.submit {
+    background-color: #F66F4D;
+    border-radius: 30px;
+    color: #FFFFFF;
+    padding: 10px 50px;
+    border: 0;
+    -webkit-appearance: none;
+    margin-top: 40px;
+    font-weight: 600;
+}
 
     </style>
     @stack('css-after')
