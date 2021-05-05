@@ -68,6 +68,7 @@ class Company extends Resource
             Text::make(__('City'), 'city')->required(),
             Text::make(__('Street'), 'street')->required(),
             Text::make(__('Postal'), 'postal')->required(),
+            Text::make(__('Website'), 'website')->required(),
 
         ];
     }
