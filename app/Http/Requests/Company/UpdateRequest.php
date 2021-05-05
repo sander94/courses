@@ -63,6 +63,11 @@ class UpdateRequest extends FormRequest
                 'required',
                 'string'
             ],
+            'region_id' => [
+                'sometimes',
+                'required',
+                'exists:regions,id'
+            ],
 
             'cover' => [
                 'sometimes',

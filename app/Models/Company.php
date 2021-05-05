@@ -22,6 +22,7 @@ class Company extends Authenticatable implements HasMedia, Viewable
         'description',
         'website',
         'reg_number',
+        'region_id',
         'city',
         'street',
         'postal',
