@@ -56,11 +56,15 @@
                         </tr>
                         @forelse($courses as $course)
                             <tr>
-                                <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
-                                    - {{ $course->ended_at->format('d.m.Y') }}
-                                    <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                                    days
-                                </td>
+                                @if($course->started_at && $course->ended_at)
+                                    <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                                        - {{ $course->ended_at->format('d.m.Y') }}
+                                        <br>{{ $course->ended_at->diffInDays($course->started_at) }}
+                                        days
+                                    </td>
+                                @else
+                                    <td>No dates</td>
+                                @endif
                                 <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
                                 <td style="font-weight: 300;">NORT koolitus (company name)</td>
                                 <td>{{ $course->title }}
