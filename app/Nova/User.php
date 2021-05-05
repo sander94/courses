@@ -73,34 +73,9 @@ class User extends Resource
 
             BelongsTo::make('Region', 'region'),
 
-            new Panel('Profile', $this->profileFields()),
-
             HasMany::make('Courses'),
 
             MorphMany::make('Social Links', 'socialLinks'),
-        ];
-    }
-
-    protected function profileFields(): array
-    {
-        return [
-            Text::make('Phone', 'profile.phone')
-                ->rules('string'),
-
-            Text::make('Company reg no', 'profile.company_reg_no')
-                ->rules('string'),
-
-            Text::make('Brand name', 'profile.brand_name')
-                ->rules('string'),
-
-            Text::make('City', 'profile.city')
-                ->rules('string'),
-
-            Text::make('Address', 'profile.address')
-                ->rules('string'),
-
-            Textarea::make('Additional info', 'profile.additional_info')
-                ->rules('required', 'string', 'profile.'),
         ];
     }
 
