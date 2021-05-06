@@ -83,17 +83,17 @@
             <div class="filter-container">
 
                 <span id="findCourse" class="filter findCourse"
-                      onclick="$('#findCourseContainer').slideToggle();">{{ optional($selectedCategory)->title ?? 'Choose category' }}</span>
+                      onclick="$('#findCourseContainer').slideToggle();">{{ optional($selectedCategory)->title ?? 'Vali kategooria' }}</span>
 
 
                 <select id="findLocation" class="filter findLocation" name="region">
-                    <option value="0">Location</option>
+                    <option value="0">Asukoht</option>
                     @foreach($regions as $region)
                         <option
                             value="{{ $region->getKey() }}" {{ optional($selectedRegion)->getKey() === $region->getKey() ? 'checked' : null }}>{{ $region->title }}</option>
                     @endforeach
                 </select>
-                <input type="text" id="datepicker" class="filter findDate" name="started_at" placeholder="Start date">
+                <input type="text" id="datepicker" class="filter findDate" name="started_at" placeholder="Algusaeg">
                 <input type="submit" value="Filtreeri" class="findSubmit">
 
 
@@ -141,15 +141,15 @@
                             days
                         </td>
                         <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
-                        <td style="font-weight: 300;">NORT koolitus (company name)</td>
+                        <td style="font-weight: 300;">{{ $course->company->name }}</td>
                         <td>{{ $course->title }}
                         </td>
                         <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                         <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                        <td><a href="#readmore" class="table-readmore">Loe lisa</a></td>
+                        <td><a href="{{ $course->website }}" class="table-readmore">Loe lisa</a></td>
                     </tr>
                 @empty
-                    <p>No Courses Found</p>
+                    <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei leitud</p>
 
                 @endforelse
 

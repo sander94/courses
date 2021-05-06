@@ -3,7 +3,26 @@
 @section('content')
 
     @include('partials.admin.submenu')
-
+<style>
+.multiselect__tags {
+    background: transparent;
+    border-radius: 30px;
+}
+.multiselect__tags input[type='text'] {
+    border: 0;
+}
+.multiselect {
+    width: 60%;
+    border: 2px solid #969696;
+    border-radius: 30px;
+}
+.mx-datepicker {
+    width: 60%;
+}
+.profile-input-row input[type="text"].mx-input {
+    width: 100%;
+}
+</style>
     <div class="content" id="form">
         <ul>
             @foreach($errors->all() as $error)
@@ -16,69 +35,131 @@
             <input type="hidden" name="region_id" :value="model.region.id" v-if="model.region">
             <input type="hidden" name="started_at" :value="model.started_at" v-if="model.started_at">
             <input type="hidden" name="ended_at" :value="model.ended_at" v-if="model.ended_at">
+          
             <div class="row">
-                <div class="col-12 mb-3">
-                    <input type="text" name="title" placeholder="Course title" value="{{ old('title') }}">
+                <div class="col-12">
+                    <h2>Lisa uus koolitus</h2>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <h2>Choose categories</h2>
-                    <multiselect :options="categories" v-model="model.category" label="title"></multiselect>
+
+
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            Koolituse nimi
+                        </div>
+                        <input type="text" value="{{ old('title') }}" name="title">
+                    </label>
                 </div>
+            </div>
 
-                <label for="is_buyable">Is Orderable</label>
-                <input type="checkbox" id="is_buyable" name="is_buyable" v-model="model.is_buyable">
-
-                <div class="row mt-3" v-if="!model.is_buyable">
-                    <div class="col-12">
-                        Starts at:
-                        <datepicker v-model="model.started_at" type="datetime" value-type="format"></datepicker>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <div class="profile-input-row">
+                        <div class="input-desc">
+                            Vali kategooria
+                        </div>
+                        <multiselect :options="categories" v-model="model.category" label="title"></multiselect>
                     </div>
                 </div>
+            </div>
 
-                <div class="row mt-3" v-if="!model.is_buyable">
-                    <div class="col-12">
-                        Ends at:
-                        <datepicker v-model="model.ended_at" type="datetime" value-type="format"></datepicker>
-                    </div>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            <label for="is_buyable">Tellitav kursus?</label>
+                        </div>
+                        <input type="checkbox" id="is_buyable" name="is_buyable" v-model="model.is_buyable">
+                    </label>
                 </div>
+            </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        Region:
+            <div class="row profile-row" v-if="!model.is_buyable">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            <label for="is_buyable">Algusaeg</label>
+                        </div>
+                        <datepicker v-model="model.started_at" type="date" value-type="format"></datepicker>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row profile-row" v-if="!model.is_buyable">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            <label for="is_buyable">Lõppaeg</label>
+                        </div>
+                        <datepicker v-model="model.ended_at" type="date" value-type="format"></datepicker>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="row profile-row">
+                <div class="col-6">
+                    <div class="profile-input-row">
+                        <div class="input-desc">
+                            Asukoht
+                        </div>
                         <multiselect :options="regions" v-model="model.region" label="title"></multiselect>
                     </div>
                 </div>
+            </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        Price: <input type="text" name="price" value="{{ old('price') }}">
-                    </div>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            Hind:
+                        </div>
+                        <input type="text" name="price" value="{{ old('price') }}">
+                    </label>
                 </div>
+            </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        Registration URL: <input type="text" name="url" value="{{ old('url') }}">
-                    </div>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            Link kursusele
+                        </div>
+                        <input type="text" name="url" value="{{ old('url') }}">
+                    </label>
                 </div>
+            </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        Phone: <input type="text" name="phone" value="{{ old('phone') }}">
-                    </div>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            Telefon
+                        </div>
+                        <input type="text" name="phone" value="{{ old('phone') }}">
+                    </label>
                 </div>
+            </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        E-mail: <input type="text" name="email" value="{{ old('email') ?? Auth::user()->email }}">
-                    </div>
+            <div class="row profile-row">
+                <div class="col-6">
+                    <label class="profile-input-row">
+                        <div class="input-desc">
+                            E-mail:
+                        </div>
+                        <input type="text" name="email" value="{{ old('email') ?? Auth::user()->email }}">
+                    </label>
                 </div>
+            </div>
+
+
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <button type="submit" name="submit">Submit</button>
+                        <button type="submit" name="submit" class="submit">SALVESTA</button>
                     </div>
                 </div>
             </div>

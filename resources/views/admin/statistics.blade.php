@@ -4,25 +4,33 @@
 
 @include('partials.admin.submenu')
 
+<style>
+.month-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+</style>
 
     <div class="content">
         <div class="row">
-            @foreach($views as $month => $viewItems)
-                <div class="col-12">
-                    {{ $month }}
-                    <table class="mt-5">
+
+ @foreach($views as $month => $viewItems)
+            <div class="col-3 month-card p-4">
+
+                {{ $month }} 
+                    <table class="mt-2">
                         <tr>
-                            <td style="width: 100px;">
-                                <strong>Date</strong>
+                            <td style="width: 150px;">
+                                <strong>Kuupäev</strong>
                             </td>
                             <td style="width: 100px;">
-                                <strong>Views</strong>
+                                <strong>Klikid</strong>
                             </td>
                         </tr>
                         @foreach($viewItems as $view)
                             <tr>
                                 <td>
-                                    {{ $view->date }}
+                                    {{ Carbon\Carbon::parse($view->date)->format('d.m.Y') }}
                                 </td>
                                 <td>
                                     {{ $view->views }}
@@ -31,8 +39,9 @@
                         @endforeach
                     </table>
 
-                </div>
-            @endforeach
+            </div>
+         @endforeach
+
         </div>
     </div>
 

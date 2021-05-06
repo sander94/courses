@@ -22,12 +22,27 @@
 
             <div class="col-12">
 
-                <h2 class="medium-title">Popular Courses</h2>
+                <h2 class="medium-title">Populaarsed kategooriad</h2>
                 <div class="separator-orange mx-auto mt-3 mb-5"></div>
                 <div class="popular-courses-container">
+                    @if(false)
                     @foreach($popularCourses as $course)
                         <a href="#">{{ $course->title }}</a>
                     @endforeach
+                    @endif
+                    <a href="#">ÄRI- JA ETTEVÕTLUSALASED KOOLITUSED</a>
+                    <a href="#">TURUNDUS</a>
+                    <a href="#">EHITUS</a>
+                    <a href="#">FINANTS</a>
+                    <a href="#">KINNISVARA</a>
+                    <a href="#">PSÜHHOLOOGIA</a>
+                    <a href="#">SOTSIAALTÖÖ</a>
+                    <a href="#">TRANSOPRT JA LOGISTIKA</a>
+                    <a href="#">FOTOGRAAFIA</a>
+                    <a href="#">JUHTIMINE</a>
+                    <a href="#">KOKANDUSKURSUSED</a>
+                    <a href="#">SEKRETÄRILE</a>
+                    <a href="#">KLIENDITEENINDUS</a>
                 </div>
 
             </div>
@@ -39,7 +54,7 @@
 
             <div class="col-12">
 
-                <h2 class="medium-title text-center">New Courses</h2>
+                <h2 class="medium-title text-center">Uued koolitused</h2>
                 <div class="separator-orange mx-auto mt-3 mb-5"></div>
 
                 <div class="results-table-container">
@@ -59,22 +74,22 @@
                                 @if($course->started_at && $course->ended_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                         - {{ $course->ended_at->format('d.m.Y') }}
-                                        <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                                        days
+                                        <br><strong>{{ $course->ended_at->diffInDays($course->started_at) }}
+                                        päeva</strong>
                                     </td>
                                 @else
                                     <td>No dates</td>
                                 @endif
-                                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
-                                <td style="font-weight: 300;">NORT koolitus (company name)</td>
+                                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} tundi</td>
+                                <td style="font-weight: 300;">{{ $course->company->name }}</td>
                                 <td>{{ $course->title }}
                                 </td>
                                 <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                                 <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                                <td><a href="#readmore" class="table-readmore">Loe lisa</a></td>
+                                <td><a href="{{ $course->website }}" class="table-readmore">Loe lisa</a></td>
                             </tr>
                         @empty
-                            <p>No Courses Found</p>
+                            <p>Koolitusi ei ole</p>
 
                         @endforelse
 
@@ -92,12 +107,12 @@
 
             <div class="col-12">
 
-                <h2 class="medium-title text-center">Articles</h2>
+                <h2 class="medium-title text-center">Artiklid ja uudised</h2>
                 <div class="separator-orange mx-auto mt-3 mb-5"></div>
 
                 <div class="row blog-archive mt-5">
 
-                    @foreach($articles as $article)
+                    @forelse($articles as $article)
                         <div class="col-4">
                             <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
                                 <div class="blog-image-container"
@@ -107,7 +122,9 @@
                             </a>
 
                         </div>
-                    @endforeach
+                    @empty
+                        <p style="margin: 0 auto;">Artikleid ei leitud</p>
+                    @endforelse
 
                 </div>
 

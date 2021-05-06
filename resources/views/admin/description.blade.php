@@ -3,7 +3,11 @@
 @section('content')
 
     @include('partials.admin.submenu')
-
+<style>
+.ql-editor{
+    min-height:200px;
+}
+</style>
     <div class="content">
         <div class="row">
             <div class="col-12">
@@ -15,8 +19,7 @@
                     <div id="editor-container">
                         {!! $company->description  !!}
                     </div>
-                    <br>
-                    <button>Submit</button>
+                    <button class="submit">SALVESTA</button>
                 </form>
 
 
@@ -41,7 +44,7 @@
                     ['image', 'code-block']
                 ]
             },
-            placeholder: 'Compose an epic...',
+            placeholder: 'Kirjuta siia',
             theme: 'snow'  // or 'bubble'
         });
 
