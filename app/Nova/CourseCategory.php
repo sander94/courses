@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -54,7 +55,7 @@ class CourseCategory extends Resource
 
             BelongsTo::make('Parent', 'parent', self::class)->nullable(),
 
-            HasMany::make('Courses'),
+            BelongsToMany::make('Courses'),
 
             HasMany::make('Children', 'children', self::class),
 

@@ -10,9 +10,11 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class Company extends Resource
 {
+    use HasSortableRows;
     /**
      * The model the resource corresponds to.
      *

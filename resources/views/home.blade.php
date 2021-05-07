@@ -1,7 +1,6 @@
 @extends('layouts/web')
 
 @section('content')
-
     <div class="content">
 
         <div class="row">

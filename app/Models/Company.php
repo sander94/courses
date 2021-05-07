@@ -8,12 +8,18 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Company extends Authenticatable implements HasMedia, Viewable
 {
-    use HasFactory, InteractsWithMedia, InteractsWithViews, Sluggable;
+    use HasFactory, InteractsWithMedia, InteractsWithViews, Sluggable, SortableTrait;
+
+    public $sortable = [
+        'order_column_name' => 'sort_order',
+        'sort_when_creating' => true,
+    ];
 
     protected $fillable = [
         'name',

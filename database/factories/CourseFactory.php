@@ -31,12 +31,17 @@ class CourseFactory extends Factory
             'featuring_ended_at' => $this->faker->dateTime(),
             'price' => $this->faker->numberBetween(300, 1500),
             'duration_minutes' => $this->faker->numberBetween(3600, 96000),
-            'started_at' => $this->faker->dateTime('+1 day'),
-            'ended_at' => $this->faker->dateTime('+1 week'),
-
-            'course_category_id' => CourseCategory::factory()->create(),
+            'started_at' => now(),
+            'ended_at' => now()->addWeek(),
             'region_id' => Region::factory()->create(),
             'company_id' => Company::factory()->create(),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Course $course) {
+            $course->courseCategories()->sync(CourseCategory::factory()->count($this->faker->numberBetween(1, 4))->create()->pluck('id'));
+        });
     }
 }

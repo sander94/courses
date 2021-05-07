@@ -42,7 +42,6 @@ Route::get('/companies/{company}', 'PageController@company')->name('company');
 
 Route::prefix('company')->group(function () {
 
-
     Route::get('login', 'CompanyController@login')->middleware('guest')->name('login');
     Route::post('login', 'CompanyController@authenticate')->middleware('guest')->name('authenticate');
 

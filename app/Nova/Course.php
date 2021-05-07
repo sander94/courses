@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -63,9 +64,7 @@ class Course extends Resource
             DateTime::make('Started At'),
             DateTime::make('Ended At'),
 
-            BelongsTo::make('Course Category', 'courseCategory')
-                ->searchable()
-                ->prepopulate(),
+            BelongsToMany::make('Course Category', 'courseCategories'),
 
             BelongsTo::make('Region', 'region')
                 ->searchable()

@@ -24,7 +24,8 @@ class AddCompanies extends Migration
             $table->string('city');
             $table->string('street');
             $table->string('postal');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
+            $table->unsignedInteger('sort_order')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

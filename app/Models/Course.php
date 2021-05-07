@@ -9,6 +9,7 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Course extends Model implements Viewable
@@ -51,9 +52,9 @@ class Course extends Model implements Viewable
         'ended_at'
     ];
 
-    public function courseCategory(): BelongsTo
+    public function courseCategories(): BelongsToMany
     {
-        return $this->belongsTo(CourseCategory::class);
+        return $this->belongsToMany(CourseCategory::class, 'category_course');
     }
 
     public function company(): BelongsTo

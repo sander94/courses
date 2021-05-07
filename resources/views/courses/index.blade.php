@@ -77,7 +77,7 @@
                 list-style-type: none;
             }
 
-            
+
         </style>
         <form action="" method="GET">
             <div class="filter-container">
@@ -87,13 +87,14 @@
 
 
                 <select id="findLocation" class="filter findLocation" name="region">
-                    <option value="0">Asukoht</option>
+                    <option value="">Asukoht</option>
                     @foreach($regions as $region)
                         <option
-                            value="{{ $region->getKey() }}" {{ optional($selectedRegion)->getKey() === $region->getKey() ? 'checked' : null }}>{{ $region->title }}</option>
+                            value="{{ $region->getKey() }}" {{ optional($selectedRegion)->getKey() === $region->getKey() ? 'selected' : null }}>{{ $region->title }}</option>
                     @endforeach
                 </select>
-                <input type="text" id="datepicker" class="filter findDate" name="started_at" placeholder="Algusaeg">
+                <input type="text" id="datepicker" value="{{ request()->query('started_at') }}" class="filter findDate"
+                       name="started_at" placeholder="Algusaeg">
                 <input type="submit" value="Filtreeri" class="findSubmit">
 
 
@@ -149,7 +150,8 @@
                         <td><a href="{{ $course->website }}" class="table-readmore">Loe lisa</a></td>
                     </tr>
                 @empty
-                    <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei leitud</p>
+                    <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei
+                        leitud</p>
 
                 @endforelse
 

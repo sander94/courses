@@ -67,6 +67,7 @@ class PageController extends Controller
             ->when($request->get('search'), function (Builder $query, $search) {
                 return $query->where('name', 'like', "%$search%");
             })
+            ->ordered()
             ->paginate();
 
         return view('companies.index', compact('companies'));

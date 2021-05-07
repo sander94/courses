@@ -42,7 +42,7 @@ class CompanyController extends Controller
 
 
         if (Auth::guard('company')->attempt(['email' => $email, 'password' => $password], true)) {
-            $request->session()->regenerate();
+//            $request->session()->regenerate();
 
             return redirect()->to('/');
         }
@@ -122,9 +122,12 @@ class CompanyController extends Controller
     {
         /** @var Company $company */
         $company = $request->user();
+        /** @var Course $course */
         $course = Course::query()->make($request->validated());
 
         $company->courses()->save($course);
+
+        $course->courseCategories()->sync($request->get('categories'));
 
         return redirect()->route('profile');
     }

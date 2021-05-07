@@ -32,7 +32,7 @@ class CourseCategory extends Model
 
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class, 'category_course');
     }
 
     public function children()

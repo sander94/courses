@@ -18,15 +18,17 @@ class CourseController extends Controller
     {
         $categories = CourseCategory::query()->whereNull('course_category_id')->with('children')->get();
 
-        $selectedCategory = $request->has('category') ? CourseCategory::query()->find($request->get('category')) : null;
-        $selectedRegion = $request->has('region') ? Region::query()->find($request->get('region')) : null;
+        $selectedCategory = $request->get('category') ? CourseCategory::query()->find($request->get('category')) : null;
+        $selectedRegion = $request->get('region') ? Region::query()->find($request->get('region')) : null;
         $selectedStartedAt = $request->get('started_at') ? Carbon::parse($request->get('started_at')) : null;
 
         $regions = Region::query()->get();
 
         $courses = \App\Models\Course::query()
             ->when($selectedCategory, function ($query, $selectedCategory) {
-                return $query->where('course_category_id', $selectedCategory->getKey());
+                return $query->whereHas('courseCategories', function ($query) use ($selectedCategory) {
+                    return $query->whereIn('id', [$selectedCategory->getKey()]);
+                });
             })
             ->when($selectedRegion, function ($query, $selectedRegion) {
                 return $query->where('region_id', $selectedRegion->getKey());
