@@ -121,12 +121,20 @@
             text-decoration: none;
         }
 
+        .header-container {
+            width: 100%;
+            position: fixed;
+            z-index: 99;
+            background-color: #FAF8ED;
+            margin-bottom: 70px;
+        }
+
         .header {
             width: 1300px;
             max-width: 100%;
             margin: 0 auto;
             padding-top: 10px;
-            margin-bottom: 70px;
+            padding-bottom: 20px;
         }
 
         .navigation {
@@ -149,6 +157,7 @@
         .search-container {
             width: 600px;
             position: relative;
+            background-color: #FAF8ED;
         }
 
         .menu-container {
@@ -159,6 +168,7 @@
         .content {
             width: 1200px;
             margin: 0 auto;
+            padding-top: 80px;
         }
 
         h1.entry-title {
@@ -201,6 +211,7 @@
         .results-table-container {
             margin-top: 70px;
             width: 100%;
+            position: relative;
         }
 
         .results-table {
@@ -429,37 +440,178 @@ button.submit {
     font-weight: 600;
 }
 
-    </style>
+.mobile-menu {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: #F66F4D;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    text-align: center;
+    top: 70px;
+    padding-top: 40px;
+}
+
+.mobile-menu a {
+    display: block;
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-toggle i {
+    cursor: pointer;
+}
+
+.search-toggle {
+    display: none;
+}
+
+
+@media screen and (max-width: 1350px) {
+    .header {
+        width: 1200px;
+    }
+    .content {
+        width: 1100px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .header {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .search-container {
+        width: 400px;
+    }
+    .logo-container {
+        width: 300px;
+    }
+    .content {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .menu a {
+        margin-left: 20px;
+    }
+    .search-container {
+        width: 450px;
+        margin-left: 30px;
+    }
+    .content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .menu {
+        display: none;
+    }
+    .search-container {
+        width: 1000px;
+        margin-right: 20px;
+    }
+    .menu-toggle {
+        display: block;
+        text-align: center;
+        font-size: 28px;
+        line-height: 28px;
+        margin-left: 10px;
+    }
+    .menu-container {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .search-container {
+        display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 60px;
+        margin: 0 auto;
+        z-index: 9;
+        height: 60px;
+    }
+    .menu-container {
+        text-align: right;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .menu-toggle {
+        text-align: right;
+    }
+    .search-toggle {
+        display: block;
+    }
+    .search-toggle i {
+        font-size: 22px;
+        line-height: 24px;
+        margin-right: 20px;
+        margin-top: 3px;
+        color: #F66F4D;
+        cursor: pointer;
+    }
+}
+
+
+</style>
     @stack('css-after')
 
 </head>
 <body>
-<div class="header">
-    <div class="navigation">
-        <div class="logo-container">
-            <a href="/">
-                <div class="logo pt-2">
-                    <span class="text-orange">Koolitused</span><span>.ee</span>
-                </div>
-            </a>
-        </div>
-        <div class="search-container">
-            <div class="search pt-2">
-                <form action="{{ route('search') }}">
-                    <input type="text" value="{{ request()->query('search') }}" name="search"
-                           placeholder="Leia sobiv koolitus">
-
-                    <button class="search-icon"><i class="fas fa-search text-orange"> </i></button>
-                </form>
+<div class="header-container">
+    <div class="header">
+        <div class="navigation">
+            <div class="logo-container">
+                <a href="/">
+                    <div class="logo pt-2">
+                        <span class="text-orange">Koolitused</span><span>.ee</span>
+                    </div>
+                </a>
             </div>
-        </div>
-        <div class="menu-container">
-            <div class="menu">
-                <a href="{{ route('courses.index') }}">Courses</a>
-                <a href="{{ route('companies') }}">Companies</a>
-                <a href="{{ route('articles.index') }}">Articles</a>
-                <a href="#">Rooms</a>
-                <a href="{{ route('contact') }}">Contact</a>
+            <div class="search-container" id="searchContainer">
+                <div class="search pt-2">
+                    <form action="{{ route('search') }}">
+                        <input type="text" value="{{ request()->query('search') }}" name="search"
+                               placeholder="Leia sobiv koolitus">
+
+                        <button class="search-icon"><i class="fas fa-search text-orange"> </i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu-container">
+                <div class="menu">
+                    <a href="{{ route('courses.index') }}">Courses</a>
+                    <a href="{{ route('companies') }}">Companies</a>
+                    <a href="{{ route('articles.index') }}">Articles</a>
+                    <a href="#">Rooms</a>
+                    <a href="{{ route('contact') }}">Contact</a>
+                </div>
+                <div class="search-toggle" id="searchMenuButton">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="menu-toggle" id="mobileMenuButton">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="{{ route('courses.index') }}">Courses</a>
+                    <a href="{{ route('companies') }}">Companies</a>
+                    <a href="{{ route('articles.index') }}">Articles</a>
+                    <a href="#">Rooms</a>
+                    <a href="{{ route('contact') }}">Contact</a>
+                </div>
             </div>
         </div>
     </div>
@@ -508,5 +660,13 @@ button.submit {
 </div>
 
 @stack('js')
+<script>
+$('#mobileMenuButton').click(function() {
+    $('#mobileMenu').slideToggle();
+});
+$('#searchMenuButton').click(function() {
+    $('#searchContainer').slideToggle();
+});
+</script>
 </body>
 </html>
