@@ -50,6 +50,8 @@ class Course extends Resource
         return [
             ID::make()->sortable(),
 
+            Number::make('Sort Order'),
+
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 

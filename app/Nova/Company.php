@@ -6,6 +6,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
@@ -49,6 +50,8 @@ class Company extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Number::make('Sort Order'),
 
             Password::make(__('Password'), 'password'),
 
