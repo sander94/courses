@@ -51,7 +51,7 @@ class Company extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Number::make('Sort Order'),
+            Number::make(__('Sort Order'), 'sort_order'),
 
             Password::make(__('Password'), 'password'),
 

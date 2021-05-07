@@ -46,7 +46,7 @@ class StoreCourseRequest extends FormRequest
                 'required',
                 'exists:regions,id'
             ],
-            'course_category_id' => [
+            'categories.*' => [
                 'required',
                 'exists:course_categories,id'
             ],
