@@ -168,7 +168,7 @@
         .content {
             width: 1200px;
             margin: 0 auto;
-            padding-top: 80px;
+            padding-top: 150px;
         }
 
         h1.entry-title {
