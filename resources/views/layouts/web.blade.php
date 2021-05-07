@@ -212,6 +212,7 @@
             margin-top: 70px;
             width: 100%;
             position: relative;
+            overflow: scroll;
         }
 
         .results-table {
@@ -472,6 +473,13 @@ button.submit {
     display: none;
 }
 
+.home-image {
+    position: absolute; 
+    top: 0; 
+    z-index: -1; 
+    right: 0; 
+    width: 80%;
+}
 
 @media screen and (max-width: 1350px) {
     .header {
@@ -509,6 +517,8 @@ button.submit {
     }
     .content {
         width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -530,9 +540,16 @@ button.submit {
     .menu-container {
         width: 80px;
     }
+    .text-3xl {
+        font-size: 45px;
+        font-weight: 700;
+    }
 }
 
 @media screen and (max-width: 550px) {
+    .content {
+        padding-top: 120px;
+    }
     .search-container {
         display: none;
         position: absolute;
@@ -563,6 +580,42 @@ button.submit {
         color: #F66F4D;
         cursor: pointer;
     }
+    .text-3xl {
+        font-size: 45px;
+        font-weight: 700;
+    }
+    .button-container .home-1 {
+        padding: 10px 10px;
+        margin-right: 10px;
+    }
+    .button-container {
+        margin-top: 25px;
+    }
+    .button-container .writeToUs {
+        width: 100%;
+        padding: 10px 20px;
+    }
+    .home-image {
+        opacity: 0.5;
+        left: 10%;
+        right: 10%;
+        top: 30px;
+    }
+    .mt-sm-5-1 {
+        margin-top: 50px;
+    }
+    .popular-courses-container a {
+        margin-right: 10px;
+        margin-left: 10px;
+
+        line-height: 35px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+
+
 }
 
 
@@ -622,13 +675,13 @@ button.submit {
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-sm-4">
                 Ka Company OÜ<br>
                 Mahla 82-78, Tallinn 11215<br>
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
             </div>
-            <div class="col-5"> <!--
+            <div class="col-12 col-sm-5"> <!--
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
@@ -637,7 +690,7 @@ button.submit {
                 <a href="#">Contact</a> -->
                 <p style="position: absolute; bottom: 0;">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-3 text-right">
+            <div class="col-12 col-sm-3 text-right">
                 @auth('company')
                     <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
                         <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>

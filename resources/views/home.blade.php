@@ -4,15 +4,14 @@
     <div class="content">
 
         <div class="row">
-            <div class="col-12 pt-4">
+            <div class="col-12 pt-0 pt-sm-4">
                 <h1 class="text-3xl">Eesti<br>suurim<br>koolituste<br>andmebaas</h1>
                 <p class="mt-4">ÜLE 70 000 KURSUSE PARIMATELT KOOLITAJATELT</p>
                 <div class="button-container">
-                    <a href="{{ route('courses.index') }}" class="active xl">See courses</a>
-                    <a href="{{ route('companies') }}" class="xl">Companies</a>
+                    <a href="{{ route('courses.index') }}" class="home-1 active xl">See courses</a>
+                    <a href="{{ route('companies') }}" class="home-1 xl">Companies</a>
                 </div>
-                <img src="{{ asset('images/koolitused.svg') }}"
-                     style="position: absolute; top: 0; z-index: -1; right: 0; width: 80%;">
+                <img src="{{ asset('images/koolitused.svg') }}" class="home-image">
             </div>
         </div>
 
@@ -102,7 +101,7 @@
         </div>
 
 
-        <div class="row mt-10">
+        <div class="row mt-10 mt-sm-5-1">
 
             <div class="col-12">
 
@@ -112,12 +111,12 @@
                 <div class="row blog-archive mt-5">
 
                     @forelse($articles as $article)
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4">
                             <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
                                 <div class="blog-image-container"
                                      style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
-                                <span class="blog-title">{{ $article->title }}</span></a>
-                            <p>{{ substr($article->content, 0, 300) }}...</p>
+                                <span class="blog-title px-2">{{ $article->title }}</span></a>
+                            <p class="px-2">{{ substr($article->content, 0, 300) }}...</p>
                             </a>
 
                         </div>
@@ -140,15 +139,15 @@
             <div class="row">
 
 
-                <div class="col-9">
+                <div class="col-12 col-sm-9">
                     <p class="font-bold text-xl">Oled koolitaja või pakute ruume koolitusteks?</p>
                     <p>Palun võtke meiega meilitsi ühendust info@koolitused.ee. Teeme Teile personaalse pakkumise
                         Koolitused.ee andmebaasiga liitumiseks.</p>
                 </div>
 
-                <div class="col-3">
-                    <div class="button-container mx-auto mt-5">
-                        <a href="{{ route('contact') }}" class="active xl">Kirjuta meile</a>
+                <div class="col-12 col-sm-3">
+                    <div class="button-container mx-auto mt-sm-5">
+                        <a href="{{ route('contact') }}" class="active xl writeToUs">Kirjuta meile</a>
                     </div>
                 </div>
             </div>
