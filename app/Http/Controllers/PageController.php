@@ -77,7 +77,13 @@ class PageController extends Controller
     {
         views($company)->record();
 
-        $courses = $company->courses()->paginate();
+        $courses = $company->courses()
+            ->when($request->get('type') === 'orderable', function ($query) {
+                return $query->whereNull('started_at');
+            }, function ($query) {
+                return $query->whereNotNull('started_at');
+            })
+            ->paginate();
 
         return view('companies.single', compact('company', 'courses'));
     }
