@@ -50,6 +50,9 @@ Route::prefix('company')->group(function () {
         Route::post('profile', 'CompanyController@update')->name('company.update');
         Route::get('statistics', 'CompanyController@statistics')->name('statistics');
         Route::get('courses', 'CompanyController@mycourses')->name('mycourses');
+        Route::get('courses/create', 'CompanyController@createCourse')->name('createCourse');
+        Route::get('courses/{course}/edit', 'CompanyController@editCourse')->name('edit_course');
+        Route::put('courses/{course}', 'CompanyController@updateCourse')->name('update_course');
         Route::post('courses', 'CompanyController@storeCourse')->name('profile.store_course');
         Route::get('description', 'CompanyController@description')->name('description');
 

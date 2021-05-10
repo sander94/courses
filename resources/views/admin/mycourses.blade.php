@@ -27,171 +27,57 @@
             width: 100%;
         }
     </style>
-    <div class="content" id="form">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <form action="{{ route('profile.store_course') }}" method="POST">
-            @csrf
 
-            <input type="hidden" name="categories[]" :value="category.id" v-for="category in model.categories">
 
-            <input type="hidden" name="region_id" :value="model.region.id" v-if="model.region">
-            <input type="hidden" name="started_at" :value="model.started_at" v-if="model.started_at">
-            <input type="hidden" name="ended_at" :value="model.ended_at" v-if="model.ended_at">
-
-            <div class="row">
-                <div class="col-12">
-                    <h2>Lisa uus koolitus</h2>
-                </div>
+    <div class="content">
+        <div class="row">
+            <div class="button-container">
+                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live
+                    courses</a>
+                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Orderable
+                    courses</a>
             </div>
-
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            Koolituse nimi
-                        </div>
-                        <input type="text" value="{{ old('title') }}" name="title">
-                    </label>
-                </div>
+            <div class="col-12">
+                <h3 class="mt-5">Company Name Upcoming events</h3>
             </div>
+            <div class="results-table-container">
 
-            <div class="row profile-row">
-                <div class="col-6">
-                    <div class="profile-input-row">
-                        <div class="input-desc">
-                            Vali kategooria
-                        </div>
-                        <multiselect :options="categories" :multiple="true"  v-model="model.categories" label="title"></multiselect>
-                    </div>
+                <table border="0" cellpadding="0" cellspacing="0" class="results-table">
+                    <tr class="tableheader">
+                        <td style="width: 100px;">Kestus</td>
+                        <td>Koolitus</td>
+                        <td style="width: 100px;">Hind</td>
+                        <td style="width: 100px;">Koht</td>
+                        <td style="width: 120px;">&nbsp;</td>
+                    </tr>
+                    @forelse($courses as $course)
+                        <tr>
+
+                            <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
+                            <td>{{ $course->title }}
+                            </td>
+                            <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
+                            <td style="font-weight: 300;">{{ $course->region->title }}</td>
+                            <td>
+                                <a href="#readmore" class="table-readmore">Loe lisa</a>
+                                <a href="{{ route('edit_course', $course) }}" class="table-readmore">Edit</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <p>No Courses Found</p>
+
+                    @endforelse
+
+
+                </table>
+
+                <div class="pagination">
+                    {{ $courses->links() }}
                 </div>
+
             </div>
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            <label for="is_buyable">Tellitav kursus?</label>
-                        </div>
-                        <input type="checkbox" id="is_buyable" name="is_buyable" v-model="model.is_buyable">
-                    </label>
-                </div>
-            </div>
-
-            <div class="row profile-row" v-if="!model.is_buyable">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            <label for="is_buyable">Algusaeg</label>
-                        </div>
-                        <datepicker v-model="model.started_at" type="date" value-type="format"></datepicker>
-                    </label>
-                </div>
-            </div>
-
-            <div class="row profile-row" v-if="!model.is_buyable">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            <label for="is_buyable">Lõppaeg</label>
-                        </div>
-                        <datepicker v-model="model.ended_at" type="date" value-type="format"></datepicker>
-                    </label>
-                </div>
-            </div>
-
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <div class="profile-input-row">
-                        <div class="input-desc">
-                            Asukoht
-                        </div>
-                        <multiselect :options="regions" v-model="model.region" label="title"></multiselect>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            Hind:
-                        </div>
-                        <input type="text" name="price" value="{{ old('price') }}">
-                    </label>
-                </div>
-            </div>
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            Link kursusele
-                        </div>
-                        <input type="text" name="url" value="{{ old('url') }}">
-                    </label>
-                </div>
-            </div>
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            Telefon
-                        </div>
-                        <input type="text" name="phone" value="{{ old('phone') }}">
-                    </label>
-                </div>
-            </div>
-
-            <div class="row profile-row">
-                <div class="col-6">
-                    <label class="profile-input-row">
-                        <div class="input-desc">
-                            E-mail:
-                        </div>
-                        <input type="text" name="email" value="{{ old('email') ?? Auth::user()->email }}">
-                    </label>
-                </div>
-            </div>
-
-
-            <div class="row mt-3">
-                <div class="col-12">
-                    <button type="submit" name="submit" class="submit">SALVESTA</button>
-                </div>
-            </div>
-    </div>
-
-    </form>
+        </div>
 
     </div>
 
 @endsection
-
-@push('js')
-    <script>
-        new Vue({
-            el: '#form',
-
-            data() {
-                return {
-                    model: {
-                        is_buyable: @json(old('is_buyable') ?? false),
-                        categories: [],
-                        region: null,
-                        started_at: @json(old('started_at')),
-                        ended_at: @json(old('ended_at'))
-                    },
-                    regions: @json($regions),
-                    categories: @json($categories)
-                }
-            }
-        })
-    </script>
-@endpush

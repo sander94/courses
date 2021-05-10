@@ -112,10 +112,40 @@ class CompanyController extends Controller
 
     public function mycourses(Request $request)
     {
+        /** @var Company $user */
+        $user = $request->user();
+
         $categories = CourseCategory::query()->with('children')->get();
         $regions = Region::query()->get();
 
-        return view('admin.mycourses', compact('categories', 'regions'));
+        $courses = $user->courses()
+            ->when($request->get('type') === 'orderable', function ($query) {
+                return $query->whereNull('started_at');
+            }, function ($query) {
+                return $query->whereNotNull('started_at');
+            })
+            ->paginate();
+
+        return view('admin.mycourses', compact('categories', 'regions', 'courses'));
+    }
+
+    public function createCourse(Request $request)
+    {
+        $categories = CourseCategory::query()->with('children')->get()->keyBy('id');
+        $regions = Region::query()->get()->keyBy('id');
+
+
+        $course = null;
+
+        return view('admin.courses.create', compact('categories', 'regions', 'course'));
+    }
+
+    public function editCourse(Course $course)
+    {
+        $categories = CourseCategory::query()->with('children')->get()->keyBy('id');
+        $regions = Region::query()->get()->keyBy('id');
+
+        return view('admin.courses.edit', compact('categories', 'regions', 'course'));
     }
 
     public function storeCourse(StoreCourseRequest $request)
@@ -128,6 +158,17 @@ class CompanyController extends Controller
         $company->courses()->save($course);
 
         $course->courseCategories()->sync($request->get('categories'));
+
+        return redirect()->route('profile');
+    }
+
+    public function updateCourse(Course $course, StoreCourseRequest $request)
+    {
+        $course->fill($request->validated());
+
+        $course->courseCategories()->sync($request->get('categories'));
+
+        $course->save();
 
         return redirect()->route('profile');
     }
