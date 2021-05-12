@@ -40,11 +40,74 @@
     <style>
         * {
             font-family: 'Work Sans';
+            outline: none;
         }
 
         body {
             background-color: #FAF8ED;
         }
+
+            .filter-container {
+                display: flex;
+                width: 1000px;
+                margin: 0 auto;
+                margin-top: 40px;
+                justify-content: center;
+            }
+
+            .filter {
+                padding: 10px 20px;
+                border: 2px solid #F66F4D;
+                border-radius: 30px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .findCourse {
+                width: 300px;
+                cursor: pointer;
+            }
+
+            .findLocation {
+                width: 200px;
+                background: transparent;
+                -webkit-appearance: none;
+                cursor: pointer;
+            }
+
+            .findDate {
+                width: 150px;
+            }
+
+            .findDate {
+                background: transparent;
+            }
+
+            .findSubmit, .findSubmit2 {
+                background-color: #F66F4D;
+                border: 2px solid #F66F4D;
+                border-radius: 30px;
+                padding: 10px 30px;
+                color: #FFFFFF;
+                margin-left: 10px;
+            }
+
+            .findCourseContainer {
+                background-color: #FFFBFA;
+                width: 100%;
+                display: none;
+                margin-top: 30px;
+                padding: 40px 100px;
+            }
+
+            ul, li {
+                list-style-type: none;
+            }
+
+            #datepicker {
+                cursor: pointer;
+            }
+
 
         .text-red {
             color: red;
@@ -481,12 +544,29 @@ button.submit {
     width: 80%;
 }
 
+.main {
+    columns: 3;
+}
+.main-li {
+    border-right: 1px solid #dadada;
+}
+.main-li label:hover {
+    color: #F66F4D;
+    cursor: pointer;
+}
+input[type='radio'] {
+    margin-right: 10px;
+}
+
 @media screen and (max-width: 1350px) {
     .header {
         width: 1200px;
     }
     .content {
         width: 1100px;
+    }
+    .advert {
+        padding-left: 30px;
     }
 }
 
@@ -505,6 +585,9 @@ button.submit {
     .content {
         width: 1000px;
     }
+    .filter-container {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 1100px) {
@@ -519,6 +602,9 @@ button.submit {
         width: 100%;
         padding-left: 20px;
         padding-right: 20px;
+    }
+    .findCourseContainer {
+        padding: 40px 40px;
     }
 }
 
@@ -543,6 +629,40 @@ button.submit {
     .text-3xl {
         font-size: 45px;
         font-weight: 700;
+    }
+    .findCourseContainer {
+        padding: 40px 15px;
+    }
+    .main {
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .filter-container {
+        display: block;
+    }
+    .findCourse, .findLocation, .findDate, .findSubmit, .findSubmit2 {
+        width: 45%;
+        display: inline-block;
+        max-height: 48px;
+        overflow: hidden;
+        vertical-align: top;
+        margin-bottom: 20px;
+    }
+    .text-3xl br {
+        display: none;
+    }
+    .advert {
+        padding-left: 40px;
+    }
+    .companies .findSubmit, .findSubmit2 {
+        display: block;
+        width: 100%;
+    }
+    .admin-menu a {
+        display: inline-block;
+        margin-bottom: 10px;
     }
 }
 
@@ -581,7 +701,7 @@ button.submit {
         cursor: pointer;
     }
     .text-3xl {
-        font-size: 45px;
+        font-size: 40px;
         font-weight: 700;
     }
     .button-container .home-1 {
@@ -609,6 +729,24 @@ button.submit {
         margin-left: 10px;
 
         line-height: 35px;
+    }
+    .main {
+        columns: 1;
+    }
+    .main-li {
+        border: 0;
+    }
+    .advert {
+        padding: 0;
+    }
+    .findSubmit2 {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 20px;
+    }
+    .filter-container-left .filter {
+        width: 170px;
+        margin-left: 0;
     }
 }
 
@@ -646,11 +784,11 @@ button.submit {
             </div>
             <div class="menu-container">
                 <div class="menu">
-                    <a href="{{ route('courses.index') }}">Courses</a>
-                    <a href="{{ route('companies') }}">Companies</a>
-                    <a href="{{ route('articles.index') }}">Articles</a>
-                    <a href="#">Rooms</a>
-                    <a href="{{ route('contact') }}">Contact</a>
+                    <a href="{{ route('courses.index') }}">Koolitused</a>
+                    <a href="{{ route('companies') }}">Koolitajad</a>
+                    <a href="{{ route('articles.index') }}">Uudised</a>
+                    <a href="#">Ruumid</a>
+                    <a href="{{ route('contact') }}">Kontakt</a>
                 </div>
                 <div class="search-toggle" id="searchMenuButton">
                     <i class="fas fa-search"></i>
@@ -659,11 +797,11 @@ button.submit {
                     <i class="fas fa-bars"></i>
                 </div>
                 <div class="mobile-menu" id="mobileMenu">
-                    <a href="{{ route('courses.index') }}">Courses</a>
-                    <a href="{{ route('companies') }}">Companies</a>
-                    <a href="{{ route('articles.index') }}">Articles</a>
-                    <a href="#">Rooms</a>
-                    <a href="{{ route('contact') }}">Contact</a>
+                    <a href="{{ route('courses.index') }}">Koolitused</a>
+                    <a href="{{ route('companies') }}">Koolitajad</a>
+                    <a href="{{ route('articles.index') }}">Artiklid</a>
+                    <a href="#">Ruumid</a>
+                    <a href="{{ route('contact') }}">Kontakt</a>
                 </div>
             </div>
         </div>
@@ -695,7 +833,7 @@ button.submit {
                     <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
                         <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
                         <br><br><br>
-                        <a href="{{ route('logout') }}" class="logout">Logout</a>
+                        <a href="{{ route('logout') }}" class="logout">Logi välja</a>
                 @endauth
 
                 @guest('company')

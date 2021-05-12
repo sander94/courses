@@ -5,7 +5,7 @@
             <a href="{{ route('description') }}" class="{{ Route::is('description') ? 'active' : '' }}">Lisainformatsioon</a>
             <!-- <a href="#">Tags</a> -->
             <a href="{{ route('statistics') }}" class="{{ Route::is('statistics') ? 'active' : '' }}">Statistika</a>
-            <a href="{{ route('mycourses') }}" class="{{ Route::is('mycourses') ? 'active' : '' }}">My courses</a>
+            <a href="{{ route('mycourses') }}" class="{{ Route::is('mycourses') ? 'active' : '' }}">Minu koolitused</a>
         </div>
 
     </div>

@@ -11,13 +11,13 @@
 }
 </style>
 
-    <div class="content">
+    <div class="content p-4">
         <div class="row">
 
  @foreach($views as $month => $viewItems)
             <div class="col-3 month-card p-4">
 
-                {{ $month }} 
+               <strong style="color: #F66F4D;"> {{ $month }} </strong>
                     <table class="mt-2">
                         <tr>
                             <td style="width: 150px;">

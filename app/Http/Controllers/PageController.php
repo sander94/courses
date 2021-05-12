@@ -63,7 +63,7 @@ class PageController extends Controller
 
     public function companies(Request $request)
     {
-        $companies = Company::query()
+        $companies = Company::orderBy('sort_order', 'DESC')
             ->when($request->get('search'), function (Builder $query, $search) {
                 return $query->where('name', 'like', "%$search%");
             })

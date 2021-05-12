@@ -5,11 +5,11 @@
 
         <div class="row">
             <div class="col-12 pt-0 pt-sm-4">
-                <h1 class="text-3xl">Eesti<br>suurim<br>koolituste<br>andmebaas</h1>
+                <h1 class="text-3xl">Eesti <br>suurim <br>koolituste <br>andmebaas</h1>
                 <p class="mt-4">ÜLE 70 000 KURSUSE PARIMATELT KOOLITAJATELT</p>
                 <div class="button-container">
-                    <a href="{{ route('courses.index') }}" class="home-1 active xl">See courses</a>
-                    <a href="{{ route('companies') }}" class="home-1 xl">Companies</a>
+                    <a href="{{ route('courses.index') }}" class="home-1 active xl">Vaata koolitusi</a>
+                    <a href="{{ route('companies') }}" class="home-1 xl">Koolitajad</a>
                 </div>
                 <img src="{{ asset('images/koolitused.svg') }}" class="home-image">
             </div>

@@ -4,7 +4,7 @@
 
 @include('partials.admin.submenu')
 
-<div class="content">
+<div class="content p-0 mt-4">
 
     <div class="title-container">
         <div class="title-logo">
@@ -20,17 +20,17 @@
 
     <form action="{{ route('company.update') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="content" style="margin-top: 40px;">
+        <div class="mt-4 p-4" style="">
 
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
 
                     <div class="row profile-row">
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Company name
+                                    Ettevõtte nimi
                                 </div>
                                 <input type="text" value="{{ $company->name }}" name="name">
                             </label>
@@ -41,7 +41,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Phone
+                                    Kontakttelefon
                                 </div>
                                 <input type="text" value="{{ $company->phone }}" name="phone">
                             </label>
@@ -52,7 +52,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Website
+                                    Veebileht
                                 </div>
                                 <input type="text" value="{{ $company->website }}" name="website">
                             </label>
@@ -63,7 +63,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    E-mail address
+                                    E-maili aadress
                                 </div>
                                 <input type="email" value="{{ $company->email }}" name="email">
                             </label>
@@ -75,7 +75,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Reg no
+                                    Reg nr
                                 </div>
                                 <input type="text" value="{{ $company->reg_number }}" name="reg_number">
                             </label>
@@ -86,7 +86,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Brand name
+                                    Bränd
                                 </div>
                                 <input type="text" value="{{ $company->brand }}" name="brand">
                             </label>
@@ -96,13 +96,13 @@
 
                 </div>
 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
 
                     <div class="row profile-row">
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    County
+                                    Maakond
                                 </div>
                                 <select name="region_id">
                                     @foreach($regions as $region)
@@ -118,7 +118,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    City
+                                    Linn
                                 </div>
                                 <input type="text" value="{{ $company->city }}" name="city">
                             </label>
@@ -129,7 +129,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Street address
+                                    Tänav, maja nr
                                 </div>
                                 <input type="text" value="{{ $company->street }}" name="street">
                             </label>
@@ -140,7 +140,7 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Postal code
+                                    Postiindeks
                                 </div>
                                 <input type="text" value="{{ $company->postal }}" name="postal">
                             </label>

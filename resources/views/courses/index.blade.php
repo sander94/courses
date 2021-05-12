@@ -10,11 +10,11 @@
 
     <div class="content">
         <div class="row">
-            <div class="col-4 pt-4">
-                <h1 class="text-3xl">Eesti<br>suurim<br>koolituste<br>andmebaas</h1>
+            <div class="col-sm-4">
+                <h1 class="text-3xl">Eesti <br>suurim <br>koolituste <br>andmebaas </h1>
             </div>
             @if($banner)
-                <div class="col-8">
+                <div class="col-sm-8">
                     <a href="{{ route('ad', $banner) }}">
                         <img src="{{ $banner->getFirstMediaUrl('banner') }}" class="advert">
                     </a>
@@ -22,60 +22,6 @@
             @endif
         </div>
         <style>
-            .filter-container {
-                display: flex;
-                width: 1000px;
-                margin: 0 auto;
-                margin-top: 40px;
-                justify-content: center;
-            }
-
-            .filter {
-                padding: 10px 20px;
-                border: 2px solid #F66F4D;
-                border-radius: 30px;
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-
-            .findCourse {
-                width: 300px;
-            }
-
-            .findLocation {
-                width: 200px;
-                background: transparent;
-                -webkit-appearance: none;
-            }
-
-            .findDate {
-                width: 150px;
-            }
-
-            .findDate {
-                background: transparent;
-            }
-
-            .findSubmit {
-                background-color: #F66F4D;
-                border: 2px solid #F66F4D;
-                border-radius: 30px;
-                padding: 10px 30px;
-                color: #FFFFFF;
-                margin-left: 10px;
-            }
-
-            .findCourseContainer {
-                background-color: #F66F4D;
-                width: 100%;
-                display: none;
-                margin-top: 30px;
-                padding: 50px;
-            }
-
-            ul, li {
-                list-style-type: none;
-            }
 
 
         </style>
@@ -104,7 +50,7 @@
             <div class="findCourseContainer" id="findCourseContainer">
                 <ul class="main">
                     @foreach($categories as $category)
-                        <li>
+                        <li class="main-li">
                             <label><input type="radio" name="category"
                                           {{ optional($selectedCategory)->getKey() === $category->getKey() ? 'checked' : null }}
                                           value="{{ $category->getKey() }}">{{ $category->title }}
