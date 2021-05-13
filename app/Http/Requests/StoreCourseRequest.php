@@ -19,10 +19,6 @@ class StoreCourseRequest extends FormRequest
                 'required',
                 'string'
             ],
-            'phone' => [
-                'required',
-                'string'
-            ],
             'email' => [
                 'required',
                 'email'

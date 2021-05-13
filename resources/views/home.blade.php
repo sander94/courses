@@ -67,7 +67,7 @@
                             <td style="width: 100px;">Koht</td>
                             <td style="width: 120px;">&nbsp;</td>
                         </tr>
-                        @forelse($courses as $course)
+                        @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                             <tr>
                                 @if($course->started_at && $course->ended_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
@@ -84,7 +84,7 @@
                                 </td>
                                 <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                                 <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                                <td><a href="{{ $course->website }}" class="table-readmore">Loe lisa</a></td>
+                                <td><a href="{{ $course->url }}" target="_blank" class="table-readmore">Loe lisa</a></td>
                             </tr>
                         @empty
                             <p>Koolitusi ei ole</p>
@@ -116,7 +116,7 @@
                                 <div class="blog-image-container"
                                      style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
                                 <span class="blog-title px-2">{{ $article->title }}</span></a>
-                            <p class="px-2">{{ substr($article->content, 0, 300) }}...</p>
+                            <p class="px-2">{{ strip_tags(substr($article->content, 0, 300)) }}...</p>
                             </a>
 
                         </div>

@@ -29,7 +29,7 @@
     </style>
 
 
-    <div class="content">
+    <div class="content p-3">
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>

@@ -5,15 +5,15 @@
         <h1 class="entry-title">{{ $article->title }}</h1>
         <div class="separator-orange"></div>
 
-        <div class="content">
+        <div class="content pt-5">
             {!! $article->content !!}
         </div>
 
 
-        <div class="row">
+        <div class="row mt-5">
             @foreach($article->getMedia('gallery') as $key => $media)
                 <div class="col-6 p-2">
-                    <img class="img-responsive" src="{{ $media->getUrl() }}" alt="Image #{{ $key }}">
+                    <img class="img-responsive" src="{{ $media->getUrl() }}" alt="Image #{{ $key }}" style="max-width: 100%;">
                 </div>
             @endforeach
         </div>

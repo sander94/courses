@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content pt-5">
     <div class="row blog-archive mt-5">
 
         @foreach($result as $article)
@@ -7,7 +7,7 @@
                         <div class="blog-image-container"
                              style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
                         <span class="blog-title">{{ $article->title }}</span></a>
-                        <p>{{ substr($article->content, 0, 300) }}...</p>
+                        <p>{{ strip_tags(substr($article->content, 0, 300)) }}...</p>
                     
 
                 </div>

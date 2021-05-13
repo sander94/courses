@@ -70,6 +70,16 @@
     </div>
 </div>
 
+<div class="row profile-row">
+    <div class="col-6">
+        <label class="profile-input-row">
+            <div class="input-desc">
+                Kestus minutites
+            </div>
+            <input type="number" value="{{ old('duration_minutes') ?? optional($course)->duration_minutes }}" name="duration_minutes" placeholder="">
+        </label>
+    </div>
+</div>
 
 <div class="row profile-row">
     <div class="col-6">
@@ -77,8 +87,7 @@
             <div class="input-desc">
                 Asukoht
             </div>
-            <multiselect :options="regionOptions" :custom-label="customRegionLabel"  v-model="model.region"
-                         label="title"></multiselect>
+            <multiselect :options="regionOptions" :custom-label="customRegionLabel"  v-model="model.region" label="title"></multiselect>
         </div>
     </div>
 </div>
@@ -101,17 +110,6 @@
                 Link kursusele
             </div>
             <input type="text" name="url" value="{{ old('url') ?? optional($course)->url }}">
-        </label>
-    </div>
-</div>
-
-<div class="row profile-row">
-    <div class="col-6">
-        <label class="profile-input-row">
-            <div class="input-desc">
-                Telefon
-            </div>
-            <input type="text" name="phone" value="{{ old('phone') ?? optional($course)->phone }}">
         </label>
     </div>
 </div>

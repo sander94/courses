@@ -58,10 +58,12 @@ class Course extends Resource
             DateTime::make('Featuring ended at'),
 
             Number::make('Duration Minutes')
-                ->rules('required', 'integer'),
+                ->rules('integer'),
 
             Number::make('Price')
                 ->rules('required'),
+
+            Text::make('Url'),
 
             DateTime::make('Started At'),
             DateTime::make('Ended At'),

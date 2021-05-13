@@ -474,7 +474,7 @@
     line-height: 40px;
 
 }
-.profile-input-row input[type="text"], .profile-input-row input[type="email"], .profile-input-row select {
+.profile-input-row input[type="text"], .profile-input-row input[type="email"], .profile-input-row input[type="number"], .profile-input-row select {
     width: 60%;
     border: 2px solid #969696;
     background: transparent;

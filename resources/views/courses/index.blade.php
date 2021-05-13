@@ -25,7 +25,7 @@
 
 
         </style>
-        <form action="" method="GET">
+        <form action="" method="GET" autocomplete="off">
             <div class="filter-container">
 
                 <span id="findCourse" class="filter findCourse"
@@ -80,20 +80,20 @@
                     <td style="width: 100px;">Koht</td>
                     <td style="width: 120px;">&nbsp;</td>
                 </tr>
-                @forelse($courses as $course)
+                @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                     <tr>
                         <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                             - {{ $course->ended_at->format('d.m.Y') }}
                             <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                            days
+                            päeva
                         </td>
-                        <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
+                        <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} tundi</td>
                         <td style="font-weight: 300;">{{ $course->company->name }}</td>
                         <td>{{ $course->title }}
                         </td>
                         <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                         <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                        <td><a href="{{ $course->website }}" class="table-readmore">Loe lisa</a></td>
+                        <td><a href="{{ $course->url }}" target="_blank" class="table-readmore">Loe lisa</a></td>
                     </tr>
                 @empty
                     <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei

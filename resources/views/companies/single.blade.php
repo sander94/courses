@@ -8,7 +8,7 @@
                 <h1 class="entry-title">{{ $company->name }}</h1>
                 <div class="separator-orange"></div>
 
-                <div class="content mt-5">
+                <div class="content py-5">
                     {{ $company->name }}<br>
                     {{ $company->street }}, {{ $company->city }}, {{ $company->region->title }}<br>
                     {{ $company->phone }}<br>
@@ -17,11 +17,11 @@
                 </div>
             </div>
             <div class="col-4">
-                <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive">
+                <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive" style="max-width: 200px">
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row">
 
             <div class="col-12">
                 {!! $company->description !!}
@@ -30,21 +30,16 @@
 
         </div>
 
-        <div class="row">
+        <div class="row pl-2">
             <div class="button-container">
-                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live
-                    courses</a>
-                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Orderable
-                    courses</a>
-            </div>
-            <div class="col-12">
-                <h3 class="mt-5">Company Name Upcoming events</h3>
+                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live-koolitused</a>
+                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad koolitused</a>
             </div>
             <div class="results-table-container">
 
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                     <tr class="tableheader">
-                        <td style="width: 150px;">Kuupäev</td>
+                        @if(request()->query('type') == 'live')<td style="width: 150px;">Kuupäev</td> @endif
                         <td style="width: 100px;">Kestus</td>
                         <td>Koolitus</td>
                         <td style="width: 100px;">Hind</td>
@@ -53,20 +48,20 @@
                     </tr>
                         @forelse($courses as $course)
                             <tr>
-                                <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                                @if($course->started_at) <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                     - {{ $course->ended_at->format('d.m.Y') }}
                                     <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                                    days
-                                </td>
-                                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
+                                    päeva
+                                </td> @endif
+                                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} tundi</td>
                                 <td>{{ $course->title }}
                                 </td>
                                 <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                                 <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                                <td><a href="#readmore" class="table-readmore">Loe lisa</a></td>
+                                <td><a href="{{ $course->url }}" target="_blank" class="table-readmore">Loe lisa</a></td>
                             </tr>
                         @empty
-                            <p>No Courses Found</p>
+                            <p>Koolitusi ei leitud</p>
 
                         @endforelse
 

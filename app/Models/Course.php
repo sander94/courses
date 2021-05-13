@@ -35,6 +35,7 @@ class Course extends Model implements Viewable
         'region_id',
         'started_at',
         'ended_at',
+        'url'
     ];
 
     /**

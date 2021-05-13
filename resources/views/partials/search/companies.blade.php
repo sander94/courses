@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content pt-5">
     <div class="row company-archive mt-5">
 
         @foreach($result as $company)

@@ -46,6 +46,8 @@ class PageController extends Controller
             ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
             ->paginate();
 
+
+
         $counters[$type] = $result->total();
         foreach (static::$types as $keyType => $model) {
             if ($keyType !== $type) {
