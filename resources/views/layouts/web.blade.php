@@ -788,7 +788,8 @@ input[type='radio'] {
 
 </head>
 <body>
-<div class="header-container">
+<div class="header-container" style="border-bottom: 1px solid #efecda; -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04); 
+box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
     <div class="header">
         <div class="navigation">
             <div class="logo-container">
