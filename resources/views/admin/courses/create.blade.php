@@ -26,6 +26,9 @@
         .profile-input-row input[type="text"].mx-input {
             width: 100%;
         }
+        .profile-input-row input[name="date"] {
+            padding: 20px 15px;
+        }
     </style>
 
 

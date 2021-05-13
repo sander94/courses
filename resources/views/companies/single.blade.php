@@ -4,7 +4,7 @@
 
     <div class="content pb-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col-sm-6">
                 <h1 class="entry-title">{{ $company->name }}</h1>
                 <div class="separator-orange"></div>
 
@@ -16,13 +16,13 @@
                     <a href="facebook">Facebook</a>
                 </div>
             </div>
-            <div class="col-4">
-                <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive" style="max-width: 200px">
+            <div class="col-sm-6 company-page-logo">
+                <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive" style="max-width: 100%; max-height: 200px;">
             </div>
         </div>
 
         <div class="row">
-
+<style>p { margin-bottom: 0; }</style>
             <div class="col-12">
                 {!! $company->description !!}
             </div>

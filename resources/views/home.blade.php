@@ -60,7 +60,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                         <tr class="tableheader">
                             <td style="width: 150px;">Kuupäev</td>
-                            <td style="width: 100px;">Kestus</td>
+                            <td>Kestvus</td>
                             <td style="width: 200px;">Koolitaja</td>
                             <td>Koolitus</td>
                             <td style="width: 100px;">Hind</td>
@@ -72,19 +72,23 @@
                                 @if($course->started_at && $course->ended_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                         - {{ $course->ended_at->format('d.m.Y') }}
-                                        <br><strong>{{ $course->ended_at->diffInDays($course->started_at) }}
-                                        päeva</strong>
+                                        
                                     </td>
                                 @else
-                                    <td>No dates</td>
+                                    <td>Tellitav koolitus</td>
                                 @endif
-                                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} tundi</td>
-                                <td style="font-weight: 300;">{{ $course->company->name }}</td>
-                                <td>{{ $course->title }}
+                                <td style="font-weight: 300;">
+                                    @if($course->started_at) {{ $course->ended_at->diffInDays($course->started_at) }}
+                                        päeva @endif
+                                </td>
+                                <td style="font-weight: 300;">
+                                    <a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
+                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>
+                                <td><a class="normal" href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
                                 </td>
                                 <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                                 <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                                <td><a href="{{ $course->url }}" target="_blank" class="table-readmore">Loe lisa</a></td>
+                                <td><a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td>
                             </tr>
                         @empty
                             <p>Koolitusi ei ole</p>

@@ -108,6 +108,14 @@
                 cursor: pointer;
             }
 
+        .small-logo {
+            width: 32px;
+            height: 32px;
+            background-size: cover;
+            border-radius: 16px;
+            display: inline-block;
+            vertical-align: middle;
+        }
 
         .text-red {
             color: red;
@@ -176,12 +184,17 @@
 
         .menu a {
             color: #000000;
-            margin-left: 40px;
-            font-weight: 300;
+            margin-left: 35px;
+            font-weight: 400;
         }
 
         .menu a:hover {
             text-decoration: none;
+            color: #F66F4D;
+        }
+
+        .menu a.active {
+            color: #F66F4D;
         }
 
         .header-container {
@@ -282,6 +295,11 @@
             width: 100%;
         }
 
+        a.normal {
+            text-decoration: none;
+            font-weight: 400;
+            color: #000000;
+        }
         .tableheader {
             font-weight: 500;
         }
@@ -558,6 +576,10 @@ input[type='radio'] {
     margin-right: 10px;
 }
 
+.company-page-logo {
+    text-align: right;
+}
+
 @media screen and (max-width: 1350px) {
     .header {
         width: 1200px;
@@ -664,6 +686,10 @@ input[type='radio'] {
         display: inline-block;
         margin-bottom: 10px;
     }
+    .company-page-logo {
+    text-align: left;
+    margin-bottom: 30px;
+}
 }
 
 @media screen and (max-width: 550px) {
@@ -774,7 +800,7 @@ input[type='radio'] {
             </div>
             <div class="search-container" id="searchContainer">
                 <div class="search pt-2">
-                    <form action="{{ route('search') }}">
+                    <form action="{{ route('search') }}" autocomplete="off">
                         <input type="text" value="{{ request()->query('search') }}" name="search"
                                placeholder="Leia sobiv koolitus">
 
@@ -784,11 +810,11 @@ input[type='radio'] {
             </div>
             <div class="menu-container">
                 <div class="menu">
-                    <a href="{{ route('courses.index') }}">Koolitused</a>
-                    <a href="{{ route('companies') }}">Koolitajad</a>
-                    <a href="{{ route('articles.index') }}">Uudised</a>
-                    <a href="#">Ruumid</a>
-                    <a href="{{ route('contact') }}">Kontakt</a>
+                    <a href="{{ route('courses.index') }}" class="{{ Route::is('courses.index') ? 'active' : '' }}">Koolitused</a>
+                    <a href="{{ route('companies') }}" class="{{ Route::is('companies') ? 'active' : '' }}">Koolitajad</a>
+                    <a href="{{ route('articles.index') }}" class="{{ Route::is('articles.index') ? 'active' : '' }}">Uudised</a>
+                    <a href="{{ route('rooms') }}" class="{{ Route::is('rooms') ? 'active' : '' }}">Ruumid</a>
+                    <a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Kontakt</a>
                 </div>
                 <div class="search-toggle" id="searchMenuButton">
                     <i class="fas fa-search"></i>
@@ -839,9 +865,9 @@ input[type='radio'] {
                 @guest('company')
                     <form action="{{ route('authenticate') }}" method="POST" class="login">
                         @csrf
-                        <input type="text" name="email" placeholder="Username">
-                        <input type="password" name="password" placeholder="Password">
-                        <input type="submit" value="LOG IN" class="">
+                        <input type="text" name="email" placeholder="E-mail">
+                        <input type="password" name="password" placeholder="Parool">
+                        <input type="submit" value="LOGI SISSE" class="">
                     </form>
                 @endguest
             </div>

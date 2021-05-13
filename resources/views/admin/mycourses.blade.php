@@ -54,7 +54,6 @@
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                     <tr class="tableheader">
                         @if(request()->query('type') == 'live')<td style="width: 50px;">Kuupäev</td> @endif
-                        <td style="width: 100px;">Kestus</td>
                         <td style="width: 250px;">Koolitus</td>
                         <td style="width: 100px;">Hind</td>
                         <td style="width: 100px;">Koht</td>
@@ -67,7 +66,6 @@
                                     <br>{{ $course->ended_at->diffInDays($course->started_at) }}
                                     päeva
                                 </td> @endif
-                            <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
                             <td>{{ $course->title }}
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>

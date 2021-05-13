@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ArticleController extends Controller
 {
@@ -13,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::query()->paginate();
+        $articles = Article::whereDate('published_at', '>=', Carbon::now())->paginate();
 
         return view('articles.index', compact('articles'));
     }

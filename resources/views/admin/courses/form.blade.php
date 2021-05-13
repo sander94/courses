@@ -6,9 +6,10 @@
 <input type="hidden" name="started_at" :value="model.started_at" v-if="model.started_at">
 <input type="hidden" name="ended_at" :value="model.ended_at" v-if="model.ended_at">
 
+
 <div class="row">
     <div class="col-12">
-        <h2>Lisa uus koolitus</h2>
+        @isset($course->title) <h2>Muuda koolitust</h2> @else <h2>Lisa uus koolitus</h2> @endif
     </div>
 </div>
 

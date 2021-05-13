@@ -44,7 +44,7 @@ class CompanyController extends Controller
         if (Auth::guard('company')->attempt(['email' => $email, 'password' => $password], true)) {
 //            $request->session()->regenerate();
 
-            return redirect()->to('/');
+            return redirect()->to('/company/profile');
         }
 
         return back()->withErrors([

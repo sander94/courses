@@ -12,13 +12,13 @@
         </tr>
         @foreach($result as $course)
             <tr>
-                <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                <td style="font-weight: 300;">@if($course->started_at) {{ $course->started_at->format('d.m.Y') }}
                     - {{ $course->ended_at->format('d.m.Y') }}
                     <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                    days
+                    days @endif
                 </td>
-                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} hours</td>
-                <td style="font-weight: 300;">NORT koolitus (company name)</td>
+                <td style="font-weight: 300;">{{ round($course->duration_minutes / 60) }} tundi</td>
+                <td style="font-weight: 300;">{{ $course->company->name }}</td>
                 <td>{{ $course->title }}
                 </td>
                 <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>

@@ -65,17 +65,39 @@
 
         </div>
 
-
+<style>
+.overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: all 0.1s ease-in;
+    opacity: 0;
+}
+.companyhover:hover .overlay {
+        opacity: 1;
+}
+</style>
         <div class="row company-archive mt-5">
             @foreach($companies as $company)
-                <div class="col-6 col-sm-3">
-                    <div style="padding: 20px; background-color: #FFFFFF;">
-                    <a href="{{ route('company', $company) }}" style="text-decoration: none">
+                <div class="col-6 col-sm-3 companyhover">
+                <a href="{{ route('company', $company) }}?type=live" style="text-decoration: none">
+                    <div style="background-color: #FFFFFF; position: relative;">
+                    <div class="overlay">
+                        {{ $company->name }}
+                    </div>
+                   <div style="padding: 20px;">
                         <div class="company-image-container"
                              style="background-image: url('{{ $company->getFirstMediaUrl('cover') }}');">
                         </div>
-                    </a>
+                    </div>
+                   
                 </div>
+                 </a>
                 </div>
             @endforeach
         </div>

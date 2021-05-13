@@ -3,7 +3,7 @@
 
         @foreach($result as $company)
             <div class="col-3">
-                <a href="{{ route('company', $company) }}" style="text-decoration: none">
+                <a href="{{ route('company', $company) }}?type=live" style="text-decoration: none">
                     <div class="company-image-container"
                          style="background-image: url('{{ $company->getFirstMediaUrl('cover') }}');">
                     </div>
