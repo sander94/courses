@@ -243,9 +243,110 @@
                             <td class="text-center"><i class="fa fa-user"></i> 70</td>
                             <td class="text-center"><i class="fa fa-user"></i> 80</td>
                         </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 2</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 3</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 4</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
                     </table>
                 </div>
             </div>  
+
+            <!-- result element end -->
+
+
+            <!-- result element -->
+
+           <div class="row mt-5">
+                <div class="col-3">
+                    <div class="room-image" style="background-image: url('');">image here</div>
+                </div>
+                <div class="col-9">
+                    <h3>Property name</h2>
+                    <p>Address: Property address<br>
+                    E-mail: <br>
+                    Services: List of services here </p>
+                    <table class="roomstable">
+                        <tr style="background-color: #FFFFFF; height: 40px">
+                            <td>Room name</td>
+                            <td class="text-center">m2</td>
+                            <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/u-kujuline.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/vastuvott.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/kabareestiil.png') }}"></td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 1</td>
+                            <td class="text-center">200</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 2</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 3</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 4</td>
+                            <td class="text-center">300</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>  
+
+            <!-- result element end -->
 
     	</div>
 
