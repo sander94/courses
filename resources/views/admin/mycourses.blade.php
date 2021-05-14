@@ -61,18 +61,31 @@
                     </tr>
                     @forelse($courses as $course)
                         <tr>
-                                @if($course->started_at) <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                                <td style="font-weight: 300;">
+                                    @if($course->started_at) {{ $course->started_at->format('d.m.Y') }}
                                     - {{ $course->ended_at->format('d.m.Y') }}
-                                    <br>{{ $course->ended_at->diffInDays($course->started_at) }}
-                                    päeva
-                                </td> @endif
+                                @else
+                                Tellitav koolitus
+                                @endif
+                                </td> 
                             <td>{{ $course->title }}
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                             <td style="font-weight: 300;">{{ $course->region->title }}</td>
                             <td>
-                                <a href="{{ $course->url }}" target="_blank" class="table-readmore">Loe lisa</a>
-                                <a href="{{ route('edit_course', $course) }}" class="table-readmore">Muuda</a>
+                                <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm">
+                                    @csrf
+                                    <input type="hidden" value="{{ $course->id }}" name="course">
+                                    <input type="hidden" value="clone" name="action">
+                                    <button type="submit" name="submit"><i class="fa fa-clone"></i></button>
+                                </form>
+                                <a href="{{ route('edit_course', $course) }}" class="editbutton"><i class="fa fa-pencil"></i></a>
+                                <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm" onsubmit="return confirm('Kas oled kindel, et soovid koolituse kustutada?');">
+                                    @csrf
+                                    <input type="hidden" value="{{ $course->id }}" name="course">
+                                    <input type="hidden" value="delete" name="action">
+                                    <button type="submit" name="submit"><i class="fa fa-trash-alt"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @empty

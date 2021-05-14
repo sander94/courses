@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Event;
+use App\Models\ExtraService;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -125,7 +126,8 @@ class PageController extends Controller
     function rooms(Request $request)
     {
 
-        return view('rooms.index');
+        $services = ExtraService::all();
+        return view('rooms.index', compact('services'));
 
     }
 

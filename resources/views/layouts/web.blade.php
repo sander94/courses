@@ -314,12 +314,38 @@
             padding-bottom: 20px;
         }
 
-        a.table-readmore {
+        a.table-readmore, button.table-readmore {
             text-decoration: none;
             color: #F66F4D;
             border: 2px solid #F66F4D;
             padding: 5px 20px;
             border-radius: 20px;
+            background: transparent;
+            display: inline;
+            -webkit-appearance: none;
+        }
+
+        .duplicatorForm {
+            display: inline;
+        }
+
+        .duplicatorForm button {
+            background: transparent;
+            color: #F66F4D;
+            border: 0;
+            font-size: 20px;
+            outline: none;
+            margin-left: 10px;
+        }
+
+        a.editbutton {
+            color: #F66F4D;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .duplicatorForm button:hover, a.editbutton:hover {
+            color: #000000;
         }
 
         .pagination {

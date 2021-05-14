@@ -148,6 +148,32 @@ class CompanyController extends Controller
         return view('admin.courses.edit', compact('categories', 'regions', 'course'));
     }
 
+    public function modifyCourse(Request $r)
+    {
+        $action = $r->action;
+        $id = $r->course;
+        $course = Course::where('id', $id)->first();
+        if($action == 'clone') {
+            $newCourse = new Course;
+            $newCourse->title = $course->title;
+            $newCourse->price = $course->price;
+            $newCourse->featuring_ended_at = $course->featuring_ended_at;
+            $newCourse->duration_minutes = $course->duration_minutes;
+            $newCourse->started_at = $course->started_at;
+            $newCourse->ended_at = $course->ended_at;
+            $newCourse->company_id = $course->company_id;
+            $newCourse->region_id = $course->region_id;
+            $newCourse->url = $course->url;
+            $newCourse->save();
+        }
+        if($action == 'delete') {
+            $course->delete();
+        }
+
+        return redirect()->back();
+    }
+
+
     public function storeCourse(StoreCourseRequest $request)
     {
         /** @var Company $company */

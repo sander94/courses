@@ -1,16 +1,21 @@
 @extends('layouts.web')
 
-
+@php
+    /** @var \App\Services\BannerService $bannerService */
+    $bannerService = app(\App\Services\BannerService::class);
+    $banner = $bannerService->randomBanner();
+@endphp
 
 @section('content')
 
     <div class="content">
+
         <div class="row">
-            <div class="col-4 pt-4">
-                <h1 class="text-3xl">Leia ürituse<br>tarbeks<br>sobilik<br>ruum</h1>
+            <div class="col-sm-4">
+                <h1 class="text-3xl">Leia ürituste <br>tarbeks <br>sobilik <br>ruum</h1>
             </div>
-            @if(false)
-                <div class="col-8">
+            @if($banner)
+                <div class="col-sm-8">
                     <a href="{{ route('ad', $banner) }}">
                         <img src="{{ $banner->getFirstMediaUrl('banner') }}" class="advert">
                     </a>
@@ -63,11 +68,11 @@
             }
 
             .findServicesContainer {
-                background-color: #F66F4D;
+                background-color: #FFFFFF;
                 width: 100%;
                 display: none;
                 margin-top: 30px;
-                padding: 50px;
+                padding: 40px 40px;
             }
 
             ul, li {
@@ -75,48 +80,102 @@
             }
 
             .typebox {
-            	margin-right: 20px;
+                width: 90px;
+                text-align: center;
+                border-radius: 8px;
+                margin-right: 5px;
+                box-sizing: border-box;
+                border: 1px solid rgba(255, 255, 255, 0);
             }
             .room-image {
             	background-color: #dadada;
-            	width: 200px;
-            	height: 200px;
+            	width: 280px;
+            	height: 280px;
             }
 
-            
+            .typebox label {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                padding-top: 10px;
+                box-sizing: border-box;
+            }
+
+            .typebox:hover {
+                background-color: #FFFFFF;
+                color: #F66F4D;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            #teater:checked + .teater, #klass:checked + .klass, #diplomaat:checked + .diplomaat, #ushaped:checked + .ushaped, #vastuvott:checked + .vastuvott, #cabaret:checked + .cabaret {
+                background-color: #FFFFFF;
+                border: 1px solid #dadada;
+                color: #F66F4D;
+            }
+
+            .roomstable {
+                width: 100%;
+            }
+            .roomstable tr td {
+                padding: 5px 10px;
+            }
         </style>
 
         <div class="row">
         <form action="" method="GET">
+
             <div class="filter-container">
 
-            	<div class="typebox">
-            		<label>
-	            		<img src="{{ asset('images/diplomatic.png') }}"><br>
-	            		<input type="checkbox">Diplomatic
+                <input type="checkbox" class="hidden" id="teater" name="theatre">
+            	<div class="typebox teater">
+            		<label for="teater">
+	            		<img src="{{ asset('images/teater.png') }}"><br>
+	            		Teater
             		</label>
 				</div>
 
-            	<div class="typebox">
-            		<label>
-	            		<img src="{{ asset('images/diplomatic.png') }}"><br>
-	            		<input type="checkbox">Classroom
+                <input type="checkbox" class="hidden" id="klass" name="classroom">
+            	<div class="typebox klass">
+            		<label for="klass">
+	            		<img src="{{ asset('images/klass.png') }}"><br>
+	            		Klass
 	            	</label>
             	</div>
 
-            	<div class="typebox">
-            		<label>
-	            		<img src="{{ asset('images/diplomatic.png') }}"><br>
-	            		<input type="checkbox">Theatre
+                <input type="checkbox" class="hidden" id="diplomaat" name="diplomat">
+            	<div class="typebox diplomaat">
+            		<label for="diplomaat">
+	            		<img src="{{ asset('images/diplomaadistiil.png') }}"><br>
+	            		Diplomaat
 	            	</label>
             	</div>
 
-            	<div class="typebox">
-            		<label>
-	            		<img src="{{ asset('images/diplomatic.png') }}"><br>
-	            		<input type="checkbox">U-shaped
+                <input type="checkbox" class="hidden" id="ushaped" name="ushaped">
+            	<div class="typebox ushaped">
+            		<label for="ushaped">
+	            		<img src="{{ asset('images/u-kujuline.png') }}"><br>
+	            		U-kujuline
 	            	</label>
             	</div>
+
+                <input type="checkbox" class="hidden" id="vastuvott" name="vastuvott">
+                <div class="typebox vastuvott">
+                    <label for="vastuvott">
+                        <img src="{{ asset('images/vastuvott.png') }}"><br>
+                        Vastuvõtt
+                    </label>
+                </div>
+
+                <input type="checkbox" class="hidden" id="cabaret" name="cabaret">
+                <div class="typebox cabaret">
+                    <label for="cabaret">
+                        <img src="{{ asset('images/kabareestiil.png') }}"><br>
+                        Kabaree
+                    </label>
+                </div>
 
 
 
@@ -135,14 +194,9 @@
 
             <div class="findServicesContainer" id="findServicesContainer">
                 <ul class="main">
-
-                	<input type="checkbox" value="service1">Coffee<br>
-                	<input type="checkbox" value="service1">Free parking<br>
-                	<input type="checkbox" value="service1">Accommodation<br>
-                	<input type="checkbox" value="service1">Projector<br>
-                	<input type="checkbox" value="service1">Sound system<br>
-                	<input type="checkbox" value="service1">TV and video<br>
-
+                    @foreach($services as $service)
+                	<li><label><input type="checkbox" value="{{ $service->id }}">{{ $service->title }}</label></li>
+                    @endforeach
                 </ul>
 
             </div>
@@ -151,79 +205,47 @@
     </div>
 
 
-<br><br><br>
-    <div class="row">
 
 
-    	Results
-
-
-    </div>
-
-    <div class="row" style="text-align: left;">
+    <div class="row mt-5" style="text-align: left;">
 
     	<div class="col-12">
     		
-
-
     		<!-- result element -->
 
-    		<div class="row">
-    			<div class="col-3">
-    				<div class="room-image" style="background-image: url('');"></div>
-    			</div>
-    			<div class="col-9">
-    				<h3>Property name</h2>
-    				<p>Address: <br>
-    				E-mail: <br>
-    				Services: List of services here </p>
-    				<table style="width: 100%; left: 0;">
-    					<tr style="background-color: #dadada;">
-    						<td>Room</td>
-    						<td>m2</td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    						<td><img src="{{ asset('images/diplomatic.png') }}"></td>
-    					</tr>
-    					<tr style="height: 40px;">
-    						<td>Room name 1</td>
-    						<td>200 m2</td>
-    						<td>100 people</td>
-    						<td>40 people</td>
-    						<td>30 people</td>
-    						<td>80 people</td>
-    						<td>70 people</td>
-    						<td>80 people</td>
-    					</tr>
-    					<tr style="height: 40px;">
-    						<td>Room name 2</td>
-    						<td>200 m2</td>
-    						<td>100 people</td>
-    						<td>40 people</td>
-    						<td>30 people</td>
-    						<td>80 people</td>
-    						<td>70 people</td>
-    						<td>80 people</td>
-    					</tr>
-    				</table>
-    			</div>
-    		</div>
-
-    		<!-- result element end -->
-
-
-
-
-
-
-
-
-
-
-
+    	   <div class="row mt-5">
+                <div class="col-3">
+                    <div class="room-image" style="background-image: url('');">image here</div>
+                </div>
+                <div class="col-9">
+                    <h3>Property name</h2>
+                    <p>Address: Property address<br>
+                    E-mail: <br>
+                    Services: List of services here </p>
+                    <table class="roomstable">
+                        <tr style="background-color: #FFFFFF; height: 40px">
+                            <td>Room name</td>
+                            <td class="text-center">m2</td>
+                            <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/u-kujuline.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/vastuvott.png') }}"></td>
+                            <td class="text-center"><img src="{{ asset('images/kabareestiil.png') }}"></td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td>Room name 1</td>
+                            <td class="text-center">200</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
+                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>  
 
     	</div>
 
@@ -233,8 +255,6 @@
     </div>
 
     <script>
-        $('ul li').click(function () {
-            $('#findServicesContainer').slideUp();
-        });
+
     </script>
 @endsection

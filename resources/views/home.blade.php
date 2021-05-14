@@ -59,13 +59,13 @@
 
                     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                         <tr class="tableheader">
-                            <td style="width: 150px;">Kuupäev</td>
-                            <td>Kestvus</td>
-                            <td style="width: 200px;">Koolitaja</td>
+                            <td style="">Kuupäev</td>
+                            
+                            <td style="">Koolitaja</td>
                             <td>Koolitus</td>
-                            <td style="width: 100px;">Hind</td>
-                            <td style="width: 100px;">Koht</td>
-                            <td style="width: 120px;">&nbsp;</td>
+                            <td style="">Hind</td>
+                            <td style="">Koht</td>
+                            <td style="">&nbsp;</td>
                         </tr>
                         @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                             <tr>
@@ -77,10 +77,12 @@
                                 @else
                                     <td>Tellitav koolitus</td>
                                 @endif
+                                @if(false)
                                 <td style="font-weight: 300;">
                                     @if($course->started_at) {{ $course->ended_at->diffInDays($course->started_at) }}
                                         päeva @endif
                                 </td>
+                                @endif
                                 <td style="font-weight: 300;">
                                     <a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
                                         <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>
