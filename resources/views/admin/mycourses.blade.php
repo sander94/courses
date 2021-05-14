@@ -57,21 +57,22 @@
                         <td style="width: 250px;">Koolitus</td>
                         <td style="width: 100px;">Hind</td>
                         <td style="width: 100px;">Koht</td>
+                        <td style="width: 40px;">Clicks</td>
                         <td style="width: 120px;">&nbsp;</td>
                     </tr>
                     @forelse($courses as $course)
                         <tr>
-                                <td style="font-weight: 300;">
-                                    @if($course->started_at) {{ $course->started_at->format('d.m.Y') }}
+                               @if($course->started_at) <td style="font-weight: 300;">
+                                     {{ $course->started_at->format('d.m.Y') }}
                                     - {{ $course->ended_at->format('d.m.Y') }}
-                                @else
-                                Tellitav koolitus
-                                @endif
-                                </td> 
-                            <td>{{ $course->title }}
+                                
+                                
+                                </td> @endif
+                            <td><a href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                             <td style="font-weight: 300;">{{ $course->region->title }}</td>
+                            <td>100</td>
                             <td>
                                 <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm">
                                     @csrf

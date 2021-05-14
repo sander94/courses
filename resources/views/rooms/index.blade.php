@@ -220,6 +220,7 @@
                 <div class="col-9">
                     <h3>Property name</h2>
                     <p>Address: Property address<br>
+                    Company name: Company name<br>
                     E-mail: <br>
                     Services: List of services here </p>
                     <table class="roomstable">
@@ -289,6 +290,7 @@
                 <div class="col-9">
                     <h3>Property name</h2>
                     <p>Address: Property address<br>
+                    Company name: Company name<br>
                     E-mail: <br>
                     Services: List of services here </p>
                     <table class="roomstable">
