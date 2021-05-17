@@ -135,4 +135,11 @@ class PageController extends Controller
     {
         return static::$types[$type];
     }
+
+    public function trackCourse(Course $course)
+    {
+        views($course)->record();
+
+        return redirect()->to($course->url);
+    }
 }
