@@ -85,11 +85,18 @@ class CompanyController extends Controller
         $views = DB::table('views')
             ->where('viewable_type', Company::class)
             ->where('viewable_id', $company->getKey())
-            ->select(DB::raw('count(*) as `views`'), DB::raw('DATE(viewed_at) date'))
+            ->select(DB::raw('count(*) as `views`'), DB::raw("DATE_FORMAT(viewed_at, '%Y-%m') date"))
             ->groupby('date')
             ->get()
+            ->sortByDesc(function ($item) {
+                $year = explode('-', $item->date);
+
+                return $year[0];
+            })
             ->groupBy(function ($item) {
-                return Carbon::parse($item->date)->format('M');
+                $year = explode('-', $item->date);
+
+                return $year[0];
             });
 
         return view('admin.statistics', compact('views'));

@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\AdTypeEnum;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -51,6 +52,9 @@ class AdvertisementBanner extends Resource
             Text::make('Views', function () {
                 return views($this->model())->count();
             })->exceptOnForms(),
+
+            DateTime::make('Started At'),
+            DateTime::make('Ended At'),
 
             Images::make('Banner')->required(),
 

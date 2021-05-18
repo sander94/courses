@@ -34,5 +34,8 @@ class AdvertisementBanner extends Model implements Viewable, HasMedia
     protected $casts = [
         'id' => 'integer',
         'type' => AdTypeEnum::class,
+
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
     ];
 }

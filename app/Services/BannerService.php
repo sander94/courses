@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Enums\AdTypeEnum;
 use App\Models\AdvertisementBanner;
+use Illuminate\Database\Eloquent\Builder;
 
 class BannerService
 {
@@ -18,7 +19,12 @@ class BannerService
         /** @var AdvertisementBanner $banner */
         $banner = AdvertisementBanner::query()
             ->where('type', $type)
-            ->inRandomOrder()->first();
+            ->inRandomOrder()
+            ->orWhere(function (Builder $query) {
+                return $query->where('started_at', '>=', now())
+                    ->where('ended_at', '<=', now());
+            })
+            ->first();
 
         return $banner;
     }
