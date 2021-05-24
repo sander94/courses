@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExtraService extends Model
+class PropertyRegion extends Model
 {
     use HasFactory;
 
@@ -26,10 +26,4 @@ class ExtraService extends Model
     protected $casts = [
         'id' => 'integer',
     ];
-
-
-    public function properties()
-    {
-        return $this->belongsToMany(Property::class, 'property_extra_service');
-    }
 }

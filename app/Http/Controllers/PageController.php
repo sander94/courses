@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Event;
 use App\Models\ExtraService;
+use App\Models\Property;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,6 @@ class PageController extends Controller
         $result = $model->newQuery()
             ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
             ->paginate();
-
 
 
         $counters[$type] = $result->total();
@@ -116,18 +116,43 @@ class PageController extends Controller
 
     }
 
-    function contact(Request $request)
+    public function contact(Request $request)
     {
 
         return view('contact');
 
     }
 
-    function rooms(Request $request)
+    public function rooms(Request $request)
     {
-
+        $regions = Region::all();
         $services = ExtraService::all();
-        return view('rooms.index', compact('services'));
+
+        $properties = Property::query();
+
+
+        $properties = $properties
+            ->when($request->get('services'), function (Builder $query, $services) {
+                return $query->whereHas('services', function (Builder $query) use ($services) {
+                    return $query->whereIn('id', $services);
+                });
+            })
+            ->when($request->get('capacity'), function (Builder $query, $capacity) {
+                return $query->whereHas('rooms', function (Builder $query) use ($capacity) {
+
+                    foreach (array_keys($capacity) as $column) {
+                        $query = $query->where($column, '>', 0);
+                    }
+
+                    return $query;
+                });
+            })
+            ->when($request->get('region'), function (Builder $query, $region) {
+                return $query->where('property_region_id', $region);
+            });
+
+        $properties = $properties->with(['rooms', 'services'])->get();
+        return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
 

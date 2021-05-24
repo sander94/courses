@@ -2,26 +2,27 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\BelongsTo;
 
-class ExtraService extends Resource
+class Room extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\ExtraService::class;
+    public static $model = \App\Models\Room::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -30,7 +31,6 @@ class ExtraService extends Resource
      */
     public static $search = [
         'id',
-        'title'
     ];
 
     /**
@@ -44,10 +44,32 @@ class ExtraService extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Title')
-                ->rules('required', 'string', 'max:400'),
+            Text::make('Name')
+                ->rules('required', 'string'),
 
-            BelongsToMany::make('Properties'),
+
+            Text::make('Square meters')
+                ->rules('required', 'string'),
+
+            Text::make('Theatre style capacity')
+                ->rules('nullable', 'string'),
+
+            Text::make('Classroom style capacity')
+                ->rules('nullable', 'string'),
+
+            Text::make('Diplomatic style capacity')
+                ->rules('nullable', 'string'),
+
+            Text::make('U shaped capacity')
+                ->rules('nullable', 'string'),
+
+            Text::make('Inauguration style capacity')
+                ->rules('nullable', 'string'),
+
+            Text::make('Cabaret style capacity')
+                ->rules('nullable', 'string'),
+
+            BelongsTo::make('Property'),
         ];
     }
 

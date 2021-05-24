@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         CourseCategory::factory(10)->create();
         Course::factory(10)->create();
 
-        Article::factory(30)->create();
+        Article::factory(10)->create();
+        Room::factory(10)->create();
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventExtraServiceTable extends Migration
+class CreatePropertyRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateEventExtraServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_extra_service', function (Blueprint $table) {
-            $table->foreignId('property_id');
-            $table->foreignId('extra_service_id');
+        Schema::create('property_regions', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateEventExtraServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_extra_service');
+        Schema::dropIfExists('property_regions');
     }
 }

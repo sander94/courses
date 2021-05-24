@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\ExtraService;
+use App\Models\PropertyRegion;
 
-class ExtraServiceFactory extends Factory
+class PropertyRegionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ExtraService::class;
+    protected $model = PropertyRegion::class;
 
     /**
      * Define the model's default state.

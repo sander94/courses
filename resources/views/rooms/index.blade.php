@@ -3,7 +3,7 @@
 @php
     /** @var \App\Services\BannerService $bannerService */
     $bannerService = app(\App\Services\BannerService::class);
-    $banner = $bannerService->randomBanner();
+    $banner = $bannerService->randomBanner(\App\Enums\AdTypeEnum::Rooms);
 @endphp
 
 @section('content')
@@ -87,10 +87,11 @@
                 box-sizing: border-box;
                 border: 1px solid rgba(255, 255, 255, 0);
             }
+
             .room-image {
-            	background-color: #dadada;
-            	width: 280px;
-            	height: 280px;
+                background-color: #dadada;
+                width: 280px;
+                height: 280px;
             }
 
             .typebox label {
@@ -119,240 +120,167 @@
             .roomstable {
                 width: 100%;
             }
+
             .roomstable tr td {
                 padding: 5px 10px;
             }
         </style>
 
         <div class="row">
-        <form action="" method="GET">
+            <form action="" method="GET">
 
-            <div class="filter-container">
+                <div class="filter-container">
 
-                <input type="checkbox" class="hidden" id="teater" name="theatre">
-            	<div class="typebox teater">
-            		<label for="teater">
-	            		<img src="{{ asset('images/teater.png') }}"><br>
-	            		Teater
-            		</label>
-				</div>
+                    <input type="checkbox" class="hidden" id="teater"
+                           {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', []))) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
+                    <div class="typebox teater">
+                        <label for="teater">
+                            <img src="{{ asset('images/teater.png') }}"><br>
+                            Teater
+                        </label>
+                    </div>
 
-                <input type="checkbox" class="hidden" id="klass" name="classroom">
-            	<div class="typebox klass">
-            		<label for="klass">
-	            		<img src="{{ asset('images/klass.png') }}"><br>
-	            		Klass
-	            	</label>
-            	</div>
+                    <input type="checkbox" class="hidden" id="klass"
+                           {{ in_array('classroom_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[classroom_style_capacity]">
+                    <div class="typebox klass">
+                        <label for="klass">
+                            <img src="{{ asset('images/klass.png') }}"><br>
+                            Klass
+                        </label>
+                    </div>
 
-                <input type="checkbox" class="hidden" id="diplomaat" name="diplomat">
-            	<div class="typebox diplomaat">
-            		<label for="diplomaat">
-	            		<img src="{{ asset('images/diplomaadistiil.png') }}"><br>
-	            		Diplomaat
-	            	</label>
-            	</div>
+                    <input type="checkbox" class="hidden" id="diplomaat"
+                           {{ in_array('diplomatic_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[diplomatic_style_capacity]">
+                    <div class="typebox diplomaat">
+                        <label for="diplomaat">
+                            <img src="{{ asset('images/diplomaadistiil.png') }}"><br>
+                            Diplomaat
+                        </label>
+                    </div>
 
-                <input type="checkbox" class="hidden" id="ushaped" name="ushaped">
-            	<div class="typebox ushaped">
-            		<label for="ushaped">
-	            		<img src="{{ asset('images/u-kujuline.png') }}"><br>
-	            		U-kujuline
-	            	</label>
-            	</div>
+                    <input type="checkbox" class="hidden" id="ushaped"
+                           {{ in_array('u_shaped_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[u_shaped_capacity]">
+                    <div class="typebox ushaped">
+                        <label for="ushaped">
+                            <img src="{{ asset('images/u-kujuline.png') }}"><br>
+                            U-kujuline
+                        </label>
+                    </div>
 
-                <input type="checkbox" class="hidden" id="vastuvott" name="vastuvott">
-                <div class="typebox vastuvott">
-                    <label for="vastuvott">
-                        <img src="{{ asset('images/vastuvott.png') }}"><br>
-                        Vastuvõtt
-                    </label>
+                    <input type="checkbox" class="hidden" id="vastuvott"
+                           {{ in_array('inauguration_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[inauguration_style_capacity]">
+                    <div class="typebox vastuvott">
+                        <label for="vastuvott">
+                            <img src="{{ asset('images/vastuvott.png') }}"><br>
+                            Vastuvõtt
+                        </label>
+                    </div>
+
+                    <input type="checkbox" class="hidden"
+                           {{ in_array('cabaret_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} id="cabaret"
+                           name="capacity[cabaret_style_capacity]">
+                    <div class="typebox cabaret">
+                        <label for="cabaret">
+                            <img src="{{ asset('images/kabareestiil.png') }}"><br>
+                            Kabaree
+                        </label>
+                    </div>
+
+
+                    <span id="findCourse" class="filter findServices"
+                          onclick="$('#findServicesContainer').slideToggle();">Pick services</span>
+
+                    <select id="findLocation" class="filter findLocation" name="region">
+                        <option value="0">Region</option>
+                        @foreach($regions as $region)
+                            <option
+                                value="{{ $region->getKey() }}" {{ (string) $region->getKey() === request()->query('region') ? 'selected' : null }}>{{ $region->title }}</option>
+                        @endforeach
+
+                    </select>
+
+                    <input type="submit" value="Filtreeri" class="findSubmit">
+
+
                 </div>
 
-                <input type="checkbox" class="hidden" id="cabaret" name="cabaret">
-                <div class="typebox cabaret">
-                    <label for="cabaret">
-                        <img src="{{ asset('images/kabareestiil.png') }}"><br>
-                        Kabaree
-                    </label>
+
+                <div class="findServicesContainer" id="findServicesContainer">
+                    <ul class="main">
+                        @foreach($services as $service)
+                            <li><label><input type="checkbox" name="services[]"
+                                              value="{{ $service->id }}" {{ in_array($service->getKey(), request()->get('services')) ? 'checked' : null }}>{{ $service->title }}
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+
                 </div>
+            </form>
+
+        </div>
 
 
+        <div class="row mt-5" style="text-align: left;">
 
-                <span id="findCourse" class="filter findServices"
-                      onclick="$('#findServicesContainer').slideToggle();">Pick services</span>
+            <div class="col-12">
 
-                <select id="findLocation" class="filter findLocation" name="region">
-                    <option value="0">Region</option>
-                </select>
+                <!-- result element -->
 
-                <input type="submit" value="Filtreeri" class="findSubmit">
-
-
-            </div>
-
-
-            <div class="findServicesContainer" id="findServicesContainer">
-                <ul class="main">
-                    @foreach($services as $service)
-                	<li><label><input type="checkbox" value="{{ $service->id }}">{{ $service->title }}</label></li>
-                    @endforeach
-                </ul>
-
-            </div>
-        </form>
-
-    </div>
-
-
-
-
-    <div class="row mt-5" style="text-align: left;">
-
-    	<div class="col-12">
-    		
-    		<!-- result element -->
-
-    	   <div class="row mt-5">
-                <div class="col-3">
-                    <div class="room-image" style="background-image: url('');">image here</div>
-                </div>
-                <div class="col-9">
-                    <h3>Property name</h2>
-                    <p>Address: Property address<br>
-                    Company name: Company name<br>
-                    E-mail: <br>
-                    Services: List of services here </p>
-                    <table class="roomstable">
-                        <tr style="background-color: #FFFFFF; height: 40px">
-                            <td>Room name</td>
-                            <td class="text-center">m2</td>
-                            <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/u-kujuline.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/vastuvott.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/kabareestiil.png') }}"></td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 1</td>
-                            <td class="text-center">200</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 2</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 3</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 4</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>  
+                @foreach($properties as $property)
+                    <div class="row mt-5">
+                        <div class="col-3">
+                            <div class="room-image"
+                                 style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <h3>{{ $property->name }}</h3>
+                            <p>Address: {{ $property->address }}<br>
+                                Company name: {{ $property->company_name }}<br>
+                                E-mail: {{ $property->email }}<br>
+                                Services: {{ $property->services->implode('title',',') }} </p>
+                            <table class="roomstable">
+                                <tr style="background-color: #FFFFFF; height: 40px">
+                                    <td>Room name</td>
+                                    <td class="text-center">m2</td>
+                                    <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
+                                    <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
+                                    <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
+                                    <td class="text-center"><img src="{{ asset('images/u-kujuline.png') }}"></td>
+                                    <td class="text-center"><img src="{{ asset('images/vastuvott.png') }}"></td>
+                                    <td class="text-center"><img src="{{ asset('images/kabareestiil.png') }}"></td>
+                                </tr>
+                                @foreach($property->rooms as $room)
+                                    <tr style="height: 40px;">
+                                        <td>{{ $room->name }}</td>
+                                        <td class="text-center">{{ $room->square_meters }}</td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->theatre_style_capacity ?? 0 }}</td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->classroom_style_capacity ?? 0 }}</td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->diplomatic_style_capacity ?? 0 }}</td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->u_shaped_capacity ?? 0 }}</td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->inauguration_style_capacity ?? 0 }}
+                                        </td>
+                                        <td class="text-center"><i
+                                                class="fa fa-user"></i> {{ $room->cabaret_style_capacity ?? 0 }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+            @endforeach
 
             <!-- result element end -->
 
 
-            <!-- result element -->
+            </div>
 
-           <div class="row mt-5">
-                <div class="col-3">
-                    <div class="room-image" style="background-image: url('');">image here</div>
-                </div>
-                <div class="col-9">
-                    <h3>Property name</h2>
-                    <p>Address: Property address<br>
-                    Company name: Company name<br>
-                    E-mail: <br>
-                    Services: List of services here </p>
-                    <table class="roomstable">
-                        <tr style="background-color: #FFFFFF; height: 40px">
-                            <td>Room name</td>
-                            <td class="text-center">m2</td>
-                            <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/u-kujuline.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/vastuvott.png') }}"></td>
-                            <td class="text-center"><img src="{{ asset('images/kabareestiil.png') }}"></td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 1</td>
-                            <td class="text-center">200</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 2</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 3</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                        <tr style="height: 40px;">
-                            <td>Room name 4</td>
-                            <td class="text-center">300</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 100</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 40</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 30</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 70</td>
-                            <td class="text-center"><i class="fa fa-user"></i> 80</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>  
-
-            <!-- result element end -->
-
-    	</div>
-
-    </div>
+        </div>
 
 
     </div>

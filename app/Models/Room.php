@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExtraService extends Model
+class Room extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,14 @@ class ExtraService extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
+        'name',
+        'square_meters',
+        'theatre_style_capacity',
+        'classroom_style_capacity',
+        'diplomatic_style_capacity',
+        'u_shaped_capacity',
+        'inauguration_style_capacity',
+        'cabaret_style_capacity',
     ];
 
     /**
@@ -28,8 +35,9 @@ class ExtraService extends Model
     ];
 
 
-    public function properties()
+    public function property()
     {
-        return $this->belongsToMany(Property::class, 'property_extra_service');
+        return $this->belongsTo(\App\Models\Property::class);
     }
+
 }
