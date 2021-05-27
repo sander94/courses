@@ -132,7 +132,7 @@
                 <div class="filter-container">
 
                     <input type="checkbox" class="hidden" id="teater"
-                           {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', []))) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
+                           {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', [])) ?? []) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
                     <div class="typebox teater">
                         <label for="teater">
                             <img src="{{ asset('images/teater.png') }}"><br>
@@ -141,7 +141,7 @@
                     </div>
 
                     <input type="checkbox" class="hidden" id="klass"
-                           {{ in_array('classroom_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[classroom_style_capacity]">
+                           {{ in_array('classroom_style_capacity',array_keys(request()->get('capacity', [])) ?? [])  ? 'checked' : null }} name="capacity[classroom_style_capacity]">
                     <div class="typebox klass">
                         <label for="klass">
                             <img src="{{ asset('images/klass.png') }}"><br>
@@ -150,7 +150,7 @@
                     </div>
 
                     <input type="checkbox" class="hidden" id="diplomaat"
-                           {{ in_array('diplomatic_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[diplomatic_style_capacity]">
+                           {{ in_array('diplomatic_style_capacity',array_keys(request()->get('capacity', [])) ?? [])  ? 'checked' : null }} name="capacity[diplomatic_style_capacity]">
                     <div class="typebox diplomaat">
                         <label for="diplomaat">
                             <img src="{{ asset('images/diplomaadistiil.png') }}"><br>
@@ -159,7 +159,7 @@
                     </div>
 
                     <input type="checkbox" class="hidden" id="ushaped"
-                           {{ in_array('u_shaped_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[u_shaped_capacity]">
+                           {{ in_array('u_shaped_capacity',array_keys(request()->get('capacity', [])) ?? [])  ? 'checked' : null }} name="capacity[u_shaped_capacity]">
                     <div class="typebox ushaped">
                         <label for="ushaped">
                             <img src="{{ asset('images/u-kujuline.png') }}"><br>
@@ -168,7 +168,7 @@
                     </div>
 
                     <input type="checkbox" class="hidden" id="vastuvott"
-                           {{ in_array('inauguration_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} name="capacity[inauguration_style_capacity]">
+                           {{ in_array('inauguration_style_capacity',array_keys(request()->get('capacity', [])) ?? [])  ? 'checked' : null }} name="capacity[inauguration_style_capacity]">
                     <div class="typebox vastuvott">
                         <label for="vastuvott">
                             <img src="{{ asset('images/vastuvott.png') }}"><br>
@@ -177,7 +177,7 @@
                     </div>
 
                     <input type="checkbox" class="hidden"
-                           {{ in_array('cabaret_style_capacity',array_keys(request()->get('capacity', [])))  ? 'checked' : null }} id="cabaret"
+                           {{ in_array('cabaret_style_capacity',array_keys(request()->get('capacity', [])) ?? [])  ? 'checked' : null }} id="cabaret"
                            name="capacity[cabaret_style_capacity]">
                     <div class="typebox cabaret">
                         <label for="cabaret">
@@ -209,7 +209,7 @@
                     <ul class="main">
                         @foreach($services as $service)
                             <li><label><input type="checkbox" name="services[]"
-                                              value="{{ $service->id }}" {{ in_array($service->getKey(), request()->get('services')) ? 'checked' : null }}>{{ $service->title }}
+                                              value="{{ $service->id }}" {{ in_array($service->getKey(), request()->get('services', [])) ? 'checked' : null }}>{{ $service->title }}
                                 </label>
                             </li>
                         @endforeach

@@ -68,4 +68,9 @@ class Company extends Authenticatable implements HasMedia, Viewable
     {
         return 'slug';
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(\App\Models\Tag::class);
+    }
 }

@@ -1,23 +1,5 @@
 models:
-  PropertyRegion:
-    title: string
-  Property:
-    name: string
-    company_name: string
-    address: string
-    email: string
+  Tag:
+    text: string
     relationships:
-      belongsTo: PropertyRegion
-      hasMany: Rooms
-  Room:
-    name: string
-    square_meters: string
-    theatre_style_capacity: nullable string
-    classroom_style_capacity: nullable string
-    diplomatic_style_capacity: nullable string
-    u_shaped_capacity: nullable string
-    inauguration_style_capacity: nullable string
-    cabaret_style_capacity: nullable string
-    relationships:
-      belongsTo: Property
-
+      belongsToMany: Company

@@ -68,7 +68,11 @@ class PageController extends Controller
     {
         $companies = Company::orderBy('sort_order', 'DESC')
             ->when($request->get('search'), function (Builder $query, $search) {
-                return $query->where('name', 'like', "%$search%");
+                return $query
+                    ->where('name', 'like', "%$search%")
+                    ->orWhereHas('tags', function (Builder $query) use ($search) {
+                        return $query->where('text', 'LIKE', "%$search%");
+                    });
             })
             ->ordered()
             ->paginate();

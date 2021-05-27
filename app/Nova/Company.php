@@ -5,6 +5,7 @@ namespace App\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
@@ -16,6 +17,7 @@ use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 class Company extends Resource
 {
     use HasSortableRows;
+
     /**
      * The model the resource corresponds to.
      *
@@ -74,6 +76,8 @@ class Company extends Resource
             Text::make(__('Street'), 'street')->required(),
             Text::make(__('Postal'), 'postal')->required(),
             Text::make(__('Website'), 'website')->required(),
+
+            BelongsToMany::make('Tags'),
 
         ];
     }
