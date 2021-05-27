@@ -46,13 +46,25 @@ class PageController extends Controller
 
         $result = $model->newQuery()
             ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
+            ->when($type === 'companies', function (Builder $query) use ($searchQuery) {
+                return $query->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
+                    return $query->where('text', 'LIKE', "%$searchQuery%");
+                });
+            })
             ->paginate();
 
 
         $counters[$type] = $result->total();
         foreach (static::$types as $keyType => $model) {
             if ($keyType !== $type) {
-                $counters[$keyType] = app($model)->newQuery()->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")->count();
+                $counters[$keyType] = app($model)->newQuery()
+                    ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
+                    ->when($keyType === 'companies', function (Builder $query) use ($searchQuery) {
+                        return $query->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
+                            return $query->where('text', 'LIKE', "%$searchQuery%");
+                        });
+                    })
+                    ->count();
             }
         }
 

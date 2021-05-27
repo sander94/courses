@@ -21,7 +21,7 @@ class Tag extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'text';
 
     /**
      * The columns that should be searched.
@@ -29,7 +29,7 @@ class Tag extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'text',
     ];
 
     /**
