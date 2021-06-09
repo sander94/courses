@@ -59,6 +59,7 @@ class Company extends Resource
 
             Text::make('Facebook Url')
                 ->rules([
+                    'nullable',
                     'string',
                     'url'
                 ]),
