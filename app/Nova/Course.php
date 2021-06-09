@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -70,8 +71,8 @@ class Course extends Resource
 
             Text::make('Url'),
 
-            DateTime::make('Started At'),
-            DateTime::make('Ended At'),
+            Date::make('Started At'),
+            Date::make('Ended At'),
 
             BelongsToMany::make('Course Category', 'courseCategories'),
 
