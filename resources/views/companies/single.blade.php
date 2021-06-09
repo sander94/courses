@@ -20,7 +20,7 @@ if (empty($scheme)) {
                     {{ $company->name }}<br>
                     {{ $company->street }}, {{ $company->city }}, {{ $company->region->title }}<br>
                     {{ $company->phone }}<br>
-                    <a href="mailto:{{$company->email}}">{{ $company->email }}</a><br><br>
+                    {{ $company->email }}<br><br>
                     <a href="{{ $link }}" target="_blank">{{ $company->website }}</a><br>
                     <a href="facebook">Facebook</a>
                 </div>
