@@ -188,10 +188,10 @@
 
 
                     <span id="findCourse" class="filter findServices"
-                          onclick="$('#findServicesContainer').slideToggle();">Pick services</span>
+                          onclick="$('#findServicesContainer').slideToggle();">Lisateenused</span>
 
                     <select id="findLocation" class="filter findLocation" name="region">
-                        <option value="0">Region</option>
+                        <option value="0">Piirkond</option>
                         @foreach($regions as $region)
                             <option
                                 value="{{ $region->getKey() }}" {{ (string) $region->getKey() === request()->query('region') ? 'selected' : null }}>{{ $region->title }}</option>
