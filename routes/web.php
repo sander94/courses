@@ -24,7 +24,7 @@ Route::resource('events', 'EventController');
 
 Route::resource('courses', 'CourseController');
 
-Route::post('contact', 'ContactController')->name('contact');
+Route::post('kontakt', 'ContactController')->name('contact');
 
 Route::get('/', 'PageController@home')->name('home');
 
@@ -38,9 +38,9 @@ Route::get('course/{course}/track', 'PageController@trackCourse')->name('course.
 
 Route::get('/ettevotted', 'PageController@companies')->name('companies');
 
-Route::get('/rooms', 'PageController@rooms')->name('rooms');
+Route::get('/ruumid', 'PageController@rooms')->name('rooms');
 
-Route::get('/companies/{company}', 'PageController@company')->name('company');
+Route::get('/ettevotted/{company}', 'PageController@company')->name('company');
 
 Route::prefix('company')->group(function () {
 
