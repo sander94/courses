@@ -236,13 +236,14 @@
                         </div>
                         <div class="col-9">
                             <h3>{{ $property->name }}</h3>
-                            <p>Address: {{ $property->address }}<br>
-                                Company name: {{ $property->company_name }}<br>
+                            <p>Aadress: {{ $property->address }}<br>
+                                Ettevõte: {{ $property->company_name }}<br>
                                 E-mail: {{ $property->email }}<br>
-                                Services: {{ $property->services->implode('title',',') }} </p>
+                                Teenused: {{ $property->services->implode('title',',') }} </p>
+                            @if($property->rooms)
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
-                                    <td>Room name</td>
+                                    <td>Ruumi nimetus</td>
                                     <td class="text-center">m2</td>
                                     <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
                                     <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
@@ -271,6 +272,7 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            @endif
                         </div>
                     </div>
             @endforeach
