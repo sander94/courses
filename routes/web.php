@@ -28,7 +28,7 @@ Route::post('contact', 'ContactController')->name('contact');
 
 Route::get('/', 'PageController@home')->name('home');
 
-Route::get('/contact', 'PageController@contact')->name('contact');
+Route::get('/kontakt', 'PageController@contact')->name('contact');
 
 Route::get('/search/{type?}', 'PageController@search')->name('search');
 
