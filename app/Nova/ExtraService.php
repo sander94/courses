@@ -33,6 +33,8 @@ class ExtraService extends Resource
         'title'
     ];
 
+    public static $priority = 9;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -93,5 +95,13 @@ class ExtraService extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Ruumid - teenused';
+    }
+
+    public static function singularLabel() {
+        return 'Ruumi teenus';
     }
 }

@@ -36,6 +36,8 @@ class Article extends Resource
         'title',
     ];
 
+    public static $priority = 10;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -105,5 +107,13 @@ class Article extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Artiklid';
+    }
+
+    public static function singularLabel() {
+        return 'Artikkel';
     }
 }

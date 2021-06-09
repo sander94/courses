@@ -42,6 +42,7 @@ class Company extends Resource
         'name'
     ];
 
+    public static $priority = 1;
     /**
      * Get the fields displayed by the resource.
      *
@@ -124,5 +125,13 @@ class Company extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Ettevõtted';
+    }
+
+    public static function singularLabel() {
+        return 'Ettevõte';
     }
 }

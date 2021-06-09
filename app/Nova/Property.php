@@ -36,6 +36,8 @@ class Property extends Resource
         'name'
     ];
 
+    public static $priority = 8;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -111,5 +113,13 @@ class Property extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Ruumid - koolituskeskused';
+    }
+
+    public static function singularLabel() {
+        return 'Koolituskeskus';
     }
 }

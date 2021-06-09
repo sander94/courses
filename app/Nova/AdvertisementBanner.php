@@ -36,6 +36,8 @@ class AdvertisementBanner extends Resource
         'id',
     ];
 
+    public static $priority = 11;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -114,5 +116,13 @@ class AdvertisementBanner extends Resource
     public static function uriKey()
     {
         return 'ads';
+    }
+
+    public static function label() {
+        return 'Reklaambännerid';
+    }
+
+    public static function singularLabel() {
+        return 'Reklaambänner';
     }
 }

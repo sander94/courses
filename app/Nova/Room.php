@@ -34,6 +34,8 @@ class Room extends Resource
         'name'
     ];
 
+    public static $priority = 6;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -116,5 +118,13 @@ class Room extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Ruumid';
+    }
+
+    public static function singularLabel() {
+        return 'Ruum';
     }
 }

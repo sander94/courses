@@ -35,6 +35,13 @@ class Region extends Resource
     ];
 
     /**
+     * Custom priority level of the resource.
+     *
+     * @var int
+     */
+    public static $priority = 5;
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param \Illuminate\Http\Request $request
@@ -94,5 +101,13 @@ class Region extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Koolitused - regioonid';
+    }
+
+    public static function singularLabel() {
+        return 'Koolituse regioon';
     }
 }

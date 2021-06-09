@@ -32,6 +32,8 @@ class Tag extends Resource
         'text',
     ];
 
+    public static $priority = 2;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -94,5 +96,13 @@ class Tag extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Märksõnad';
+    }
+
+    public static function singularLabel() {
+        return 'Märksõna';
     }
 }

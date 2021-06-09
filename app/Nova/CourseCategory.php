@@ -36,6 +36,8 @@ class CourseCategory extends Resource
         'title'
     ];
 
+    public static $priority = 4;
+    
     /**
      * Get the fields displayed by the resource.
      *
@@ -105,5 +107,12 @@ class CourseCategory extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+    public static function label() {
+        return 'Koolitused - kategooriad';
+    }
+
+    public static function singularLabel() {
+        return 'Koolituse kategooria';
     }
 }

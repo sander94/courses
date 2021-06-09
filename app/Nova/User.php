@@ -41,6 +41,8 @@ class User extends Resource
         'id', 'name', 'email',
     ];
 
+    public static $priority = 12;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -121,5 +123,13 @@ class User extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function label() {
+        return 'Adminkasutajad';
+    }
+
+    public static function singularLabel() {
+        return 'Adminkasutaja';
     }
 }
