@@ -240,7 +240,7 @@
                                 Ettevõte: {{ $property->company_name }}<br>
                                 E-mail: {{ $property->email }}<br>
                                 Teenused: {{ $property->services->implode('title',',') }} </p>
-                            @if($property->rooms)
+                            @if(count($property->rooms > 0))
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td>Ruumi nimetus</td>
