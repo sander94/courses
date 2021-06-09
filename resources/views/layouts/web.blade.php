@@ -614,6 +614,10 @@ input[type='radio'] {
     text-align: right;
 }
 
+.companyhover {
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 1350px) {
     .header {
         width: 1200px;
