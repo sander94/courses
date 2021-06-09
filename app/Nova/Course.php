@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class Course extends Resource
     ];
 
     public static $priority = 3;
-    
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -61,6 +62,8 @@ class Course extends Resource
 
             Number::make('Duration Minutes')
                 ->rules('integer'),
+
+            BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class),
 
             Number::make('Price')
                 ->rules('required'),
@@ -127,11 +130,14 @@ class Course extends Resource
     {
         return [];
     }
-    public static function label() {
+
+    public static function label()
+    {
         return 'Koolitused';
     }
 
-    public static function singularLabel() {
+    public static function singularLabel()
+    {
         return 'Koolitus';
     }
 }

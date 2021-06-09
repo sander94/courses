@@ -22,7 +22,7 @@ if (empty($scheme)) {
                     {{ $company->phone }}<br>
                     {{ $company->email }}<br><br>
                     <a href="{{ $link }}" target="_blank">{{ $company->website }}</a><br>
-                    <a href="facebook">Facebook</a>
+                    <a href="{{ $company->facebook_url }}">Facebook</a>
                 </div>
             </div>
             <div class="col-sm-6 company-page-logo">

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc7737b8b4ae673ada8e824e1c128ae0",
+    "content-hash": "2ad67b128b6c76e5b5f1f7431c0cd286",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,53 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.2"
             },
             "time": "2020-10-29T16:03:21+00:00"
+        },
+        {
+            "name": "benjacho/belongs-to-many-field",
+            "version": "1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Benjacho/belongs-to-many-field-nova.git",
+                "reference": "d50fb24b781f997ba53084e1180a4a7b623727cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Benjacho/belongs-to-many-field-nova/zipball/d50fb24b781f997ba53084e1180a4a7b623727cc",
+                "reference": "d50fb24b781f997ba53084e1180a4a7b623727cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Benjacho\\BelongsToManyField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Benjacho\\BelongsToManyField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "belongsToMany nova representation in field.",
+            "keywords": [
+                "Many to Many Field",
+                "belongsToMany",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/Benjacho/belongs-to-many-field-nova/issues",
+                "source": "https://github.com/Benjacho/belongs-to-many-field-nova/tree/1.9"
+            },
+            "time": "2021-04-24T23:29:38+00:00"
         },
         {
             "name": "bensampo/laravel-enum",

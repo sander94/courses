@@ -43,6 +43,7 @@ class Company extends Resource
     ];
 
     public static $priority = 1;
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -55,6 +56,12 @@ class Company extends Resource
             ID::make(__('ID'), 'id')->sortable(),
 
             Number::make(__('Sort Order'), 'sort_order'),
+
+            Text::make('Facebook Url')
+                ->rules([
+                    'string',
+                    'url'
+                ]),
 
             Password::make(__('Password'), 'password'),
 
@@ -127,11 +134,13 @@ class Company extends Resource
         return [];
     }
 
-    public static function label() {
+    public static function label()
+    {
         return 'Ettevõtted';
     }
 
-    public static function singularLabel() {
+    public static function singularLabel()
+    {
         return 'Ettevõte';
     }
 }
