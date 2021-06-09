@@ -17,6 +17,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "genealabs/nova-prepopulate-searchable": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/console": "^8.46",
         "khalin/nova-link-field": "^1.2",
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
