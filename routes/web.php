@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('articles', 'ArticleController');
+Route::resource('artiklid', 'ArticleController');
 
 Route::resource('events', 'EventController');
 
-Route::resource('courses', 'CourseController');
+Route::resource('koolitused', 'CourseController');
 
 Route::post('kontakt', 'ContactController')->name('contact');
 
