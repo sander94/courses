@@ -47,6 +47,10 @@
             background-color: #FAF8ED;
         }
 
+            .overlay {
+                text-align: center;
+            }
+
             .filter-container {
                 display: flex;
                 width: 1000px;
