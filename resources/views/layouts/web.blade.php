@@ -593,7 +593,15 @@ button.submit {
 }
 .main-li {
     border-right: 1px solid #dadada;
+    font-weight: 700;
 }
+
+ul.sub li {
+    font-weight: 400;
+}
+
+
+
 .main-li label:hover {
     color: #F66F4D;
     cursor: pointer;
