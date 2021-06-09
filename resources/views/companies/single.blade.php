@@ -26,9 +26,9 @@ if (empty($scheme)) {
                 </div>
             </div>
             <div class="col-sm-6 company-page-logo">
-                @if($company->getFirstMediaUrl('cover')) {
+                @if($company->getFirstMediaUrl('cover'))
                 <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive" style="max-width: 100%; max-height: 200px;">
-                }
+                @endif
             </div>
         </div>
 
