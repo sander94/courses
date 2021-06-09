@@ -70,13 +70,13 @@ class Company extends Resource
 
             Images::make(__('Cover'), 'cover'),
 
-            Text::make(__('Reg Number'), 'reg_number')->required(),
+            Text::make(__('Reg Number'), 'reg_number'),
 
-            Text::make(__('Phone'), 'phone')->required(),
-            Text::make(__('City'), 'city')->required(),
-            Text::make(__('Street'), 'street')->required(),
-            Text::make(__('Postal'), 'postal')->required(),
-            Text::make(__('Website'), 'website')->required(),
+            Text::make(__('Phone'), 'phone'),
+            Text::make(__('City'), 'city'),
+            Text::make(__('Street'), 'street'),
+            Text::make(__('Postal'), 'postal'),
+            Text::make(__('Website'), 'website'),
 
             BelongsToMany::make('Tags'),
 
