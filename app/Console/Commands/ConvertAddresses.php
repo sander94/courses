@@ -44,6 +44,9 @@ class ConvertAddresses extends Command
             $city = $list->city;
             $street = $list->street;
             $postal = $list->postal;
+            if($street == ".") { $street = ""; }
+            if($postal == ".") { $postal = ""; }
+            if($city == ".") { $city = ""; }
 
             $updateQuery = Company::where('id', $list->id)->first();
 
