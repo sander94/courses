@@ -18,17 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('artiklid', 'ArticleController')->name('articles');
+Route::resource('articles', 'ArticleController');
 
 Route::resource('events', 'EventController');
 
-Route::resource('koolitused', 'CourseController')->name('courses');
+Route::resource('courses', 'CourseController');
 
-Route::post('kontakt', 'ContactController')->name('contact');
+Route::post('contact', 'ContactController')->name('contact');
 
 Route::get('/', 'PageController@home')->name('home');
 
-Route::get('/kontakt', 'PageController@contact')->name('contact');
+Route::get('/contact', 'PageController@contact')->name('contact');
 
 Route::get('/search/{type?}', 'PageController@search')->name('search');
 
@@ -36,11 +36,11 @@ Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
 
 Route::get('course/{course}/track', 'PageController@trackCourse')->name('course.track');
 
-Route::get('/ettevotted', 'PageController@companies')->name('companies');
+Route::get('/companies', 'PageController@companies')->name('companies');
 
-Route::get('/ruumid', 'PageController@rooms')->name('rooms');
+Route::get('/rooms', 'PageController@rooms')->name('rooms');
 
-Route::get('/ettevotted/{company}', 'PageController@company')->name('company');
+Route::get('/companies/{company}', 'PageController@company')->name('company');
 
 Route::prefix('company')->group(function () {
 
