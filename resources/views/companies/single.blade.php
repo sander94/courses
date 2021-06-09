@@ -2,8 +2,8 @@
 
 @section('content')
 <?php
-                            $scheme = "";
-                            $link = $company->website;
+$scheme = "";
+$link = $company->website;
 $scheme = parse_url($link, PHP_URL_SCHEME);
 if (empty($scheme)) {
     $link = 'http://' . ltrim($company->website, '/');
@@ -21,7 +21,7 @@ if (empty($scheme)) {
                     {{ $company->street }}, {{ $company->city }}, {{ $company->region->title }}<br>
                     {{ $company->phone }}<br>
                     <a href="mailto:{{$company->email}}">{{ $company->email }}</a><br><br>
-                    <a href="{{ $link }}">{{ $company->website }}</a><br>
+                    <a href="{{ $link }}" target="_blank">{{ $company->website }}</a><br>
                     <a href="facebook">Facebook</a>
                 </div>
             </div>
