@@ -82,8 +82,9 @@
                 @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                     <tr>
                         <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                            @if($course->ended_at)
                             - {{ $course->ended_at->format('d.m.Y') }}
-                            
+                            @endif
                         </td>
                         <td style="font-weight: 300;"><a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
                                         <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>

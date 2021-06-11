@@ -12,7 +12,9 @@
         @foreach($result as $course)
             <tr>
                 <td style="font-weight: 300;">@if($course->started_at) {{ $course->started_at->format('d.m.Y') }}
+                    @if($course->ended_at)
                     - {{ $course->ended_at->format('d.m.Y') }}
+                    @endif
                 @else
                 Tellitav koolitus
                 @endif
