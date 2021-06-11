@@ -61,12 +61,12 @@ class Course extends Resource
 
             DateTime::make('Featuring ended at'),
 
-            Number::make('Duration Minutes')
-                ->rules('integer'),
+           /* Number::make('Duration Minutes')
+                ->rules('integer'), */
 
             BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class),
 
-            Number::make('Price')
+            Text::make('Price')
                 ->rules('required'),
 
             Text::make('Url'),
