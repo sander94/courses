@@ -65,7 +65,7 @@
                             <td>Koolitus</td>
                             <td style="">Hind</td>
                             <td style="">Koht</td>
-                            <td style="">&nbsp;</td>
+                            <td style="width: 120px;">&nbsp;</td>
                         </tr>
                         @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                             <tr>

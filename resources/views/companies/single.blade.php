@@ -18,7 +18,7 @@ if (empty($scheme)) {
 
                 <div class="content py-5">
                     {{ $company->name }}<br>
-                    {{ $company->street }}, {{ $company->city }}, {{ $company->region->title }}<br>
+                    {{ $company->city }}<br>
                     {{ $company->phone }}<br>
                     {{ $company->email }}<br><br>
                     <a href="{{ $link }}" target="_blank">{{ $company->website }}</a><br>
