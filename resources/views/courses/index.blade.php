@@ -87,9 +87,7 @@
                             @endif
                         </td>
                         <td style="font-weight: 300;"><a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
-                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>
-
-                                        {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
+                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>
                         <td><a class="normal" href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
                         </td>
                         <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
