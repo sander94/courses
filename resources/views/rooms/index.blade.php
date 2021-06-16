@@ -239,7 +239,13 @@
                             <p>Aadress: {{ $property->address }}<br>
                                 Ettevõte: {{ $property->company_name }}<br>
                                 E-mail: {{ $property->email }}<br>
-                                Teenused: <span style="text-transform: lowercase;">{{ $property->services->implode('title',',') }}</span></p>
+                                Teenused: 
+                                @php
+                                  $servicearray = $property->services->implode('title',',');
+                                  $servicearray = strtolower($servicearray);
+                                  $servicearray = str_replace(',', ', ', $servicearray);
+                                @endphp
+                                {{ $servicearray }}</p>
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td>Ruumi nimetus</td>
