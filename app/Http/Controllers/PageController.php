@@ -87,7 +87,7 @@ class PageController extends Controller
                     });
             })
             ->ordered()
-            ->paginate();
+            ->paginate(16);
 
         return view('companies.index', compact('companies'));
     }
@@ -102,7 +102,7 @@ class PageController extends Controller
             }, function ($query) {
                 return $query->whereNotNull('started_at');
             })
-            ->paginate(16);
+            ->paginate();
 
         return view('companies.single', compact('company', 'courses'));
     }
