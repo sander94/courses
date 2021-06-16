@@ -150,7 +150,7 @@ class PageController extends Controller
         $properties = $properties
             ->when($request->get('services'), function (Builder $query, $services) {
                 return $query->whereHas('services', function (Builder $query) use ($services) {
-                    return $query->whereIn('id', $services);
+                    return $query->whereIn('id', $services)." ";
                 });
             })
             ->when($request->get('capacity'), function (Builder $query, $capacity) {

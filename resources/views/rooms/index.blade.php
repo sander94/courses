@@ -239,7 +239,7 @@
                             <p>Aadress: {{ $property->address }}<br>
                                 Ettevõte: {{ $property->company_name }}<br>
                                 E-mail: {{ $property->email }}<br>
-                                Teenused: {{ $property->services->implode('title',',') }} </p>
+                                Teenused: <span style="text-transform: lowercase;">{{ $property->services->implode('title',',') }}</span></p>
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td>Ruumi nimetus</td>
