@@ -89,7 +89,7 @@
             }
 
             .room-image {
-                background-color: #dadada;
+                background-color: #FFFFFF;
                 width: 280px;
                 height: 280px;
                 background-size: 90%;
