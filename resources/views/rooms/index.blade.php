@@ -246,11 +246,11 @@
                         </div>
                         <div class="col-9">
                             <h3>{{ $property->name }}</h3>
-                            <p>Aadress: {{ $property->address }}<br>
-                                Ettevõte: {{ $property->company_name }}<br>
-                                E-mail: {{ $property->email }}<br>
+                            <p><strong>Aadress: </strong>{{ $property->address }}<br>
+                                <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
+                                <strong>E-mail: </strong> {{ $property->email }}<br>
                                 @if($servicearray != "")
-                                Teenused: {{ $servicearray }}
+                                <strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
