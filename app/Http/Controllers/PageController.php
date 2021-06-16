@@ -165,9 +165,9 @@ class PageController extends Controller
             })
             ->when($request->get('region'), function (Builder $query, $region) {
                 return $query->where('property_region_id', $region);
-            })->paginate(15);
+            });
 
-        $properties = $properties->with(['rooms', 'services'])->get();
+        $properties = $properties->with(['rooms', 'services'])->paginate(15);
         return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
