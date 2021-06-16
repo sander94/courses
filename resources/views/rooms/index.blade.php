@@ -282,6 +282,8 @@
 
         </div>
 
+        {{ $properties->links() }}
+
 
     </div>
 
