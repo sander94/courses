@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DuplicateCourse;
+use App\Nova\Actions\DuplicateResource;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
@@ -61,10 +63,12 @@ class Course extends Resource
 
             DateTime::make('Featuring ended at'),
 
-           /* Number::make('Duration Minutes')
-                ->rules('integer'), */
+            /* Number::make('Duration Minutes')
+                 ->rules('integer'), */
 
-            BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class),
+            BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class)->rules([
+                'required'
+            ])->required(),
 
             Text::make('Price')
                 ->rules('required'),
@@ -129,7 +133,9 @@ class Course extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DuplicateCourse
+        ];
     }
 
     public static function label()

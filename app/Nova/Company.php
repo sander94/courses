@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -86,7 +87,7 @@ class Company extends Resource
             Text::make(__('Postal'), 'postal'),
             Text::make(__('Website'), 'website'),
 
-            BelongsToMany::make('Tags'),
+            BelongsToManyField::make('Tags'),
 
         ];
     }
