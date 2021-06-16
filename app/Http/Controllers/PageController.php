@@ -102,7 +102,7 @@ class PageController extends Controller
             }, function ($query) {
                 return $query->whereNotNull('started_at');
             })
-            ->paginate();
+            ->paginate(16);
 
         return view('companies.single', compact('company', 'courses'));
     }
