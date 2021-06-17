@@ -63,31 +63,31 @@ class Company extends Resource
                     'nullable',
                     'string',
                     'url'
-                ]),
+                ])->hideFromIndex(),
 
-            Password::make(__('Password'), 'password'),
+            Password::make(__('Password'), 'password')->hideFromIndex(),
 
             Text::make(__('Name'), 'name')->required(),
 
             Text::make(__('Email'), 'email')->required(),
 
-            Trix::make(__('Description'), 'description'),
+            Trix::make(__('Description'), 'description')->hideFromIndex(),
 
-            Text::make(__('Brand'), 'brand')->required(),
+            Text::make(__('Brand'), 'brand')->required()->hideFromIndex(),
 
-            BelongsTo::make(__('Region'), 'region')->required(),
+            BelongsTo::make(__('Region'), 'region')->required()->hideFromIndex(),
 
-            Images::make(__('Cover'), 'cover'),
+            Images::make(__('Cover'), 'cover')->hideFromIndex(),
 
-            Text::make(__('Reg Number'), 'reg_number'),
+            Text::make(__('Reg Number'), 'reg_number')->hideFromIndex(),
 
-            Text::make(__('Phone'), 'phone'),
-            Text::make(__('City'), 'city'),
-            Text::make(__('Street'), 'street'),
-            Text::make(__('Postal'), 'postal'),
-            Text::make(__('Website'), 'website'),
+            Text::make(__('Phone'), 'phone')->hideFromIndex(),
+            Text::make(__('City'), 'city')->hideFromIndex(),
+            Text::make(__('Street'), 'street')->hideFromIndex(),
+            Text::make(__('Postal'), 'postal')->hideFromIndex(),
+            Text::make(__('Website'), 'website')->hideFromIndex(),
 
-            BelongsToManyField::make('Tags'),
+            BelongsToManyField::make('Tags')->hideFromIndex(),
 
         ];
     }
