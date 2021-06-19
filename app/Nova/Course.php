@@ -61,28 +61,28 @@ class Course extends Resource
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            DateTime::make('Featuring ended at'),
+            DateTime::make('Featuring ended at')->hideFromIndex(),
 
             /* Number::make('Duration Minutes')
                  ->rules('integer'), */
 
             BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class)->rules([
                 'required'
-            ])->required(),
+            ])->required()->hideFromIndex(),
 
             Text::make('Price')
-                ->rules('required'),
+                ->rules('required')->hideFromIndex(),
 
-            Text::make('Url'),
+            Text::make('Url')->hideFromIndex(),
 
-            Date::make('Started At'),
-            Date::make('Ended At'),
+            Date::make('Started At')->hideFromIndex(),
+            Date::make('Ended At')->hideFromIndex(),
 
-            BelongsToMany::make('Course Category', 'courseCategories'),
+            BelongsToMany::make('Course Category', 'courseCategories')->hideFromIndex(),
 
             BelongsTo::make('Region', 'region')
                 ->searchable()
-                ->prepopulate(),
+                ->prepopulate()->hideFromIndex(),
 
             BelongsTo::make('Company')
                 ->searchable()

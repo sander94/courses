@@ -7,7 +7,7 @@
                         <div class="blog-image-container"
                              style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
                         <span class="blog-title">{{ $article->title }}</span></a>
-                        <p>{{ strip_tags(substr($article->content, 0, 300)) }}...</p>
+                        <p>{{ strip_tags(substr(strip_tags($article->content), 0, 300)) }}...</p>
                     
 
                 </div>
