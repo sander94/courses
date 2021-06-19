@@ -14,6 +14,7 @@
         "cyrildewit/eloquent-viewable": "^6.0",
         "ebess/advanced-nova-media-library": "^3.6",
         "fideloper/proxy": "^4.4",
+        "froala/nova-froala-field": "^3.4",
         "fruitcake/laravel-cors": "^2.0",
         "genealabs/nova-prepopulate-searchable": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

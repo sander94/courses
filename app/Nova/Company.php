@@ -7,6 +7,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Froala\NovaFroalaField\Froala;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
@@ -71,7 +72,8 @@ class Company extends Resource
 
             Text::make(__('Email'), 'email')->required(),
 
-            Trix::make(__('Description'), 'description'),
+            Froala::make(__('Description'), 'description')
+                ->withFiles('public'),
 
             Text::make(__('Brand'), 'brand')->required(),
 

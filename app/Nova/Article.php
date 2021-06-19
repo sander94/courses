@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\ID;
+use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
@@ -52,7 +53,8 @@ class Article extends Resource
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            Trix::make('Content')
+            Froala::make('Content')
+                ->withFiles('public')
                 ->rules('required', 'string'),
 
             Images::make('Cover')->required(),

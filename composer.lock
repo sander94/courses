@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b18152bb492020014e36973e54890cce",
+    "content-hash": "929a6980d142e68059fbea584a12e800",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1344,6 +1344,74 @@
                 "source": "https://github.com/fideloper/TrustedProxy/tree/4.4.1"
             },
             "time": "2020-10-22T13:48:01+00:00"
+        },
+        {
+            "name": "froala/nova-froala-field",
+            "version": "3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/froala/nova-froala-field.git",
+                "reference": "e31283a968a261c8e2f6c305b2274beb2472d620"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/froala/nova-froala-field/zipball/e31283a968a261c8e2f6c305b2274beb2472d620",
+                "reference": "e31283a968a261c8e2f6c305b2274beb2472d620",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "league/flysystem": "^1.0.8",
+                "php": ">=7.1.3",
+                "spatie/image-optimizer": "^1.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "^3.8|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Froala\\NovaFroalaField\\FroalaFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Froala\\NovaFroalaField\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Slava Razum",
+                    "email": "modern.web.artisan@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova Froala WYSIWYG Editor Field.",
+            "homepage": "https://github.com/froala/nova-froala-field",
+            "keywords": [
+                "editor",
+                "field",
+                "froala",
+                "laravel",
+                "nova",
+                "wysiwyg"
+            ],
+            "support": {
+                "issues": "https://github.com/froala/nova-froala-field/issues",
+                "source": "https://github.com/froala/nova-froala-field/tree/3.4.0"
+            },
+            "time": "2021-01-18T18:28:59+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",
