@@ -75,7 +75,7 @@ class Course extends Resource
 
             Text::make('Url')->hideFromIndex(),
 
-            Date::make('Started At')->hideFromIndex(),
+            Date::make('Started At'),
             Date::make('Ended At')->hideFromIndex(),
 
             BelongsToMany::make('Course Category', 'courseCategories')->hideFromIndex(),
