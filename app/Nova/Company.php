@@ -72,7 +72,7 @@ class Company extends Resource
 
             Text::make(__('Email'), 'email')->required(),
 
-            Froala::make(__('Description'), 'description')
+            Trix::make(__('Description'), 'description')
                 ->withFiles('public')
                 ->hideFromIndex(),
 

@@ -53,7 +53,7 @@ class Article extends Resource
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            Froala::make('Content')
+            Trix::make('Content')
                 ->withFiles('public')
                 ->rules('required', 'string'),
 
