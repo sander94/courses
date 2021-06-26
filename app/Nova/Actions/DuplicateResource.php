@@ -15,6 +15,7 @@ abstract class DuplicateResource extends Action {
     public $showOnDetail = true;
     public $showOnIndex = false;
     public $showOnTableRow = true;
+    public $withoutConfirmation = true;
     public $confirmButtonText = 'Duplicate Resource';
     public $cancelButtonText = 'Cancel';
     public $confirmText = 'Are you sure you want to duplicate this resource?';
