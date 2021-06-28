@@ -2,9 +2,9 @@
 
 namespace App\Console;
 
-use Froala\NovaFroalaField\Jobs\PruneStaleAttachments;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use NumaxLab\NovaCKEditor5Classic\Jobs\PruneStaleAttachments;
 
 class Kernel extends ConsoleKernel
 {

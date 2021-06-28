@@ -20,10 +20,12 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/console": "^8.46",
         "khalin/nova-link-field": "^1.2",
+        "kraftbit/nova-tinymce5-editor": "^1.0",
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
         "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
+        "numaxlab/nova-ckeditor5-classic": "^1.1",
         "optimistdigital/nova-sortable": "^2.2",
         "simplesquid/nova-enum-field": "^2.3"
     },

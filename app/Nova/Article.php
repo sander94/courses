@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
+use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 
 class Article extends Resource
 {
@@ -53,7 +54,7 @@ class Article extends Resource
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            Trix::make('Content')
+            CKEditor5Classic::make('Content')
                 ->withFiles('public')
                 ->rules('required', 'string'),
 

@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class Company extends Resource
@@ -72,7 +73,7 @@ class Company extends Resource
 
             Text::make(__('Email'), 'email')->required(),
 
-            Trix::make(__('Description'), 'description')
+            CKEditor5Classic::make(__('Description'), 'description')
                 ->withFiles('public')
                 ->hideFromIndex(),
 
