@@ -83,16 +83,21 @@
                     <tr>
                         <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                             @if($course->ended_at)
-                            - {{ $course->ended_at->format('d.m.Y') }}
+                                - {{ $course->ended_at->format('d.m.Y') }}
                             @endif
                         </td>
-                        <td style="font-weight: 300;"><a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
-                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>
-                        <td><a class="normal" href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
+                        <td style="font-weight: 300;"><a class="normal"
+                                                         href="{{ route('company', $course->company->slug)}}?type=live">
+                                <div class="small-logo"
+                                     style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}
+                            </a></td>
+                        <td><a class="normal" href="{{ route('course.track', $course) }}"
+                               target="_blank">{{ $course->title }}</a>
                         </td>
                         <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                         <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                        <td><a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td>
+                        <td><a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe
+                                lisa</a></td>
                     </tr>
                 @empty
                     <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei
