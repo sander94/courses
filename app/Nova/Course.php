@@ -66,6 +66,10 @@ class Course extends Resource
             /* Number::make('Duration Minutes')
                  ->rules('integer'), */
 
+            Text::make('Clicks Count', function () {
+                return views($this->model())->count();
+            })->exceptOnForms(),
+
             BelongsToManyField::make('Course Category', 'courseCategories', CourseCategory::class)->rules([
                 'required'
             ])->required()->hideFromIndex(),

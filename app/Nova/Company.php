@@ -73,8 +73,7 @@ class Company extends Resource
                 ])->hideFromIndex(),
 
             Text::make('Clicks Count', function () {
-                return views($this->model())->
-                count();
+                return views($this->model())->count();
             })->exceptOnForms(),
 
             Password::make(__('Password'), 'password')->hideFromIndex(),

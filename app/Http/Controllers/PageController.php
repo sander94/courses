@@ -62,9 +62,11 @@ class PageController extends Controller
                 $counters[$keyType] = app($model)->newQuery()
                     ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
                     ->when($keyType === 'companies', function (Builder $query) use ($searchQuery) {
-                        return $query->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
-                            return $query->where('text', 'LIKE', "%$searchQuery%");
-                        });
+                        return $query
+                            ->orWhere('brand', 'like', "%{$searchQuery}%")
+                            ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
+                                return $query->where('text', 'LIKE', "%$searchQuery%");
+                            });
                     })
                     ->count();
             }
@@ -185,5 +187,12 @@ class PageController extends Controller
         views($course)->record();
 
         return redirect()->to($course->url);
+    }
+
+    public function trackCompany(Company $company)
+    {
+        views($company)->record();
+
+        return redirect()->to($company->website);
     }
 }

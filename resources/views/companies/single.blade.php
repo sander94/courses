@@ -1,15 +1,15 @@
 @extends('layouts.web')
 
 @section('content')
-<?php
-$scheme = "";
-$link = $company->website;
-$scheme = parse_url($link, PHP_URL_SCHEME);
-if (empty($scheme)) {
-    $link = 'http://' . ltrim($company->website, '/');
-}
+    <?php
+    $scheme = "";
+    $link = $company->website;
+    $scheme = parse_url($link, PHP_URL_SCHEME);
+    if (empty($scheme)) {
+        $link = 'http://' . ltrim($company->website, '/');
+    }
 
-                            ?>
+    ?>
     <div class="content pb-5">
         <div class="row">
             <div class="col-sm-6">
@@ -21,19 +21,22 @@ if (empty($scheme)) {
                     {{ $company->city }}<br>
                     {{ $company->phone }}<br>
                     {{ $company->email }}<br><br>
-                    <a href="{{ $link }}" target="_blank">{{ $company->website }}</a><br>
+                    <a href="{{ route('company.track', $company) }}" target="_blank">{{ $company->website }}</a><br>
                     <a href="{{ $company->facebook_url }}">Facebook</a>
                 </div>
             </div>
             <div class="col-sm-6 company-page-logo">
                 @if($company->getFirstMediaUrl('cover'))
-                <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive" style="max-width: 100%; max-height: 200px;">
+                    <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive"
+                         style="max-width: 100%; max-height: 200px;">
                 @endif
             </div>
         </div>
 
         <div class="row">
-<style>p { margin-bottom: 0; }</style>
+            <style>p {
+                    margin-bottom: 0;
+                }</style>
             <div class="col-12">
                 {!! $company->description !!}
             </div>
@@ -44,38 +47,45 @@ if (empty($scheme)) {
         <div class="row pl-2">
             <div class="button-container">
                 <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live-koolitused</a>
-                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad koolitused</a>
+                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad
+                    koolitused</a>
             </div>
             <div class="results-table-container">
 
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                     <tr class="tableheader">
-                        @if(request()->query('type') == 'live')<td class="tableDate">Kuupäev</td> @endif
-                    <td class="tableCompany">Koolitaja</td>
-                    <td class="tableCourse">Koolitus</td>
-                    <td class="tablePrice">Hind</td>
-                    <td class="tableRegion">Koht</td>
-                    <td class="tableEmpty">&nbsp;</td>
+                        @if(request()->query('type') == 'live')
+                            <td class="tableDate">Kuupäev</td> @endif
+                        <td class="tableCompany">Koolitaja</td>
+                        <td class="tableCourse">Koolitus</td>
+                        <td class="tablePrice">Hind</td>
+                        <td class="tableRegion">Koht</td>
+                        <td class="tableEmpty">&nbsp;</td>
                     </tr>
-                        @forelse($courses as $course)
-                            <tr>
-                                @if($course->started_at) <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                    @forelse($courses as $course)
+                        <tr>
+                            @if($course->started_at)
+                                <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                     @if($course->ended_at)
-                                    - {{ $course->ended_at->format('d.m.Y') }}
+                                        - {{ $course->ended_at->format('d.m.Y') }}
                                     @endif
                                 </td> @endif
-                        <td style="font-weight: 300;"><a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
-                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}</a></td>
-                        <td><a class="normal" href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
-                        </td>
-                        <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
-                        <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                        <td><a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td>
-                            </tr>
-                        @empty
-                            <p>Koolitusi ei leitud</p>
+                            <td style="font-weight: 300;"><a class="normal"
+                                                             href="{{ route('company', $course->company->slug)}}?type=live">
+                                    <div class="small-logo"
+                                         style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});"></div>{{ $course->company->name }}
+                                </a></td>
+                            <td><a class="normal" href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
+                            </td>
+                            <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
+                            <td style="font-weight: 300;">{{ $course->region->title }}</td>
+                            <td><a href="{{ route('company', $course->company->slug)}}?type=live"
+                                   class="table-readmore">Loe lisa</a></td>
+                        </tr>
+                    @empty
+                        <p>Koolitusi ei leitud</p>
 
-                        @endforelse
+                    @endforelse
 
 
                 </table>
