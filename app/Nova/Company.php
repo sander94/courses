@@ -17,6 +17,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
+/**
+ * Class Company
+ * @package App\Nova
+ * @mixin \App\Models\Company
+ */
 class Company extends Resource
 {
     use HasSortableRows;
@@ -66,6 +71,11 @@ class Company extends Resource
                     'string',
                     'url'
                 ])->hideFromIndex(),
+
+            Text::make('Clicks Count', function () {
+                return views($this->model())->
+                count();
+            })->exceptOnForms(),
 
             Password::make(__('Password'), 'password')->hideFromIndex(),
 

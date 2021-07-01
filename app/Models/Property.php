@@ -20,6 +20,7 @@ class Property extends Model implements HasMedia
         'name',
         'company_name',
         'address',
+        'url',
         'email',
     ];
 

@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use ClassicO\NovaMediaLibrary\MediaLibrary;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Kraftbit\NovaTinymce5Editor\NovaTinymce5Editor;
 use Laravel\Nova\Fields\ID;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
@@ -55,8 +57,8 @@ class Article extends Resource
                 ->rules('required', 'string', 'max:400'),
 
             CKEditor5Classic::make('Content')
-                ->withFiles('public')
-                ->rules('required', 'string'),
+                ->withFiles('public'),
+
 
             Images::make('Cover')->required(),
 
@@ -112,11 +114,13 @@ class Article extends Resource
         return [];
     }
 
-    public static function label() {
+    public static function label()
+    {
         return 'Artiklid';
     }
 
-    public static function singularLabel() {
+    public static function singularLabel()
+    {
         return 'Artikkel';
     }
 }

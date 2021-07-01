@@ -60,6 +60,9 @@ class Property extends Resource
             Text::make('Address')
                 ->rules('required', 'string'),
 
+            Text::make('Url')
+                ->rules('nullable', 'url'),
+
             Text::make('Email')
                 ->rules('required', 'email'),
 
@@ -115,11 +118,13 @@ class Property extends Resource
         return [];
     }
 
-    public static function label() {
+    public static function label()
+    {
         return 'Ruumid - koolituskeskused';
     }
 
-    public static function singularLabel() {
+    public static function singularLabel()
+    {
         return 'Koolituskeskus';
     }
 }

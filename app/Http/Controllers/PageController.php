@@ -47,9 +47,11 @@ class PageController extends Controller
         $result = $model->newQuery()
             ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
             ->when($type === 'companies', function (Builder $query) use ($searchQuery) {
-                return $query->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
-                    return $query->where('text', 'LIKE', "%$searchQuery%");
-                });
+                return $query
+                    ->orWhere('brand', 'like', "%{$searchQuery}%")
+                    ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
+                        return $query->where('text', 'LIKE', "%$searchQuery%");
+                    });
             })
             ->paginate();
 
@@ -82,6 +84,7 @@ class PageController extends Controller
             ->when($request->get('search'), function (Builder $query, $search) {
                 return $query
                     ->where('name', 'like', "%$search%")
+                    ->orWhere('brand', 'like', "%$search%")
                     ->orWhereHas('tags', function (Builder $query) use ($search) {
                         return $query->where('text', 'LIKE', "%$search%");
                     });
