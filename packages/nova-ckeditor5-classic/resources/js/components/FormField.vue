@@ -19,7 +19,7 @@
 <script>
 import {FormField, HandlesValidationErrors} from 'laravel-nova'
 import CKEditor from '@ckeditor/ckeditor5-vue'
-import ClassicEditor from 'ckeditor5-build-classic-image-resize';
+import ClassicEditor from 'ckeditor5-build-classic-imageresize-imagelink';
 import NovaCKEditor5UploadAdapter from '../ckeditor5/upload-adapter'
 
 export default {

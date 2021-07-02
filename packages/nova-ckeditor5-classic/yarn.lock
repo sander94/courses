@@ -1790,6 +1790,11 @@ ckeditor5-build-classic-image-resize@^1.5.0:
     "@ckeditor/ckeditor5-highlight" "^15.0.0"
     "@ckeditor/ckeditor5-horizontal-line" "^15.0.0"
 
+ckeditor5-build-classic-imageresize-imagelink@^23.0.3:
+  version "23.0.3"
+  resolved "https://registry.yarnpkg.com/ckeditor5-build-classic-imageresize-imagelink/-/ckeditor5-build-classic-imageresize-imagelink-23.0.3.tgz#a3dfab6309905bf76c7f8ce39d72d3a045720a89"
+  integrity sha512-9cRUDjLZXNdZn1GKZgxWsh9iNQrPksbYIOFGipDdEIDnCSNKIdhkQ4KYfJI+QtdWoyFdefaTGJrgAwvZQievaA==
+
 ckeditor5@^15.0.0:
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/ckeditor5/-/ckeditor5-15.0.0.tgz#ec5c6d38505077ee6756deb42d07b3a6c4d9616b"
