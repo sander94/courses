@@ -5,18 +5,19 @@
 
         <div class="row">
             <div class="col-12 pt-0 pt-sm-4">
-                <h1 class="text-3xl">Eesti <br>suurim <br>koolituste <br>andmebaas</h1>
-                <p class="mt-4">ÜLE 70 000 KURSUSE PARIMATELT KOOLITAJATELT</p>
+                <h1 class="text-3xl">Eesti suurim<br>koolituste andmebaas</h1>
+                <p class="mt-4">PARIM VALIK RUUME KOOLITUSTEKS<br>ÜLE 70 000 KOOLITUSE PARIMATELT KOOLITAJATELT</p>
                 <div class="button-container">
                     <a href="{{ route('courses.index') }}" class="home-1 active xl">Vaata koolitusi</a>
                     <a href="{{ route('companies') }}" class="home-1 xl">Koolitajad</a>
+                    <a href="{{ route('rooms') }}" class="home-1 xl">Ruumid</a>
                 </div>
                 <img src="{{ asset('images/koolitused.svg') }}" class="home-image">
             </div>
         </div>
 
 
-        <div class="row mt-10 text-center">
+      <!--  <div class="row mt-10 text-center">
 
             <div class="col-12">
 
@@ -45,7 +46,7 @@
 
             </div>
 
-        </div>
+        </div> -->
 
 
         <div class="row mt-10">
@@ -59,13 +60,13 @@
 
                     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                         <tr class="tableheader">
-                            <td style="">Kuupäev</td>
+                            <td class="table_course_date">Kuupäev</td>
 
-                            <td style="">Koolitaja</td>
-                            <td>Koolitus</td>
-                            <td style="">Hind</td>
-                            <td style="">Koht</td>
-                            <td style="width: 120px;">&nbsp;</td>
+                            <td class="table_course_name">Pealkiri</td>
+                            <td class="table_course_price">Hind</td>
+                            <td class="table_course_region">Koht</td>
+                            <td class="table_course_company">Ettevõte</td>
+                           <!--  <td style="width: 120px;">&nbsp;</td> -->
                         </tr>
                         @forelse($courses->sortByDesc('featuring_ended_at') as $course)
                             <tr>
@@ -77,12 +78,16 @@
                                 @else
                                     <td>Tellitav koolitus</td>
                                 @endif
+                                <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
+                                </td>
+                                <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                                 @if(false)
                                 <td style="font-weight: 300;">
                                     @if($course->started_at) {{ $course->ended_at->diffInDays($course->started_at) }}
                                         päeva @endif
                                 </td>
                                 @endif
+                                <td style="font-weight: 300;">{{ $course->region->title }}</td>
                                 <td style="font-weight: 300;">
                                     <a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
                                         @if($course->company->getFirstMediaUrl('cover'))
@@ -90,11 +95,10 @@
                                         </div>
                                         @endif
                                         {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
-                                <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
-                                </td>
-                                <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
-                                <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                                <td><a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td>
+
+                        
+
+                                <!-- <td> <a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
                             </tr>
                         @empty
                             <p>Koolitusi ei ole</p>
@@ -115,7 +119,7 @@
 
             <div class="col-12">
 
-                <h2 class="medium-title text-center">Artiklid ja uudised</h2>
+                <h2 class="medium-title text-center">Artiklid</h2>
                 <div class="separator-orange mx-auto mt-3 mb-5"></div>
 
                 <div class="row blog-archive mt-5">

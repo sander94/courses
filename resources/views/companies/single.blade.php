@@ -17,12 +17,12 @@
                 <div class="separator-orange"></div>
 
                 <div class="content py-5">
-                    {{ $company->name }}<br>
-                    {{ $company->city }}<br>
-                    {{ $company->phone }}<br>
-                    {{ $company->email }}<br><br>
-                    <a href="{{ route('company.track', $company) }}" target="_blank">{{ $company->website }}</a><br>
-                    <a href="{{ $company->facebook_url }}">Facebook</a>
+                    <i class="fa fa-briefcase fa-fw"> </i> {{ $company->name }}<br>
+                    <i class="fa fa-home fa-fw"> </i> {{ $company->city }}<br>
+                    <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $company->phone }}<br>
+                    <i class="fa fa-envelope fa-fw"> </i> {{ $company->email }}<br><br>
+                    <i class="fa fa-globe fa-fw"> </i> <a href="{{ route('company.track', $company) }}" target="_blank">{{ $company->website }}</a><br>
+                    <i class="fa fa-facebook fa-fw"> </i> <a href="{{ $company->facebook_url }}">Facebook</a>
                 </div>
             </div>
             <div class="col-sm-6 company-page-logo">
@@ -46,7 +46,7 @@
 
         <div class="row pl-2">
             <div class="button-container">
-                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live-koolitused</a>
+                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Koolituskalender</a>
                 <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad
                     koolitused</a>
             </div>

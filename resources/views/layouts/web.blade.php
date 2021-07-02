@@ -47,6 +47,10 @@
             background-color: #FAF8ED;
         }
 
+            .home-1.xl {
+                background-color:  rgba(255, 255, 255, 0.8);
+            }
+
             .overlay {
                 text-align: center;
             }
@@ -119,6 +123,7 @@
             border-radius: 16px;
             display: inline-block;
             vertical-align: middle;
+            margin-right:  3px;
         }
 
         .text-red {
@@ -184,6 +189,7 @@
 
         .search-icon i {
             font-size: 20px;
+            background-color: #FFFFFF;
         }
 
         .menu a {
@@ -590,6 +596,7 @@ button.submit {
     z-index: -1; 
     right: 0; 
     width: 80%;
+    opacity:  0.5;
 }
 
 .main {
@@ -622,9 +629,26 @@ input[type='radio'] {
     margin-bottom: 20px;
 }
 
+.table_course_date {
+    width:  180px;
+}
+
+.table_course_name {
+
+}
+.table_course_price {
+width:  100px;
+}
+.table_course_region {
+width:  150px;
+}
+.table_course_company {
+width:  200px;
+}
+
 @media screen and (max-width: 1350px) {
     .header {
-        width: 1200px;
+        width: 1250px;
     }
     .content {
         width: 1100px;
@@ -672,7 +696,7 @@ input[type='radio'] {
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1000px) {
     .menu {
         display: none;
     }
@@ -845,7 +869,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <div class="search pt-2">
                     <form action="{{ route('search') }}" autocomplete="off">
                         <input type="text" value="{{ request()->query('search') }}" name="search"
-                               placeholder="Leia sobiv koolitus">
+                               placeholder="Leia sobiv koolitus, koolitaja, ruum...">
 
                         <button class="search-icon"><i class="fas fa-search text-orange"> </i></button>
                     </form>
@@ -855,7 +879,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <div class="menu">
                     <a href="{{ route('courses.index') }}" class="{{ Route::is('courses.index') ? 'active' : '' }}">Koolitused</a>
                     <a href="{{ route('companies') }}" class="{{ Route::is('companies') ? 'active' : '' }}">Koolitajad</a>
-                    <a href="{{ route('articles.index') }}" class="{{ Route::is('articles.index') ? 'active' : '' }}">Uudised</a>
+                    <a href="{{ route('articles.index') }}" class="{{ Route::is('articles.index') ? 'active' : '' }}">Artiklid</a>
                     <a href="{{ route('rooms') }}" class="{{ Route::is('rooms') ? 'active' : '' }}">Ruumid</a>
                     <a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Kontakt</a>
                 </div>
