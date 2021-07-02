@@ -46,7 +46,7 @@ export default {
                 image: this.field.options.image,
                 fontFamily: this.field.options.fontFamily,
                 extraPlugins: [
-                    // this.createUploadAdapterPlugin
+                    this.createUploadAdapterPlugin
                 ],
                 link: this.field.options.link
             }
