@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "benjacho/belongs-to-many-field": "^1.9",
+        "classic-o/nova-media-library": "^1.0",
         "cviebrock/eloquent-sluggable": "^8.0",
         "cyrildewit/eloquent-viewable": "^6.0",
         "ebess/advanced-nova-media-library": "^3.6",
@@ -25,7 +26,7 @@
         "laravel/nova": "*",
         "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
-        "numaxlab/nova-ckeditor5-classic": "^1.1",
+        "numaxlab/nova-ckeditor5-classic": "*",
         "optimistdigital/nova-sortable": "^2.2",
         "simplesquid/nova-enum-field": "^2.3"
     },
@@ -54,6 +55,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./packages/*"
         }
     ],
     "autoload": {
