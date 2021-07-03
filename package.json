@@ -21,7 +21,6 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-ui": "^28.0.0",
         "vue": "^2.6.12",
         "vue-multiselect": "^2.1.6",
         "vue2-datepicker": "^3.9.0"

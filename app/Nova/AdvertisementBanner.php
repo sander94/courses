@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enums\AdTypeEnum;
+use App\Nova\Metrics\ViewCount;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -77,7 +78,9 @@ class AdvertisementBanner extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new ViewCount
+        ];
     }
 
     /**

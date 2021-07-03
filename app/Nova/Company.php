@@ -2,13 +2,13 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\ViewCount;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ek0519\Quilljs\Quilljs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
-use Froala\NovaFroalaField\Froala;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -16,7 +16,6 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 /**
@@ -119,7 +118,9 @@ class Company extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new ViewCount
+        ];
     }
 
     /**

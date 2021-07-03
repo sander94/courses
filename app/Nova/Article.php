@@ -4,15 +4,13 @@ namespace App\Nova;
 
 use ClassicO\NovaMediaLibrary\MediaLibrary;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Kraftbit\NovaTinymce5Editor\NovaTinymce5Editor;
+use Ek0519\Quilljs\Quilljs;
 use Laravel\Nova\Fields\ID;
-use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 
 class Article extends Resource
 {
@@ -56,7 +54,7 @@ class Article extends Resource
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            CKEditor5Classic::make('Content')
+            Quilljs::make('Content')
                 ->withFiles('public'),
 
 
