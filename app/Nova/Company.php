@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Ek0519\Quilljs\Quilljs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -83,9 +84,11 @@ class Company extends Resource
 
             Text::make(__('Email'), 'email')->required(),
 
-            CKEditor5Classic::make(__('Description'), 'description')
+            Quilljs::make(__('Description'), 'description')
+                ->paddingBottom(30)
                 ->withFiles('public')
-                ->hideFromIndex(),
+                ->height(300)
+                ->rules('required'),
 
             Text::make(__('Brand'), 'brand')->required()->hideFromIndex(),
 

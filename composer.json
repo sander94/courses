@@ -14,19 +14,17 @@
         "cviebrock/eloquent-sluggable": "^8.0",
         "cyrildewit/eloquent-viewable": "^6.0",
         "ebess/advanced-nova-media-library": "^3.6",
+        "ek0519/quilljs": "^0.3.5",
         "fideloper/proxy": "^4.4",
-        "froala/nova-froala-field": "^3.4",
         "fruitcake/laravel-cors": "^2.0",
         "genealabs/nova-prepopulate-searchable": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/console": "^8.46",
         "khalin/nova-link-field": "^1.2",
-        "kraftbit/nova-tinymce5-editor": "^1.0",
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
         "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
-        "numaxlab/nova-ckeditor5-classic": "*",
         "optimistdigital/nova-sortable": "^2.2",
         "simplesquid/nova-enum-field": "^2.3"
     },
@@ -55,10 +53,6 @@
         {
             "type": "path",
             "url": "./nova"
-        },
-        {
-            "type": "path",
-            "url": "./packages/*"
         }
     ],
     "autoload": {

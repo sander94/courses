@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97cc1824d4eae399940247796cb0f670",
+    "content-hash": "5ba4a4c074815eafbfbcda8fb6e4ee39",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1335,6 +1335,51 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "ek0519/quilljs",
+            "version": "0.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ek0519/nova-quilljs.git",
+                "reference": "2b8029ec51e2f6a6dcce5eb419098cb4f69b6f92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ek0519/nova-quilljs/zipball/2b8029ec51e2f6a6dcce5eb419098cb4f69b6f92",
+                "reference": "2b8029ec51e2f6a6dcce5eb419098cb4f69b6f92",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ek0519\\Quilljs\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ek0519\\Quilljs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/ek0519/nova-quilljs/issues",
+                "source": "https://github.com/ek0519/nova-quilljs/tree/0.3.5"
+            },
+            "time": "2021-06-11T15:50:05+00:00"
         },
         {
             "name": "fideloper/proxy",
