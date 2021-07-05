@@ -93,6 +93,6 @@ class Course extends Model implements Viewable
         return $query
             ->addSelect(DB::raw("IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column, `courses`.*"))
             ->orderBy('order_column', 'DESC')
-            ->oldest('started_at');
+            ->latest('started_at');
     }
 }
