@@ -68,7 +68,7 @@
                             <td class="table_course_company">Ettevõte</td>
                            <!--  <td style="width: 120px;">&nbsp;</td> -->
                         </tr>
-                        @forelse($courses->sortByDesc('featuring_ended_at') as $course)
+                        @forelse($courses as $course)
                             <tr>
                                 @if($course->started_at && $course->ended_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
@@ -96,7 +96,7 @@
                                         @endif
                                         {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
 
-                        
+
 
                                 <!-- <td> <a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
                             </tr>

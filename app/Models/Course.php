@@ -91,8 +91,13 @@ class Course extends Model implements Viewable
     public function scopeFeaturedOrder($query)
     {
         return $query
-            ->addSelect(DB::raw("IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column, `courses`.*"))
+            ->addSelect(DB::raw(
+                "IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column,
+                IF(started_at IS NULL,1,0) as order_started_at_null,
+                `courses`.*")
+            )
             ->orderBy('order_column', 'DESC')
+            ->orderBy('order_started_at_null', 'ASC')
             ->oldest('started_at');
     }
 }
