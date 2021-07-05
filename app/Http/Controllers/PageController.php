@@ -107,6 +107,14 @@ class PageController extends Controller
         views($company)->record();
 
         $courses = $company->courses()
+            ->where(function (Builder $query) {
+                return $query
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })->orWhereNotNull('started_at');
+            })
+            ->whereDate('ended_at', '>', now())
             ->when($request->get('type') === 'orderable', function ($query) {
                 return $query->whereNull('started_at');
             }, function ($query) {
