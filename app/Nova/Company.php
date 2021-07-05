@@ -118,9 +118,9 @@ class Company extends Resource
      */
     public function cards(Request $request)
     {
-     /*   return [
+        return [
             new ViewCount
-        ]; */
+        ];
     }
 
     /**
