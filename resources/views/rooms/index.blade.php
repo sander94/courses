@@ -224,7 +224,7 @@
         </div>
 
 
-        <div class="row mt-5" style="text-align: left;">
+        <div class="row mt-5" id="list" style="text-align: left;">
 
             <div class="col-12">
 
@@ -233,9 +233,9 @@
                 @foreach($properties as $property)
 
                     @php
-                      $servicearray = $property->services->implode('title',',');
-                      $servicearray = strtolower($servicearray);
-                      $servicearray = str_replace(',', ', ', $servicearray);
+                        $servicearray = $property->services->implode('title',',');
+                        $servicearray = strtolower($servicearray);
+                        $servicearray = str_replace(',', ', ', $servicearray);
                     @endphp
 
                     <div class="row mt-5">
@@ -243,6 +243,15 @@
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
+
+                            @php
+                                $media = $property->getMedia('gallery');
+                                $urls = $media->map->getUrl();
+                            @endphp
+
+                            @foreach($media as $index => $media)
+                                <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" src="{{ $media->getUrl() }}" height="50px" alt="">
+                            @endforeach
                         </div>
                         <div class="col-9">
                             <h3>{{ $property->name }}</h3>
@@ -250,7 +259,7 @@
                                 <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
                                 <strong>E-mail: </strong> {{ $property->email }}<br>
                                 @if($servicearray != "")
-                                <strong>Teenused: </strong> {{ $servicearray }}
+                                    <strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
@@ -285,9 +294,15 @@
                             </table>
                         </div>
                     </div>
-            @endforeach
+                @endforeach
 
-            <!-- result element end -->
+                <vue-easy-lightbox
+                    :visible="visible"
+                    :imgs="imgs"
+                    :index="index"
+                    @hide="handleHide"
+                ></vue-easy-lightbox>
+                <!-- result element end -->
 
 
             </div>
@@ -300,6 +315,25 @@
     </div>
 
     <script>
+        new Vue({
+            el: "#list",
 
+            data: {
+                visible: false,
+                index: 0,
+                imgs: []
+            },
+
+            methods: {
+                showImg(imgs, index) {
+                    this.imgs = [];
+                    this.index = index
+                    this.visible = true
+                },
+                handleHide() {
+                    this.visible = false
+                }
+            }
+        })
     </script>
 @endsection

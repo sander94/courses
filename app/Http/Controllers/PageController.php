@@ -11,6 +11,7 @@ use App\Models\ExtraService;
 use App\Models\Property;
 use App\Models\Region;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,6 +54,9 @@ class PageController extends Controller
                         return $query->where('text', 'LIKE', "%$searchQuery%");
                     });
             })
+            ->when($type === 'courses', function (Builder $query) {
+                return $query->featuredOrder();
+            })
             ->paginate();
 
 
@@ -71,6 +75,7 @@ class PageController extends Controller
                     ->count();
             }
         }
+
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery'));
     }
@@ -124,10 +129,13 @@ class PageController extends Controller
 
         $popularCourses = Course::query()->orderByUniqueViews()->limit(13)->get();
 
-        $courses = \App\Models\Course::query()->ordered()
-            ->limit(15)->get();
+        /** @var Collection $courses */
+        $courses = \App\Models\Course::query()
+            ->featuredOrder()
+            ->limit(15)
+            ->get();
 
-        $articles = \App\Models\Article::orderBy('id', 'desc')->take(3)->get();
+        $articles = \App\Models\Article::orderBy('id', 'ASC')->take(3)->get();
 
         return view('home')->with([
             'courses' => $courses,

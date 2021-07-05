@@ -10,15 +10,11 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
-use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class Course extends Resource
 {
-    use HasSortableRows;
-
     /**
      * The model the resource corresponds to.
      *
@@ -56,12 +52,10 @@ class Course extends Resource
         return [
             ID::make()->sortable(),
 
-            Number::make(__('Sort Order'), 'sort_order'),
-
             Text::make('Title')
                 ->rules('required', 'string', 'max:400'),
 
-            DateTime::make('Featuring ended at')->hideFromIndex(),
+            DateTime::make('Featuring ended at')->nullable()->hideFromIndex(),
 
             /* Number::make('Duration Minutes')
                  ->rules('integer'), */

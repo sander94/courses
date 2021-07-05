@@ -48,6 +48,8 @@ class Property extends Model implements HasMedia
     {
         $this->addMediaCollection('cover')
             ->singleFile();
+
+        $this->addMediaCollection('gallery');
     }
 
     public function services()

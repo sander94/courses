@@ -51,6 +51,8 @@ class Property extends Resource
 
             Images::make(__('Cover'), 'cover'),
 
+            Images::make(__('Gallery'), 'gallery'),
+
             Text::make('Name')
                 ->rules('required', 'string'),
 

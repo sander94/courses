@@ -35,7 +35,6 @@ Route::get('/search/{type?}', 'PageController@search')->name('search');
 Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
 
 Route::get('course/{course}/track', 'PageController@trackCourse')->name('course.track');
-Route::get('company/{company}/track', 'PageController@trackCompany')->name('company.track');
 
 Route::get('/companies', 'PageController@companies')->name('companies');
 

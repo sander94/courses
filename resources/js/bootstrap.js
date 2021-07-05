@@ -17,8 +17,10 @@ window.Vue = Vue;
 
 import Multiselect from 'vue-multiselect'
 import DatePicker from 'vue2-datepicker';
+import VueEasyLightbox from 'vue-easy-lightbox'
 
 // register globally
 Vue.component('multiselect', Multiselect)
 Vue.component('datepicker', DatePicker)
 
+Vue.use(VueEasyLightbox)

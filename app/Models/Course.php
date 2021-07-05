@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Course extends Model implements Viewable
@@ -18,7 +19,7 @@ class Course extends Model implements Viewable
 
     public $sortable = [
         'order_column_name' => 'sort_order',
-        'sort_when_creating' => true,
+        'sort_when_creating' => false,
     ];
 
     /**
@@ -85,5 +86,13 @@ class Course extends Model implements Viewable
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeFeaturedOrder($query)
+    {
+        return $query
+            ->addSelect(DB::raw("IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column, `courses`.*"))
+            ->orderBy('order_column', 'DESC')
+            ->oldest('started_at');
     }
 }
