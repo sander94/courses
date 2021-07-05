@@ -107,6 +107,17 @@ class PageController extends Controller
         views($company)->record();
 
         $courses = $company->courses()
+            ->where(function (Builder $query) {
+                return $query
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })
+                    ->orWhere(function (Builder $query) {
+                        return $query->whereDate('ended_at', '>', now())
+                            ->whereNotNull('started_at');
+                    });
+            })
             ->when($request->get('type') === 'orderable', function ($query) {
                 return $query->whereNull('started_at');
             }, function ($query) {
@@ -127,11 +138,21 @@ class PageController extends Controller
 
     public function home(Request $request)
     {
-
         $popularCourses = Course::query()->orderByUniqueViews()->limit(13)->get();
 
         /** @var Collection $courses */
         $courses = \App\Models\Course::query()
+            ->where(function (Builder $query) {
+                return $query
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })
+                    ->orWhere(function (Builder $query) {
+                        return $query->whereDate('ended_at', '>', now())
+                            ->whereNotNull('started_at');
+                    });
+            })
             ->featuredOrder()
             ->limit(15)
             ->get();

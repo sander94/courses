@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Region;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -36,7 +37,17 @@ class CourseController extends Controller
             ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
-            ->whereDate('ended_at', '>', now())
+            ->where(function (Builder $query) {
+                return $query
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })
+                    ->orWhere(function (Builder $query) {
+                        return $query->whereDate('ended_at', '>', now())
+                            ->whereNotNull('started_at');
+                    });
+            })
             ->featuredOrder()
             ->paginate();
 
