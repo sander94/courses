@@ -86,7 +86,7 @@ class Company extends Resource
             Quilljs::make(__('Description'), 'description')
                 ->paddingBottom(30)
                 ->withFiles('public')
-                ->height(300)
+                ->height(650)
                 ->rules('required'),
 
             Text::make(__('Brand'), 'brand')->required()->hideFromIndex(),
@@ -118,9 +118,9 @@ class Company extends Resource
      */
     public function cards(Request $request)
     {
-        return [
+     /*   return [
             new ViewCount
-        ];
+        ]; */
     }
 
     /**
