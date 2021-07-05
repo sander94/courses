@@ -37,7 +37,7 @@ class CourseController extends Controller
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
             ->whereDate('ended_at', '>', now())
-            ->ordered()
+            ->featuredOrder()
             ->paginate();
 
         return view('courses.index', compact('categories', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));

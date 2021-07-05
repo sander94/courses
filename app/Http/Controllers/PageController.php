@@ -112,6 +112,7 @@ class PageController extends Controller
             }, function ($query) {
                 return $query->whereNotNull('started_at');
             })
+            ->featuredOrder()
             ->paginate();
 
         return view('companies.single', compact('company', 'courses'));
