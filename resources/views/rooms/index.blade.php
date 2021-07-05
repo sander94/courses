@@ -326,7 +326,7 @@
 
             methods: {
                 showImg(imgs, index) {
-                    this.imgs = [];
+                    this.imgs = imgs;
                     this.index = index
                     this.visible = true
                 },
