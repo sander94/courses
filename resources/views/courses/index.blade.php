@@ -79,7 +79,7 @@
                     <td class="tableRegion">Koht</td>
                     <td class="tableEmpty">&nbsp;</td>
                 </tr>
-                @forelse($courses->sortByDesc('featuring_ended_at') as $course)
+                @forelse($courses as $course)
                     <tr>
                         <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                             @if($course->ended_at)
