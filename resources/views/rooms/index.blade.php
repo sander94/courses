@@ -26,7 +26,6 @@
             .galleryboxImg {
                 height: 50px;
                 width:  100%;
-                background-size: cover;
                 cursor: pointer;
             }
             .filter-container {
