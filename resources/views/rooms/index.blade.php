@@ -258,6 +258,8 @@
                             <p><strong>Aadress: </strong>{{ $property->address }}<br>
                                 <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
                                 <strong>E-mail: </strong> {{ $property->email }}<br>
+                                <strong>Koduleht: </strong> {{ $property->url }}<br>
+                                
                                 @if($servicearray != "")
                                     <strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
