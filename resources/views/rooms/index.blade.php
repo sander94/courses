@@ -23,6 +23,12 @@
             @endif
         </div>
         <style>
+            .galleryboxImg {
+                height: 50px;
+                width:  100%;
+                background-size: cover;
+                cursor: pointer;
+            }
             .filter-container {
                 display: flex;
                 width: 100%;
@@ -249,15 +255,20 @@
                                 $urls = $media->map->getUrl();
                             @endphp
 
+                            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
                             @foreach($media as $index => $media)
-                                <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" src="{{ $media->getUrl() }}" height="50px" alt="">
+                                <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $media->getUrl() }});"></div>
                             @endforeach
+                            </div>
                         </div>
                         <div class="col-9">
-                            <h3>{{ $property->name }}</h3>
+                            <h3 class="text-orange">{{ $property->name }}</h3>
                             <p><strong>Aadress: </strong>{{ $property->address }}<br>
                                 <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
-                                <strong>E-mail: </strong> {{ $property->email }}<br>
+                                @if($property->email) <strong>E-mail: </strong> {{ $property->email }}<br> @endif
+                                @if($property->phone) <strong>Telefon: </strong> {{ $property->phone }}<br> @endif
+                                @if($property->url) <strong>Koduleht: </strong> {{ $property->url }}<br> @endif
+
                                 @if($servicearray != "")
                                     <strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>

@@ -80,8 +80,8 @@
                     <td class="tableEmpty">&nbsp;</td>
                 </tr>
                 @forelse($courses as $course)
-                    <tr @if($course->featuring_ended_at) style="background-color: red;" @endif>
-                        <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                    <tr @if($course->featuring_ended_at)  @endif>
+                        <td style="font-weight: 300;">@if($course->started_at) {{ $course->started_at->format('d.m.Y') }} @endif
                             @if($course->ended_at)
                                 - {{ $course->ended_at->format('d.m.Y') }}
                             @endif

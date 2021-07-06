@@ -205,7 +205,7 @@ class PageController extends Controller
                 return $query->where('property_region_id', $region);
             });
 
-        $properties = $properties->with(['rooms', 'services'])->paginate(15);
+        $properties = $properties->with(['rooms', 'services'])->paginate(5);
         return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
