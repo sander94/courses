@@ -9,8 +9,8 @@
                     <td class="table_course_company">Ettevõte</td>
                    <!--  <td style="width: 120px;">&nbsp;</td> -->
                 </tr>
-        @foreach($result as $course)
-            <tr>
+                @foreach($result as $course)
+                <tr>
                                                 @if($course->started_at && $course->ended_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                         - {{ $course->ended_at->format('d.m.Y') }}
@@ -40,7 +40,7 @@
 
 
                                 <!-- <td> <a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
-            </tr>
+                </tr>
         @endforeach
 
     </table>
