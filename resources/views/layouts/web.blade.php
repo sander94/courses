@@ -893,7 +893,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                     <a href="{{ route('courses.index') }}">Koolitused</a>
                     <a href="{{ route('companies') }}">Koolitajad</a>
                     <a href="{{ route('articles.index') }}">Artiklid</a>
-                    <a href="#">Ruumid</a>
+                    <a href="{{ route('rooms') }}">Ruumid</a>
                     <a href="{{ route('contact') }}">Kontakt</a>
                 </div>
             </div>
