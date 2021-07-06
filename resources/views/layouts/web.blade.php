@@ -643,7 +643,7 @@ width:  100px;
 width:  150px;
 }
 .table_course_company {
-width:  200px;
+width:  250px;
 }
 
 @media screen and (max-width: 1350px) {
