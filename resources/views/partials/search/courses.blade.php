@@ -1,14 +1,14 @@
 <div class="results-table-container">
 
     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
-        <tr class="tableheader">
-                    <td class="tableDate">Kuupäev</td>
-                    <td class="tableCompany">Koolitaja</td>
-                    <td class="tableCourse">Koolitus</td>
-                    <td class="tablePrice">Hind</td>
-                    <td class="tableRegion">Koht</td>
-                    <td class="tableEmpty">&nbsp;</td>
-        </tr>
+                <tr class="tableheader">
+                    <td class="table_course_date">Kuupäev</td>
+                    <td class="table_course_name">Pealkiri</td>
+                    <td class="table_course_price">Hind</td>
+                    <td class="table_course_region">Koht</td>
+                    <td class="table_course_company">Ettevõte</td>
+                   <!--  <td style="width: 120px;">&nbsp;</td> -->
+                </tr>
         @foreach($result as $course)
             <tr>
                                                 @if($course->started_at && $course->ended_at)
