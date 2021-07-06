@@ -265,8 +265,9 @@
                             <h3 class="text-orange">{{ $property->name }}</h3>
                             <p><strong>Aadress: </strong>{{ $property->address }}<br>
                                 <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
-                                <strong>E-mail: </strong> {{ $property->email }}<br>
-                                <strong>Koduleht: </strong> {{ $property->url }}<br>
+                                @if($property->email) <strong>E-mail: </strong> {{ $property->email }}<br> @endif
+                                @if($property->phone) <strong>Telefon: </strong> {{ $property->phone }}<br> @endif
+                                @if($property->url) <strong>Koduleht: </strong> {{ $property->url }}<br> @endif
 
                                 @if($servicearray != "")
                                     <strong>Teenused: </strong> {{ $servicearray }}

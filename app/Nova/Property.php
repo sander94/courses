@@ -65,6 +65,9 @@ class Property extends Resource
             Text::make('Url')
                 ->rules('nullable', 'url'),
 
+            Text::make('Phone')
+                ->rules('nullable', 'string'),
+
             Text::make('Email')
                 ->rules('required', 'email'),
 
