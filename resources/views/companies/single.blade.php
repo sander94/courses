@@ -54,9 +54,9 @@
 
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                     <tr class="tableheader">
-                        @if(request()->query('type') == 'live')
-                            <td class="tableDate">Kuupäev</td> 
-                        @endif
+                    
+                            <td class="table_course_date">Kuupäev</td> 
+                   
                     <td class="table_course_name">Pealkiri</td>
                     <td class="table_course_price">Hind</td>
                     <td class="table_course_region">Koht</td>
