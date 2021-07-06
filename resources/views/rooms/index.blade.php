@@ -256,8 +256,8 @@
                             @endphp
 
                             <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
-                            @foreach($media as $index => $media)
-                                <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $media->getUrl() }});"></div>
+                            @foreach($urls as $index => $url)
+                                <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $url }});"></div>
                             @endforeach
                             </div>
                         </div>
