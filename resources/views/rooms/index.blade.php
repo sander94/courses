@@ -254,12 +254,12 @@
                             @endforeach
                         </div>
                         <div class="col-9">
-                            <h3>{{ $property->name }}</h3>
+                            <h3 class="text-orange">{{ $property->name }}</h3>
                             <p><strong>Aadress: </strong>{{ $property->address }}<br>
                                 <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
                                 <strong>E-mail: </strong> {{ $property->email }}<br>
                                 <strong>Koduleht: </strong> {{ $property->url }}<br>
-                                
+
                                 @if($servicearray != "")
                                     <strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
