@@ -248,9 +248,13 @@
                                 $media = $property->getMedia('gallery');
                                 $urls = $media->map->getUrl();
                             @endphp
-
+<style>
+.galleryboxImg {
+    height:  50px;
+}
+</style>
                             @foreach($media as $index => $media)
-                                <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" src="{{ $media->getUrl() }}" height="50px" alt="">
+                                <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $media->getUrl() }});"></div>
                             @endforeach
                         </div>
                         <div class="col-9">
