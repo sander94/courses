@@ -23,6 +23,10 @@
             @endif
         </div>
         <style>
+            .galleryboxImg {
+                height: 50px;
+                width:  80px;
+            }
             .filter-container {
                 display: flex;
                 width: 100%;
@@ -227,12 +231,7 @@
         <div class="row mt-5" id="list" style="text-align: left;">
 
             <div class="col-12">
-<style>
-.galleryboxImg {
-    height: 50px;
-    width:  80px;
-}
-</style>
+
                 <!-- result element -->
 
                 @foreach($properties as $property)
