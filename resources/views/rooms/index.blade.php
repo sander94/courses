@@ -227,7 +227,12 @@
         <div class="row mt-5" id="list" style="text-align: left;">
 
             <div class="col-12">
-
+<style>
+.galleryboxImg {
+    height: 50px;
+    width:  80px;
+}
+</style>
                 <!-- result element -->
 
                 @foreach($properties as $property)
@@ -248,12 +253,7 @@
                                 $media = $property->getMedia('gallery');
                                 $urls = $media->map->getUrl();
                             @endphp
-<style>
-.galleryboxImg {
-    height: 50px;
-    width:  80px;
-}
-</style>
+
                             @foreach($media as $index => $media)
                                 <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $media->getUrl() }});"></div>
                             @endforeach
