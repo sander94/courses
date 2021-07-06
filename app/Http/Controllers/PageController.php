@@ -9,6 +9,7 @@ use App\Models\CourseCategory;
 use App\Models\Event;
 use App\Models\ExtraService;
 use App\Models\Property;
+use App\Models\PropertyRegion;
 use App\Models\Region;
 use App\Models\Room;
 use App\Models\User;
@@ -179,7 +180,7 @@ class PageController extends Controller
 
     public function rooms(Request $request)
     {
-        $regions = Region::all();
+        $regions = PropertyRegion::all();
         $services = ExtraService::all();
 
         $properties = Property::query();
