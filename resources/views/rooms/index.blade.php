@@ -309,7 +309,7 @@
 
         </div>
 
-        {{ $properties->links() }}
+        {{ $properties->appends(request()->query())->links() }}
 
 
     </div>

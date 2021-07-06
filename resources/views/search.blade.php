@@ -17,12 +17,16 @@
             <a href="{{ route('search', ['type' => 'articles', 'search' => $searchQuery]) }}"
                class="{{ $type ==='articles' ? 'active' : null }}">Artiklid
                 ({{ $counters['articles'] }})</a>
+            <a href="{{ route('search', ['type' => 'properties', 'search' => $searchQuery]) }}"
+               class="{{ $type ==='properties' ? 'active' : null }}">Properties
+                ({{ $counters['properties'] }})</a>
 
         </div>
 
         @includeWHen($type === 'courses', 'partials.search.courses')
         @includeWHen($type === 'articles', 'partials.search.articles')
         @includeWHen($type === 'companies', 'partials.search.companies')
+        @includeWHen($type === 'properties', 'partials.search.properties')
 
     </div>
 

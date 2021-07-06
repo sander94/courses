@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\ExtraService;
 use App\Models\Property;
 use App\Models\Region;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +26,14 @@ class PageController extends Controller
         'courses' => Course::class,
         'articles' => Article::class,
         'companies' => Company::class,
+        'properties' => Property::class,
     ];
 
     public static $titles = [
         'courses' => 'title',
         'articles' => 'title',
         'companies' => 'name',
+        'properties' => 'name',
     ];
 
     /**

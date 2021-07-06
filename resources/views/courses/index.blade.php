@@ -109,7 +109,7 @@
             </table>
 
             <div class="pagination">
-                {{ $courses->links() }}
+                {{ $courses->appends(request()->query())->links() }}
             </div>
 
         </div>
