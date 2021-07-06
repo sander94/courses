@@ -250,7 +250,8 @@
                             @endphp
 <style>
 .galleryboxImg {
-    height:  50px;
+    height: 50px;
+    width:  80px;
 }
 </style>
                             @foreach($media as $index => $media)
