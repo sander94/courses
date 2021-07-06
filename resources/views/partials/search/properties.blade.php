@@ -2,11 +2,12 @@
     <div class="row company-archive mt-5">
 
         @foreach($result as $property)
-        {{ $property->name }}
             <div class="col-3">
-                <div class="company-image-container"
-                     style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
-                </div>
+                <a href="{{ $property->id }}">
+                    <div class="company-image-container"
+                         style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
+                    </div>
+                </a>
             </div>
         
         @endforeach
