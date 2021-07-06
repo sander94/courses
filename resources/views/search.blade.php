@@ -18,7 +18,7 @@
                class="{{ $type ==='articles' ? 'active' : null }}">Artiklid
                 ({{ $counters['articles'] }})</a>
             <a href="{{ route('search', ['type' => 'properties', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='properties' ? 'active' : null }}">Properties
+               class="{{ $type ==='properties' ? 'active' : null }}">Ruumid
                 ({{ $counters['properties'] }})</a>
 
         </div>
