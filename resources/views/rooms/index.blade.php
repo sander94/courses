@@ -26,6 +26,8 @@
             .galleryboxImg {
                 height: 50px;
                 width:  100%;
+                background-size: cover;
+                cursor: pointer;
             }
             .filter-container {
                 display: flex;
@@ -253,7 +255,7 @@
                                 $urls = $media->map->getUrl();
                             @endphp
 
-                            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));">
+                            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
                             @foreach($media as $index => $media)
                                 <div @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" style="background-image: url({{ $media->getUrl() }});"></div>
                             @endforeach
