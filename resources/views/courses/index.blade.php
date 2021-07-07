@@ -141,7 +141,7 @@
 
     <script>
         function changeCategoryValue() {
-            var newvalue = $('input[name="category"]:checked').val();
+            var newValue = $('input[name="category"]:checked').val();
             alert(newValue);
         }
     </script>
