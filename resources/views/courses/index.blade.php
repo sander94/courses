@@ -142,7 +142,7 @@
     <script>
         function changeCategoryValue() {
             var newValue = $('input[name="category"]:checked').attr('data-name');
-            alert(newValue);
+            $('#findCourse').html(newValue);
         }
     </script>
 @endsection
