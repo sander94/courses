@@ -138,4 +138,11 @@
             $('#findCourseContainer').slideUp();
         });
     </script>
+
+    <script>
+        function changeCategoryValue() {
+            var newvalue = $('input[name="category"]:checked').val();
+            alert(newValue);
+        }
+    </script>
 @endsection
