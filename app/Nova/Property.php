@@ -51,7 +51,7 @@ class Property extends Resource
 
             Images::make(__('Cover'), 'cover'),
 
-            Images::make(__('Gallery'), 'gallery'),
+            Images::make(__('Gallery'), 'gallery')->hideFromIndex(),
 
             Text::make('Name')
                 ->rules('required', 'string'),
@@ -60,13 +60,16 @@ class Property extends Resource
                 ->rules('required', 'string'),
 
             Text::make('Address')
-                ->rules('required', 'string'),
+                ->rules('required', 'string')->hideFromIndex(),
 
             Text::make('Url')
-                ->rules('nullable', 'url'),
+                ->rules('nullable', 'url')->hideFromIndex(),
+
+            Text::make('Facebook Url')
+                ->rules('nullable', 'url')->hideFromIndex(),
 
             Text::make('Phone')
-                ->rules('nullable', 'string'),
+                ->rules('nullable', 'string')->hideFromIndex(),
 
             Text::make('Email')
                 ->rules('required', 'email'),

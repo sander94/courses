@@ -141,14 +141,15 @@
                         </div>
                         <div class="col-9">
                             <h3 class="text-orange">{{ $property->name }}</h3>
-                            <p><strong>Aadress: </strong>{{ $property->address }}<br>
-                                <strong>Ettevõte: </strong> {{ $property->company_name }}<br>
-                                @if($property->email) <strong>E-mail: </strong> {{ $property->email }}<br> @endif
-                                @if($property->phone) <strong>Telefon: </strong> {{ $property->phone }}<br> @endif
-                                @if($property->url) <strong>Koduleht: </strong> {{ $property->url }}<br> @endif
+                            <p><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
+                                <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
+                                @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
+                                @if($property->phone) <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $property->phone }}<br> @endif
+                                @if($property->url) <i class="fa fa-globe fa-fw"> </i> <a href="{{ $property->url }}" target="_blank">{{ $property->url }}</a><br> @endif
+                                @if($property->facebook_url) <i class="fa fa-facebook fa-fw"> </i> <a href="{{ $property->facebook_url }}" target="_blank"> Facebook </a> <br> @endif
 
                                 @if($servicearray != "")
-                                    <strong>Teenused: </strong> {{ $servicearray }}
+                                    <br><strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
