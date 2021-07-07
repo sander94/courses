@@ -142,7 +142,7 @@
     <script>
         function changeCategoryValue() {
             var newValue = $('input[name="category"]:checked').val();
-            alert(newValue);
+           // alert(newValue);
         }
     </script>
 @endsection
