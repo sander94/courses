@@ -51,13 +51,13 @@
                 <ul class="main">
                     @foreach($categories as $category)
                         <li class="main-li">
-                            <label><input type="radio" name="category"
+                            <label><input type="radio" name="category" onclick="return changeCategoryValue();"
                                           {{ optional($selectedCategory)->getKey() === $category->getKey() ? 'checked' : null }}
                                           value="{{ $category->getKey() }}">{{ $category->title }}
                             </label>
                             <ul class="sub">
                                 @foreach($category->children as $child)
-                                    <li><label><input type="radio" name="category"
+                                    <li><label><input type="radio" name="category" onclick="return changeCategoryValue();" 
                                                       {{ optional($selectedCategory) === $child->getKey() ? 'checked' : null }}
                                                       value="{{ $child->getKey() }}">{{ $child->title }}</label></li>
                                 @endforeach
