@@ -44,11 +44,7 @@
 
         </div>
 
-        <div id="calendar">
-
-        </div>
-
-        <div class="row pl-2">
+        <div class="row pl-2" id="calendar" style="padding-top: 50px;">
             <div class="button-container">
                 <a href="?type=live#calendar" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Koolituskalender</a>
                 <a href="?type=orderable#calendar" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad
