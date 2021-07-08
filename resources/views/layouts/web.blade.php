@@ -195,7 +195,7 @@
         .menu a {
             color: #000000;
             margin-left: 35px;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .menu a:hover {
@@ -630,7 +630,7 @@ input[type='radio'] {
 }
 
 .table_course_date {
-    width:  180px;
+    width:  200px;
 }
 
 .table_course_name {
