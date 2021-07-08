@@ -205,7 +205,7 @@ class PageController extends Controller
                 });
             })
             ->when($request->get('region'), function (Builder $query, $region) {
-                return $query->where('property_region_id', $region);
+                return $query->where('property_region_id', $region)->orderBy('sort_order');
             });
 
         $properties = $properties->with(['rooms', 'services'])->paginate(5);
