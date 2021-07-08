@@ -20,7 +20,7 @@ class BannerService
         $banner = AdvertisementBanner::query()
             ->where('type', $type)
             ->inRandomOrder()
-            ->orWhere(function (Builder $query) {
+            ->Where(function (Builder $query) {
                 return $query->where('started_at', '>=', now())
                     ->where('ended_at', '<=', now());
             })
