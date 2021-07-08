@@ -43,6 +43,10 @@
             outline: none;
         }
 
+        a {
+            color: #F66F4D;
+        }
+
         body {
             background-color: #FAF8ED;
         }
