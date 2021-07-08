@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\AdTypeEnum;
 use App\Nova\Metrics\ViewCount;
+use App\Nova\Metrics\ViewsCountValue;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -79,7 +80,8 @@ class AdvertisementBanner extends Resource
     public function cards(Request $request)
     {
         return [
-            new ViewCount
+            new ViewCount,
+            new ViewsCountValue
         ];
     }
 
@@ -121,11 +123,13 @@ class AdvertisementBanner extends Resource
         return 'ads';
     }
 
-    public static function label() {
+    public static function label()
+    {
         return 'Reklaambännerid';
     }
 
-    public static function singularLabel() {
+    public static function singularLabel()
+    {
         return 'Reklaambänner';
     }
 }

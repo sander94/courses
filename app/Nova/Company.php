@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Metrics\ViewCount;
+use App\Nova\Metrics\ViewsCountValue;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ek0519\Quilljs\Quilljs;
@@ -119,7 +120,8 @@ class Company extends Resource
     public function cards(Request $request)
     {
         return [
-            new ViewCount
+            new ViewCount,
+            new ViewsCountValue
         ];
     }
 
