@@ -185,7 +185,7 @@ class PageController extends Controller
         $regions = PropertyRegion::all();
         $services = ExtraService::all();
 
-        $properties = Property::query()->orderBy('sort_order');
+        $properties = Property::query();
 
 
         $properties = $properties
@@ -205,10 +205,10 @@ class PageController extends Controller
                 });
             })
             ->when($request->get('region'), function (Builder $query, $region) {
-                return $query->where('property_region_id', $region)->orderBy('sort_order');
+                return $query->where('property_region_id', $region);
             });
 
-        $properties = $properties->with(['rooms', 'services'])->paginate(5);
+        $properties = $properties->with(['rooms', 'services'])->orderBy('sort_order')->paginate(5);
         return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
