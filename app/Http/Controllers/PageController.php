@@ -59,7 +59,9 @@ class PageController extends Controller
                     });
             })
             ->when($type === 'courses', function (Builder $query) {
-                return $query->featuredOrder();
+                return $query
+                    ->whereDate('ended_at', '>', now())
+                    ->featuredOrder();
             })
             ->paginate();
 
@@ -118,10 +120,10 @@ class PageController extends Controller
                             ->whereNull('started_at');
                     })
                     ->orWhere(function (Builder $query) {
-                        return $query->whereDate('ended_at', '>', now())
-                            ->whereNotNull('started_at');
+                        return $query->whereNotNull('started_at');
                     });
             })
+            ->whereDate('ended_at', '>', now())
             ->when($request->get('type') === 'orderable', function ($query) {
                 return $query->whereNull('started_at');
             }, function ($query) {
