@@ -185,7 +185,7 @@ class PageController extends Controller
         $regions = PropertyRegion::all();
         $services = ExtraService::all();
 
-        $properties = Property::query();
+        $properties = Property::query()->orderBy('sort_order');
 
 
         $properties = $properties
