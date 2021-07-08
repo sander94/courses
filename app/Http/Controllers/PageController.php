@@ -208,7 +208,8 @@ class PageController extends Controller
                 return $query->where('property_region_id', $region);
             });
 
-        $properties = $properties->with(['rooms', 'services'])->orderBy('sort_order')->paginate(5);
+        $properties = $properties->with(['rooms', 'services'])->paginate(5);
+        $properties = $properties->orderBy('sort_order');
         return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
