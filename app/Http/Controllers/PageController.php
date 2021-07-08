@@ -209,7 +209,7 @@ class PageController extends Controller
             });
 
         $properties = $properties->with(['rooms', 'services'])->paginate(5);
-        $properties = $properties->sortBy('sort_order');
+
         return view('rooms.index', compact('services', 'regions', 'properties'));
 
     }
