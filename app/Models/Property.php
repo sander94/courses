@@ -50,6 +50,10 @@ class Property extends Model implements HasMedia
             ->singleFile();
 
         $this->addMediaCollection('gallery');
+
+        $this->addMediaConversion('galleryThumb')
+            ->optimize()
+            ->performOnCollections('gallery');
     }
 
     public function services()

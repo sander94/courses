@@ -252,10 +252,11 @@
                             @php
                                 $media = $property->getMedia('gallery');
                                 $urls = $media->map->getUrl();
+                                $thumbUrls = $media->map->getUrl('galleryThumb');
                             @endphp
 
                             <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
-                            @foreach($urls as $index => $url)
+                            @foreach($thumbUrls as $index => $url)
                                 <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" src="{{ $url }}">
                             @endforeach
                             </div>
