@@ -371,6 +371,11 @@
             font-weight: 700;
         }
 
+        .text-2xl {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
         .advert {
             width: 100%;
         }

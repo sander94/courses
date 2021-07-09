@@ -141,7 +141,14 @@ class PageController extends Controller
         ->whereNull('started_at')
         ->count();
 
+        if($liveCoursesCount == 0 && $orderableCoursesCount > 0) {
+            $type = "orderable";
+            return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
+        }
+        else {
+
         return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
+        }
     }
 
     public function articles(Request $request)
