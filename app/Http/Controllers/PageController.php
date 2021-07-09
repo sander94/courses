@@ -132,7 +132,16 @@ class PageController extends Controller
             ->featuredOrder()
             ->paginate();
 
-        return view('companies.single', compact('company', 'courses'));
+        $liveCoursesCount = $company->courses()
+        ->whereDate('started_at', '>', now())
+        ->count();
+
+
+        $orderableCoursesCount = $company->courses()
+        ->whereNull('started_at')
+        ->count();
+
+        return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
     }
 
     public function articles(Request $request)
