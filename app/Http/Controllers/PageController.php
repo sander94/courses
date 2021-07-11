@@ -112,39 +112,49 @@ class PageController extends Controller
     {
         views($company)->record();
 
-        $courses = $company->courses()
-            ->where(function (Builder $query) {
-                return $query
-                    ->where(function (Builder $query) {
-                        return $query->whereNotNull('featuring_ended_at')
-                            ->whereNull('started_at');
-                    })
-                    ->orWhere(function (Builder $query) {
+        $closure = function ($type = null) use ($request) {
+            $type = $type ?: $request->get('type', 'live');
+
+            return function (Builder $query) use ($request, $type) {
+                return $query->where(function (Builder $query) {
+                    return $query
+                        ->where(function (Builder $query) {
+                            return $query->whereNotNull('featuring_ended_at')
+                                ->whereNull('started_at');
+                        })
+                        ->orWhere(function (Builder $query) {
+                            return $query->whereNotNull('started_at');
+                        });
+                })
+                    ->whereDate('ended_at', '>', now())
+                    ->orWhereNull('ended_at')
+                    ->when($type === 'orderable', function ($query) {
+                        return $query->whereNull('started_at');
+                    }, function ($query) {
                         return $query->whereNotNull('started_at');
-                    });
-            })
-            ->whereDate('ended_at', '>', now())
-            ->when($request->get('type') === 'orderable', function ($query) {
-                return $query->whereNull('started_at');
-            }, function ($query) {
-                return $query->whereNotNull('started_at');
-            })
-            ->featuredOrder()
-            ->paginate();
-
-        $liveCoursesCount = $company->courses()
-        ->whereDate('started_at', '>', now())
-        ->count();
-
+                    })
+                    ->featuredOrder();
+            };
+        };
 
         $orderableCoursesCount = $company->courses()
-        ->whereNull('started_at')
-        ->count();
+            ->where($closure('orderable'))
+            ->count();
+        $liveCoursesCount = $company->courses()
+            ->where($closure('live'))
+            ->count();
 
-    
+        if ($liveCoursesCount === 0 && $orderableCoursesCount > 0 && $request->get('type') !== 'orderable') {
+            return redirect()->route($request->route()->getName(), array_merge($request->route()->parameters(), ['type' => 'orderable']));
+        }
+
+
+        $courses = $company->courses()
+            ->where($closure())
+            ->paginate();
 
         return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
-        
+
     }
 
     public function articles(Request $request)
