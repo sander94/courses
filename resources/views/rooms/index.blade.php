@@ -150,6 +150,9 @@
             .roomstable tr td {
                 padding: 5px 10px;
             }
+            .roomstable i {
+                font-size:  10px;
+            }
             .main li label {
                 cursor: pointer;
             }
