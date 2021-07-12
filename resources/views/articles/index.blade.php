@@ -9,7 +9,7 @@
         <div class="row blog-archive mt-5">
 
             @foreach($articles as $article)
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
                         <div class="blog-image-container"
                              style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
