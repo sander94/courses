@@ -112,6 +112,9 @@
                 column-gap: 5px;
                 row-gap: 5px;
             }
+            .desktopFilter {
+                display: flex;
+            }
 
             @media screen and (max-width: 1250px) {
                 .room-image {
