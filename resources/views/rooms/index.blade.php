@@ -133,7 +133,7 @@
             .roomstable tr td {
                 padding: 5px 10px;
             }
-            .main li {
+            .main li label {
                 cursor: pointer;
             }
             .main li:hover {
