@@ -643,7 +643,7 @@ button.submit {
     columns: 3;
 }
 .main-li {
-    border-right: 1px solid #dadada;
+    /* border-right: 1px solid #dadada; */
     font-weight: 700;
 }
 
