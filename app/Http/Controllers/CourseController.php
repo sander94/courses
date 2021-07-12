@@ -40,13 +40,13 @@ class CourseController extends Controller
             ->where(function (Builder $query) {
                 return $query
                     ->where(function (Builder $query) {
-                        return $query->whereDate('started_at', ">=", now());
+                        return $query->whereDate('started_at', ">=", now())
+                            ->whereDate('ended_at', '>=', now());
                     })
                     ->orWhere(function (Builder $query) {
                         return $query->whereNull('started_at');
                     });
             })
-            ->whereDate('ended_at', '>', now())
             ->featuredOrder()
             ->paginate();
 
