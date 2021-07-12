@@ -646,6 +646,11 @@ button.submit {
 .main {
     columns: 3;
 }
+
+.main input[type="checkbox"] {
+    margin-right:  10px;
+}
+
 .main-li {
     /* border-right: 1px solid #dadada; */
     font-weight: 700;
