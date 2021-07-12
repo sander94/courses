@@ -23,6 +23,9 @@
             @endif
         </div>
         <style>
+            .hidedesktop {
+                display:  none;
+            }
             .galleryboxImg {
                 height: 50px;
                 width:  100%;
@@ -118,6 +121,12 @@
                 }
                 .smallgallery {
                     grid-template-columns: repeat(6, minmax(0, 1fr));
+                }
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
                 }
             }
 
@@ -273,7 +282,7 @@
 
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
-                            <h3 class="text-orange">{{ $property->name }}</h3>
+                            <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
@@ -291,7 +300,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-9">
-                            <h3 class="text-orange">{{ $property->name }}</h3>
+                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
                             <p><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
