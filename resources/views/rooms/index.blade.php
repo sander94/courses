@@ -273,6 +273,7 @@
 
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
+                            <h3 class="text-orange">{{ $property->name }}</h3>
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
