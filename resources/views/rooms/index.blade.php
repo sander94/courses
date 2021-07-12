@@ -115,7 +115,7 @@
                     width: 100%;
                     height:  150px;
                 }
-                .small-gallery {
+                .smallgallery {
                     grid-template-columns: repeat(6, minmax(0, 1fr));
                 }
             }
