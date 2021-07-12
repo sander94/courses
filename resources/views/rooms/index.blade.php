@@ -131,6 +131,11 @@
                 .property-data {
                     margin-top: 20px;
                 }
+                .filter-container {
+                    display: block;
+                    width: 100%;
+                    margin-top: 40px;
+                }
             }
 
             .typebox label {
@@ -172,6 +177,9 @@
             .main li:hover {
                 color:  #F66F4D;
             }
+            .desktopFilters {
+                display: flex;
+            }
         </style>
 
         <div class="row">
@@ -179,6 +187,7 @@
 
                 <div class="filter-container">
 
+                    <span class="desktopFilters">
                     <input type="checkbox" class="hidden" id="teater"
                            {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', [])) ?? []) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
                     <div class="typebox teater">
@@ -233,6 +242,7 @@
                             Kabaree
                         </label>
                     </div>
+                    </span>
 
 
                     <span id="findCourse" class="filter findServices"
