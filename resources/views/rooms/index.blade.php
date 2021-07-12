@@ -112,9 +112,6 @@
                 column-gap: 5px;
                 row-gap: 5px;
             }
-            .desktopFilters {
-                display: flex;
-            }
 
             @media screen and (max-width: 1250px) {
                 .room-image {
@@ -133,9 +130,6 @@
                 }
                 .property-data {
                     margin-top: 20px;
-                }
-                .desktopFilters {
-                    display: none;
                 }
             }
 
@@ -185,7 +179,6 @@
 
                 <div class="filter-container">
 
-                    <span class="desktopFilters">
                     <input type="checkbox" class="hidden" id="teater"
                            {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', [])) ?? []) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
                     <div class="typebox teater">
@@ -240,7 +233,6 @@
                             Kabaree
                         </label>
                     </div>
-                    </span>
 
 
                     <span id="findCourse" class="filter findServices"
