@@ -133,11 +133,11 @@
         });
     </script>
 
-    <script>
+   <!-- <script>
         $('ul li').click(function () {
             $('#findCourseContainer').slideUp();
         });
-    </script>
+    </script> -->
 
     <script>
         function changeCategoryValue() {
