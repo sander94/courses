@@ -71,6 +71,10 @@
         opacity: 1;
 }
 
+figure img {
+    max-width:  100%;
+    height:  auto;
+}
 
 .centerbottom {
     position: absolute; 
