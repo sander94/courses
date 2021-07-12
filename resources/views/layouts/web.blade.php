@@ -810,6 +810,9 @@ width:  250px;
     .company-image-container {
         height:  100px;
     }
+    .findCourseContainer {
+        padding: 40px 10px;
+    }
 }
 
 @media screen and (max-width: 550px) {
