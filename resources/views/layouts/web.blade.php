@@ -71,6 +71,15 @@
         opacity: 1;
 }
 
+
+.centerbottom {
+    position: absolute; 
+    bottom: 0;
+}
+.centerbottom2 {
+    display: none;
+}
+
             .home-1.xl {
                 background-color:  rgba(255, 255, 255, 0.8);
             }
@@ -305,6 +314,8 @@
             margin-right: 20px;
             color: #000000;
             text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .button-container a.active {
@@ -753,6 +764,13 @@ width:  250px;
     .main {
         columns: 2;
     }
+    .centerbottom {
+    display:  none;
+    }
+    .centerbottom2 {
+        display:  block;
+    }
+
 }
 
 @media screen and (max-width: 750px) {
@@ -784,7 +802,10 @@ width:  250px;
     .company-page-logo {
     text-align: left;
     margin-bottom: 30px;
-}
+    }
+    .company-image-container {
+        height:  100px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -828,6 +849,8 @@ width:  250px;
     .button-container .home-1 {
         padding: 10px 10px;
         margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 10px;
     }
     .button-container {
         margin-top: 25px;
@@ -835,6 +858,10 @@ width:  250px;
     .button-container .writeToUs {
         width: 100%;
         padding: 10px 20px;
+    }
+    .button-container a {
+        font-size: 12px;
+        width: ;
     }
     .home-image {
         opacity: 0.5;
@@ -868,6 +895,18 @@ width:  250px;
     .filter-container-left .filter {
         width: 170px;
         margin-left: 0;
+    }
+    .company-page-logo {
+        text-align:  center;
+    }
+    .filter {
+        margin-right: 0;
+        font-size: 12px;
+        padding: 10px;
+    }
+    .findSubmit {
+        font-size: 12px;
+        padding: 10px;
     }
 }
 
@@ -940,17 +979,18 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 Mahla 82-78, Tallinn 11215<br>
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
+            <p class="centerbottom2">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-12 col-sm-5"> <!--
+            <div class="col-12 col-sm-4 col-xs-2"> <!--
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
                 <a href="{{ route('articles.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
                 <a href="#">Contact</a> -->
-                <p style="position: absolute; bottom: 0;">Koolitused.ee © 2021 - Ka Company OÜ</p>
+                <p class="centerbottom">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-12 col-sm-3 text-right">
+            <div class="col-12 col-sm-4 text-right">
                 @auth('company')
                     <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
                         <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>

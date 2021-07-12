@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-12 pt-0 pt-sm-4">
-                <h1 class="text-3xl">Eesti suurim<br>koolituste andmebaas</h1>
+                <h1 class="text-3xl">Eesti suurim <br>koolituste andmebaas</h1>
                 <p class="mt-4 text-2xl">PARIM VALIK RUUME KOOLITUSTEKS</p>
                 <div class="button-container">
                     <a href="{{ route('courses.index') }}" class="home-1 active xl">Vaata koolitusi</a>
