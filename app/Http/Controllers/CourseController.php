@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = CourseCategory::query()->whereNull('course_category_id')->with('children')->get();
+        $categories = CourseCategory::query()->whereNull('course_category_id')->orderBy('title', 'ASC')->with('children')->get();
 
         $selectedCategory = $request->get('category') ? CourseCategory::query()->find($request->get('category')) : null;
         $selectedRegion = $request->get('region') ? Region::query()->find($request->get('region')) : null;
