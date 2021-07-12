@@ -506,7 +506,7 @@ figure img {
             border: 2px solid #F66F4D;
             border-radius: 30px;
             font-size: 18px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             padding: 10px 20px;
             width: 100%;
             background: transparent;

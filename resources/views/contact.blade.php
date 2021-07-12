@@ -8,7 +8,7 @@
 	<div class="separator-orange"></div>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12 col-sm-6 col-md-8">
 			<div class="mt-5">
 				<p>Ka Company OÜ<br>
 				Telefon: 56460814<br>
@@ -28,22 +28,19 @@
 			</div>
 		</div>
 
-		<div class="col-4">
-			@if(Session::get('success')) {{ Session::get('success') }} @endif
+		<div class="col-12 col-sm-6 col-md-4">
+			<span style="color: green; margin-bottom: 10px; font-weight: 600;">@if(Session::get('success')) {{ Session::get('success') }} @endif </span>
 			<form action="{{ route('contact') }}" method="POST" class="contactform">
 				@csrf
-				<input type="text" placeholder="Nimi" name="name" value="{{ old('name') }}">
-                @if($errors->has('name'))
-                    <span>{{ $errors->first('name') }}</span>
-                @endif
-				<input type="text" placeholder="E-mail või telefon" name="email" value="{{ old('email') }}">
-                @if($errors->has('email'))
-                    <span>{{ $errors->first('email') }}</span>
-                @endif
-				<textarea type="text" placeholder="Sõnum..." name="text">{{ old('text') }}</textarea>
-                @if($errors->has('text'))
-                    <span>{{ $errors->first('text') }}</span>
-                @endif
+				<input type="text" placeholder="Nimi" name="name" value="{{ old('name') }}"                 @if($errors->has('name'))
+                    style="border-color: red; background-color: #ffdbdb;"
+                @endif>
+				<input type="text" placeholder="E-mail või telefon" name="email" value="{{ old('email') }}" @if($errors->has('email'))
+                    style="border-color: red; background-color: #ffdbdb;"
+                @endif>
+				<textarea type="text" placeholder="Sõnum..." name="text" @if($errors->has('text'))
+                    style="border-color: red; background-color: #ffdbdb;"
+                @endif>{{ old('text') }}</textarea>
 				<input type="submit" value="Saada">
 			</form>
 

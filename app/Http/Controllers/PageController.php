@@ -151,7 +151,7 @@ class PageController extends Controller
 
         $courses = $company->courses()
             ->where($closure())
-            ->paginate()->fragment('calendar');
+            ->paginate();
 
         return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
 

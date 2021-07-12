@@ -56,10 +56,10 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('New contact request')
-            ->line("Name: " . $this->text)
-            ->line("Email: " . $this->text)
-            ->line("Text: " . $this->text);
+            ->subject('Uus kiri portaalist')
+            ->line("Nimi: " . $this->name)
+            ->line("Email: " . $this->email)
+            ->line("Tekst: " . $this->text);
     }
 
     /**
