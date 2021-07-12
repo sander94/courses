@@ -138,7 +138,7 @@
                 width: 100%;
                 display: none;
                 margin-top: 30px;
-                padding: 40px 100px;
+                padding: 40px 50px;
             }
 
             ul, li {
