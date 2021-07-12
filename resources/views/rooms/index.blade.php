@@ -131,7 +131,7 @@
                 .property-data {
                     margin-top: 20px;
                 }
-                .desktopfilters {
+                .desktopFilters {
                     display: none;
                 }
             }
