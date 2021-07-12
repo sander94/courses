@@ -103,10 +103,20 @@
                 background-position: center center;
             }
 
+            .smallgallery {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                column-gap: 5px;
+                row-gap: 5px;
+            }
+
             @media screen and (max-width: 1250px) {
                 .room-image {
                     width: 100%;
                     height:  150px;
+                }
+                .small-gallery {
+                    grid-template-columns: repeat(6, minmax(0, 1fr));
                 }
             }
 
@@ -269,7 +279,7 @@
                                 $thumbUrls = $media->map->getUrl('galleryThumb');
                             @endphp
 
-                            <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
+                            <div class="smallgallery">
                             @foreach($thumbUrls as $index => $url)
                                 <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" src="{{ $url }}">
                             @endforeach
