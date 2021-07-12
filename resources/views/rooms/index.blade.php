@@ -103,6 +103,13 @@
                 background-position: center center;
             }
 
+            @media screen and (max-width: 1250px) {
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                }
+            }
+
             .typebox label {
                 width: 100%;
                 height: 100%;
@@ -251,7 +258,7 @@
                     @endphp
 
                     <div class="row mt-5">
-                        <div class="col-3">
+                        <div class="col-12 col-md-3">
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
@@ -268,7 +275,7 @@
                             @endforeach
                             </div>
                         </div>
-                        <div class="col-9">
+                        <div class="col-12 col-md-9">
                             <h3 class="text-orange">{{ $property->name }}</h3>
                             <p><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
