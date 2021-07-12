@@ -45,6 +45,7 @@
             .findServices {
                 width: 200px;
                 height: 50px;
+                cursor: pointer;
             }
 
             .findLocation {
@@ -131,6 +132,12 @@
 
             .roomstable tr td {
                 padding: 5px 10px;
+            }
+            .main li {
+                cursor: pointer;
+            }
+            .main li:hover {
+                color:  #F66F4D;
             }
         </style>
 
