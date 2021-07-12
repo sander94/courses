@@ -128,6 +128,9 @@
                 .hidedesktop { 
                     display: block;
                 }
+                .property-data {
+                    margin-top:  20px;
+                }
             }
 
             .typebox label {
@@ -301,7 +304,7 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
-                            <p><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
+                            <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
                                 @if($property->phone) <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $property->phone }}<br> @endif
