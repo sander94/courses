@@ -66,21 +66,7 @@
         </div>
 
 <style>
-.overlay {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    color: #FFF;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    transition: all 0.1s ease-in;
-    opacity: 0;
-}
-.companyhover:hover .overlay {
-        opacity: 1;
-}
+
 </style>
         <div class="row company-archive mt-5">
             @foreach($companies as $company)

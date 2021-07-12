@@ -46,6 +46,13 @@
 
             </div>
 
+            <div class="text-center mt-4">
+
+                <a href="https://uus.koolitused.ee/courses">Kõik koolitused</a> | 
+                <a href="https://uus.koolitused.ee/courses?region=&started_at=&category=129">24/7 e-koolitused</a>
+
+            </div>
+
 
             <div class="findCourseContainer" id="findCourseContainer">
                 <ul class="main">

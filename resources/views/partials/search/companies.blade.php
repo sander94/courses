@@ -1,18 +1,23 @@
 <div class="content pt-5">
-    <div class="row company-archive mt-5">
-
-        @foreach($result as $company)
-            <div class="col-3">
+        <div class="row company-archive mt-5">
+            @foreach($result as $company)
+                <div class="col-6 col-sm-3 companyhover">
                 <a href="{{ route('company', $company) }}?type=live" style="text-decoration: none">
-                    <div class="company-image-container"
-                         style="background-image: url('{{ $company->getFirstMediaUrl('cover') }}');">
+                    <div style="background-color: #FFFFFF; position: relative;">
+                    <div class="overlay">
+                        {{ $company->name }}
                     </div>
-                </a>
-            </div>
-        @endforeach
-
-
-    </div>
+                   <div style="padding: 20px;">
+                        <div class="company-image-container"
+                             style="background-image: url('{{ $company->getFirstMediaUrl('cover') }}');">
+                        </div>
+                    </div>
+                   
+                </div>
+                 </a>
+                </div>
+            @endforeach
+        </div>
 
     <div class="pagination">
         {{ $result->links() }}

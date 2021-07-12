@@ -47,9 +47,29 @@
             color: #F66F4D;
         }
 
+        a.normal:hover {
+            color:  #F66F4D;
+        }
+
         body {
             background-color: #FAF8ED;
         }
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: all 0.1s ease-in;
+    opacity: 0;
+}
+.companyhover:hover .overlay {
+        opacity: 1;
+}
 
             .home-1.xl {
                 background-color:  rgba(255, 255, 255, 0.8);
