@@ -311,6 +311,7 @@
                                 @if($servicearray != "")
                                     <br><strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
+                            @if($property->rooms->count() > 0)
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td>Ruumi nimetus</td>
@@ -342,6 +343,7 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            @endif
                         </div>
                     </div>
                 @endforeach
