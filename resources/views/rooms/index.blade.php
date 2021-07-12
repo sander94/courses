@@ -136,6 +136,9 @@
                     width: 100%;
                     margin-top: 40px;
                 }
+                .typebox {
+                    width: 100%;
+                }
             }
 
             .typebox label {
