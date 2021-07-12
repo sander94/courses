@@ -670,7 +670,7 @@ input[type='radio'] {
 }
 
 .table_course_date {
-    width:  200px;
+    width:  215px;
 }
 
 .table_course_name {
