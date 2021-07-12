@@ -129,7 +129,10 @@
                     display: block;
                 }
                 .property-data {
-                    margin-top:  20px;
+                    margin-top: 20px;
+                }
+                .desktopfilters {
+                    display: none;
                 }
             }
 
@@ -179,6 +182,7 @@
 
                 <div class="filter-container">
 
+                    <span class="desktopFilters">
                     <input type="checkbox" class="hidden" id="teater"
                            {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', [])) ?? []) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
                     <div class="typebox teater">
@@ -233,6 +237,7 @@
                             Kabaree
                         </label>
                     </div>
+                    </span>
 
 
                     <span id="findCourse" class="filter findServices"
