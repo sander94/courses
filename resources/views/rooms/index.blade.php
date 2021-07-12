@@ -112,7 +112,7 @@
                 column-gap: 5px;
                 row-gap: 5px;
             }
-            .desktopFilter {
+            .desktopFilters {
                 display: flex;
             }
 
