@@ -734,6 +734,10 @@ width:  250px;
     .findCourseContainer {
         padding: 40px 40px;
     }
+    .results-table {
+        width: 800px;
+        overflow: auto;
+    }
 }
 
 @media screen and (max-width: 1000px) {
