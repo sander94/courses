@@ -126,17 +126,14 @@ class PageController extends Controller
     {
         views($company)->record();
 
-        $closure = function ($type = null) use ($request) {
-            $type = $type ?: $request->get('type', 'live');
-
+        $closure = function ($type) use ($request) {
             return function (Builder $query) use ($request, $type) {
                 return $query
                     ->when($type === 'orderable', function ($query) {
                         return $query->whereNull('started_at');
                     }, function ($query) {
                         return $query->whereNotNull('started_at');
-                    })
-                    ->featuredOrder();
+                    });
             };
         };
 
@@ -153,8 +150,10 @@ class PageController extends Controller
 
 
         $courses = $company->courses()
-            ->where($closure())
-            ->paginate()->fragment('calendar');
+            ->where($closure($request->get('type', 'live')))
+            ->featuredOrder()
+            ->paginate()
+            ->fragment('calendar');
 
         return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
 
