@@ -139,9 +139,11 @@ class PageController extends Controller
 
         $orderableCoursesCount = $company->courses()
             ->where($closure('orderable'))
+            ->featuredOrder()
             ->count();
         $liveCoursesCount = $company->courses()
             ->where($closure('live'))
+            ->featuredOrder()
             ->count();
 
         if ($liveCoursesCount === 0 && $orderableCoursesCount > 0 && $request->get('type') !== 'orderable') {
