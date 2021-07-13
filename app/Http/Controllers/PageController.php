@@ -50,18 +50,7 @@ class PageController extends Controller
         $searchQuery = $request->get('search');
 
         $coursesClosure = function (Builder $query) use ($request, $type) {
-            return $query->where(function (Builder $query) {
-                return $query
-                    ->where(function (Builder $query) {
-                        return $query->whereNotNull('featuring_ended_at')
-                            ->whereNull('started_at');
-                    })
-                    ->orWhere(function (Builder $query) {
-                        return $query
-                            ->whereDate('started_at', '>=', now())
-                            ->whereNotNull('started_at');
-                    });
-            })->featuredOrder();
+            return $query->featuredOrder();
         };
 
         $companiesClosure = function (Builder $query) use ($searchQuery) {
