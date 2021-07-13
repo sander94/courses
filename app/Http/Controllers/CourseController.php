@@ -46,11 +46,9 @@ class CourseController extends Controller
                     ->orWhere(function (Builder $query) {
                         return $query
                             ->whereDate('started_at', '>=', now())
-                            ->whereDate('ended_at', '>', now())
-                            ->whereNotNull('started_at');
+                            ->whereDate('ended_at', '>', now());
                     });
             })
-            ->orWhereNull('ended_at')
             ->featuredOrder()
             ->paginate();
 
