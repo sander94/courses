@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -91,6 +92,17 @@ class Course extends Model implements Viewable
     public function scopeFeaturedOrder($query)
     {
         return $query
+            ->where(function (Builder $query) {
+                return $query
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })
+                    ->orWhere(function (Builder $query) {
+                        return $query
+                            ->whereDate('started_at', '>=', now());
+                    });
+            })
             ->addSelect(DB::raw(
                 "IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column,
                 IF(started_at IS NULL, '2079-06-05T23:59:00', started_at) as started_at,

@@ -130,19 +130,7 @@ class PageController extends Controller
             $type = $type ?: $request->get('type', 'live');
 
             return function (Builder $query) use ($request, $type) {
-                return $query->where(function (Builder $query) {
-                    return $query
-                        ->where(function (Builder $query) {
-                            return $query->whereNotNull('featuring_ended_at')
-                                ->whereNull('started_at');
-                        })
-                        ->orWhere(function (Builder $query) {
-                            return $query
-                                ->whereDate('ended_at', '>', now())
-                                ->whereDate('started_at', '>=', now())
-                                ->whereNotNull('started_at');
-                        });
-                })
+                return $query
                     ->when($type === 'orderable', function ($query) {
                         return $query->whereNull('started_at');
                     }, function ($query) {
@@ -185,17 +173,6 @@ class PageController extends Controller
 
         /** @var Collection $courses */
         $courses = \App\Models\Course::query()
-            ->where(function (Builder $query) {
-                return $query
-                    ->where(function (Builder $query) {
-                        return $query->whereNotNull('featuring_ended_at')
-                            ->whereNull('started_at');
-                    })
-                    ->orWhere(function (Builder $query) {
-                        return $query->whereDate('started_at', '>=', now())
-                            ->whereNotNull('started_at');
-                    });
-            })
             ->featuredOrder()
             ->limit(15)
             ->get();

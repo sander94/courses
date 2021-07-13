@@ -37,17 +37,6 @@ class CourseController extends Controller
             ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
-            ->where(function (Builder $query) {
-                return $query
-                    ->where(function (Builder $query) {
-                        return $query->whereNotNull('featuring_ended_at')
-                            ->whereNull('started_at');
-                    })
-                    ->orWhere(function (Builder $query) {
-                        return $query
-                            ->whereDate('started_at', '>=', now());
-                    });
-            })
             ->featuredOrder()
             ->paginate();
 
