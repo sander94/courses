@@ -49,20 +49,38 @@ class PageController extends Controller
 
         $searchQuery = $request->get('search');
 
-        $result = $model->newQuery()
-            ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
-            ->when($type === 'companies', function (Builder $query) use ($searchQuery) {
+        $coursesClosure = function (Builder $query) use ($request, $type) {
+            return $query->where(function (Builder $query) {
                 return $query
-                    ->orWhere('brand', 'like', "%{$searchQuery}%")
-                    ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
-                        return $query->where('text', 'LIKE', "%$searchQuery%");
+                    ->where(function (Builder $query) {
+                        return $query->whereNotNull('featuring_ended_at')
+                            ->whereNull('started_at');
+                    })
+                    ->orWhere(function (Builder $query) {
+                        return $query->whereDate('ended_at', '>', now())
+                            ->whereNotNull('started_at');
                     });
             })
-            ->when($type === 'courses', function (Builder $query) {
-                return $query
-                    ->whereDate('ended_at', '>', now())
-                    ->featuredOrder();
-            })
+                ->when($type === 'orderable', function ($query) {
+                    return $query->whereNull('started_at');
+                }, function ($query) {
+                    return $query->whereNotNull('started_at');
+                })
+                ->featuredOrder();
+        };
+
+        $companiesClosure = function (Builder $query) use ($searchQuery) {
+            return $query
+                ->orWhere('brand', 'like', "%{$searchQuery}%")
+                ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
+                    return $query->where('text', 'LIKE', "%$searchQuery%");
+                });
+        };
+
+        $result = $model->newQuery()
+            ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
+            ->when($type === 'companies', $companiesClosure)
+            ->when($type === 'courses', $coursesClosure)
             ->paginate();
 
 
@@ -71,13 +89,8 @@ class PageController extends Controller
             if ($keyType !== $type) {
                 $counters[$keyType] = app($model)->newQuery()
                     ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
-                    ->when($keyType === 'companies', function (Builder $query) use ($searchQuery) {
-                        return $query
-                            ->orWhere('brand', 'like', "%{$searchQuery}%")
-                            ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
-                                return $query->where('text', 'LIKE', "%$searchQuery%");
-                            });
-                    })
+                    ->when($keyType === 'companies', $companiesClosure)
+                    ->when($keyType === 'courses', $coursesClosure)
                     ->count();
             }
         }
