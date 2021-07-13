@@ -101,7 +101,8 @@ class Course extends Model implements Viewable
                     ->orWhere(function (Builder $query) {
                         return $query
                             ->whereDate('started_at', '>=', now());
-                    });
+                    })
+                    ->orWhereNull('started_at');
             })
             ->addSelect(DB::raw(
                 "IF(featuring_ended_at IS NULL,NOW(),featuring_ended_at) as order_column,
