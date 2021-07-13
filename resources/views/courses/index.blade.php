@@ -46,6 +46,13 @@
 
             </div>
 
+            <div class="text-center mt-4">
+
+                <a href="https://uus.koolitused.ee/courses">Kõik koolitused</a> | 
+                <a href="https://uus.koolitused.ee/courses?region=&started_at=&category=129">24/7 e-koolitused</a>
+
+            </div>
+
 
             <div class="findCourseContainer" id="findCourseContainer">
                 <ul class="main">
@@ -81,9 +88,9 @@
                 </tr>
                 @forelse($courses as $course)
                     <tr>
-                                @if($course->started_at && $course->ended_at)
+                                @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
-                                        - {{ $course->ended_at->format('d.m.Y') }}
+                                       @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
 
                                     </td>
                                 @else
@@ -102,7 +109,7 @@
                                 <td style="font-weight: 300;">
                                     <a class="normal" href="{{ route('company', $course->company->slug)}}?type=live">
                                         @if($course->company->getFirstMediaUrl('cover'))
-                                        <div class="small-logo" style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});">
+                                        <div class="small-logo" style="background-image: url('{{ $course->company->getFirstMediaUrl('cover')  }}');">
                                         </div>
                                         @endif
                                         {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
@@ -133,11 +140,11 @@
         });
     </script>
 
-    <script>
+   <!-- <script>
         $('ul li').click(function () {
             $('#findCourseContainer').slideUp();
         });
-    </script>
+    </script> -->
 
     <script>
         function changeCategoryValue() {

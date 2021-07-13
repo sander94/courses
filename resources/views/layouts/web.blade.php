@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     <!-- CSRF Token -->
@@ -47,9 +47,42 @@
             color: #F66F4D;
         }
 
+        a.normal:hover {
+            color:  #F66F4D;
+        }
+
         body {
             background-color: #FAF8ED;
         }
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: all 0.1s ease-in;
+    opacity: 0;
+}
+.companyhover:hover .overlay {
+        opacity: 1;
+}
+
+figure img {
+    max-width:  100%;
+    height:  auto;
+}
+
+.centerbottom {
+    position: absolute; 
+    bottom: 0;
+}
+.centerbottom2 {
+    display: none;
+}
 
             .home-1.xl {
                 background-color:  rgba(255, 255, 255, 0.8);
@@ -109,7 +142,7 @@
                 width: 100%;
                 display: none;
                 margin-top: 30px;
-                padding: 40px 100px;
+                padding: 40px 50px;
             }
 
             ul, li {
@@ -285,6 +318,8 @@
             margin-right: 20px;
             color: #000000;
             text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .button-container a.active {
@@ -471,7 +506,7 @@
             border: 2px solid #F66F4D;
             border-radius: 30px;
             font-size: 18px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             padding: 10px 20px;
             width: 100%;
             background: transparent;
@@ -611,8 +646,13 @@ button.submit {
 .main {
     columns: 3;
 }
+
+.main input[type="checkbox"] {
+    margin-right:  10px;
+}
+
 .main-li {
-    border-right: 1px solid #dadada;
+    /* border-right: 1px solid #dadada; */
     font-weight: 700;
 }
 
@@ -639,7 +679,7 @@ input[type='radio'] {
 }
 
 .table_course_date {
-    width:  200px;
+    width:  215px;
 }
 
 .table_course_name {
@@ -703,6 +743,10 @@ width:  250px;
     .findCourseContainer {
         padding: 40px 40px;
     }
+    .results-table {
+        width: 800px;
+        overflow: auto;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -733,6 +777,13 @@ width:  250px;
     .main {
         columns: 2;
     }
+    .centerbottom {
+    display:  none;
+    }
+    .centerbottom2 {
+        display:  block;
+    }
+
 }
 
 @media screen and (max-width: 750px) {
@@ -764,7 +815,10 @@ width:  250px;
     .company-page-logo {
     text-align: left;
     margin-bottom: 30px;
-}
+    }
+    .company-image-container {
+        height:  100px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -808,6 +862,8 @@ width:  250px;
     .button-container .home-1 {
         padding: 10px 10px;
         margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 10px;
     }
     .button-container {
         margin-top: 25px;
@@ -815,6 +871,10 @@ width:  250px;
     .button-container .writeToUs {
         width: 100%;
         padding: 10px 20px;
+    }
+    .button-container a {
+        font-size: 12px;
+        width: ;
     }
     .home-image {
         opacity: 0.5;
@@ -833,6 +893,7 @@ width:  250px;
     }
     .main {
         columns: 1;
+        padding-left: 10px;
     }
     .main-li {
         border: 0;
@@ -848,6 +909,18 @@ width:  250px;
     .filter-container-left .filter {
         width: 170px;
         margin-left: 0;
+    }
+    .company-page-logo {
+        text-align:  center;
+    }
+    .filter {
+        margin-right: 0;
+        font-size: 12px;
+        padding: 10px;
+    }
+    .findSubmit {
+        font-size: 12px;
+        padding: 10px;
     }
 }
 
@@ -920,17 +993,18 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 Mahla 82-78, Tallinn 11215<br>
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
+            <p class="centerbottom2">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-12 col-sm-5"> <!--
+            <div class="col-12 col-sm-4 col-xs-2"> <!--
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
                 <a href="{{ route('articles.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
                 <a href="#">Contact</a> -->
-                <p style="position: absolute; bottom: 0;">Koolitused.ee © 2021 - Ka Company OÜ</p>
+                <p class="centerbottom">Koolitused.ee © 2021 - Ka Company OÜ</p>
             </div>
-            <div class="col-12 col-sm-3 text-right">
+            <div class="col-12 col-sm-4 text-right">
                 @auth('company')
                     <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
                         <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>

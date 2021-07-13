@@ -23,6 +23,9 @@
             @endif
         </div>
         <style>
+            .hidedesktop {
+                display:  none;
+            }
             .galleryboxImg {
                 height: 50px;
                 width:  100%;
@@ -45,6 +48,7 @@
             .findServices {
                 width: 200px;
                 height: 50px;
+                cursor: pointer;
             }
 
             .findLocation {
@@ -102,6 +106,41 @@
                 background-position: center center;
             }
 
+            .smallgallery {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                column-gap: 5px;
+                row-gap: 5px;
+            }
+
+            @media screen and (max-width: 1250px) {
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                    display:  none;
+                }
+                .smallgallery {
+                    grid-template-columns: repeat(6, minmax(0, 1fr));
+                }
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
+                }
+                .property-data {
+                    margin-top: 20px;
+                }
+                .filter-container {
+                    display: block;
+                    width: 100%;
+                    margin-top: 40px;
+                }
+                .typebox {
+                    width: 100%;
+                }
+            }
+
             .typebox label {
                 width: 100%;
                 height: 100%;
@@ -132,6 +171,18 @@
             .roomstable tr td {
                 padding: 5px 10px;
             }
+            .roomstable i {
+                font-size:  10px;
+            }
+            .main li label {
+                cursor: pointer;
+            }
+            .main li:hover {
+                color:  #F66F4D;
+            }
+            .desktopFilters {
+                display: flex;
+            }
         </style>
 
         <div class="row">
@@ -139,6 +190,7 @@
 
                 <div class="filter-container">
 
+                    <span class="desktopFilters">
                     <input type="checkbox" class="hidden" id="teater"
                            {{ in_array('theatre_style_capacity',array_keys(request()->get('capacity', [])) ?? []) ? 'checked' : null }} name="capacity[theatre_style_capacity]">
                     <div class="typebox teater">
@@ -193,6 +245,7 @@
                             Kabaree
                         </label>
                     </div>
+                    </span>
 
 
                     <span id="findCourse" class="filter findServices"
@@ -244,7 +297,8 @@
                     @endphp
 
                     <div class="row mt-5">
-                        <div class="col-3">
+                        <div class="col-12 col-md-3">
+                            <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
@@ -255,15 +309,15 @@
                                 $thumbUrls = $media->map->getUrl('galleryThumb');
                             @endphp
 
-                            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 5px; row-gap: 5px;">
+                            <div class="smallgallery">
                             @foreach($thumbUrls as $index => $url)
                                 <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" src="{{ $url }}">
                             @endforeach
                             </div>
                         </div>
-                        <div class="col-9">
-                            <h3 class="text-orange">{{ $property->name }}</h3>
-                            <p><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
+                        <div class="col-12 col-md-9">
+                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
+                            <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
                                 @if($property->phone) <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $property->phone }}<br> @endif
@@ -273,6 +327,7 @@
                                 @if($servicearray != "")
                                     <br><strong>Teenused: </strong> {{ $servicearray }}
                                 @endif</p>
+                            @if($property->rooms->count() > 0)
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td>Ruumi nimetus</td>
@@ -304,6 +359,7 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            @endif
                         </div>
                     </div>
                 @endforeach

@@ -47,7 +47,7 @@
         <div class="row pl-2" id="calendar" style="padding-top: 50px;">
             <div class="button-container">
                 <a href="?type=live#calendar" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Koolituskalender ({{ $liveCoursesCount }})</a>
-                <a href="?type=orderable#calendar" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad
+                <a href="?type=orderable#calendar" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad & 24/7 
                     koolitused ({{ $orderableCoursesCount }})</a>
             </div>
             <div class="results-table-container">
@@ -65,9 +65,9 @@
                     </tr>
                     @forelse($courses as $course)
                 <tr>
-                                                @if($course->started_at && $course->ended_at)
+                                @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
-                                        - {{ $course->ended_at->format('d.m.Y') }}
+                                       @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
 
                                     </td>
                                 @else
@@ -104,7 +104,7 @@
                 </table>
 
                 <div class="pagination">
-                    {{ $courses->links() }}
+                    {{ $courses->appends(request()->query())->links() }}
                 </div>
 
             </div>
