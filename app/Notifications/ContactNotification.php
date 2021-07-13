@@ -57,7 +57,6 @@ class ContactNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Uus kiri portaalist')
-            ->to('sander@koolitused.ee');
             ->line("Nimi: " . $this->name)
             ->line("Email: " . $this->email)
             ->line("Tekst: " . $this->text);
