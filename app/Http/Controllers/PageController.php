@@ -123,7 +123,8 @@ class PageController extends Controller
                                 ->whereNull('started_at');
                         })
                         ->orWhere(function (Builder $query) {
-                            return $query->whereNotNull('started_at');
+                            return $query->whereDate('ended_at', '>', now())
+                                ->whereNotNull('started_at');
                         });
                 })
                     ->whereDate('ended_at', '>', now())
