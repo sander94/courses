@@ -50,24 +50,7 @@ class PageController extends Controller
         $searchQuery = $request->get('search');
 
         $coursesClosure = function (Builder $query) use ($request, $type) {
-            return $query->where(function (Builder $query) {
-                return $query
-                    ->where(function (Builder $query) {
-                        return $query->whereNotNull('featuring_ended_at')
-                            ->whereNull('started_at');
-                    })
-                    ->orWhere(function (Builder $query) {
-                        return $query
-                            ->whereDate('started_at', '>=', now())
-                            ->whereNotNull('started_at');
-                    });
-            })
-                ->when($type === 'orderable', function ($query) {
-                    return $query->whereNull('started_at');
-                }, function ($query) {
-                    return $query->whereNotNull('started_at');
-                })
-                ->featuredOrder();
+            return $query->featuredOrder();
         };
 
         $companiesClosure = function (Builder $query) use ($searchQuery) {
@@ -126,25 +109,24 @@ class PageController extends Controller
     {
         views($company)->record();
 
-        $closure = function ($type = null) use ($request) {
-            $type = $type ?: $request->get('type', 'live');
-
+        $closure = function ($type) use ($request) {
             return function (Builder $query) use ($request, $type) {
                 return $query
                     ->when($type === 'orderable', function ($query) {
                         return $query->whereNull('started_at');
                     }, function ($query) {
                         return $query->whereNotNull('started_at');
-                    })
-                    ->featuredOrder();
+                    });
             };
         };
 
         $orderableCoursesCount = $company->courses()
             ->where($closure('orderable'))
+            ->featuredOrder()
             ->count();
         $liveCoursesCount = $company->courses()
             ->where($closure('live'))
+            ->featuredOrder()
             ->count();
 
         if ($liveCoursesCount === 0 && $orderableCoursesCount > 0 && $request->get('type') !== 'orderable') {
@@ -153,8 +135,10 @@ class PageController extends Controller
 
 
         $courses = $company->courses()
-            ->where($closure())
-            ->paginate()->fragment('calendar');
+            ->where($closure($request->get('type', 'live')))
+            ->featuredOrder()
+            ->paginate()
+            ->fragment('calendar');
 
         return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
 
