@@ -127,8 +127,6 @@ class PageController extends Controller
                                 ->whereNotNull('started_at');
                         });
                 })
-                    ->whereDate('ended_at', '>', now())
-                    ->orWhereNull('ended_at')
                     ->when($type === 'orderable', function ($query) {
                         return $query->whereNull('started_at');
                     }, function ($query) {
