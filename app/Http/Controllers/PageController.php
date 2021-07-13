@@ -57,7 +57,9 @@ class PageController extends Controller
                             ->whereNull('started_at');
                     })
                     ->orWhere(function (Builder $query) {
-                        return $query->whereDate('ended_at', '>', now())
+                        return $query
+                            ->whereDate('started_at', '>=', now())
+                            ->whereDate('ended_at', '>', now())
                             ->whereNotNull('started_at');
                     });
             })
@@ -136,7 +138,9 @@ class PageController extends Controller
                                 ->whereNull('started_at');
                         })
                         ->orWhere(function (Builder $query) {
-                            return $query->whereDate('ended_at', '>', now())
+                            return $query
+                                ->whereDate('ended_at', '>', now())
+                                ->whereDate('started_at', '>=', now())
                                 ->whereNotNull('started_at');
                         });
                 })
