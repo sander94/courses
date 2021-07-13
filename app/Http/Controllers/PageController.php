@@ -61,13 +61,7 @@ class PageController extends Controller
                             ->whereDate('started_at', '>=', now())
                             ->whereNotNull('started_at');
                     });
-            })
-                ->when($type === 'orderable', function ($query) {
-                    return $query->whereNull('started_at');
-                }, function ($query) {
-                    return $query->whereNotNull('started_at');
-                })
-                ->featuredOrder();
+            })->featuredOrder();
         };
 
         $companiesClosure = function (Builder $query) use ($searchQuery) {
