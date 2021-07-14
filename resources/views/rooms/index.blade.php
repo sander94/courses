@@ -200,6 +200,7 @@
                 }
                 .roomstable tr td i {
                     font-size:  8px;
+                    display:  block;
                 }
                 .findServices, .findLocation, .findSubmit {
                     width:  95%;
