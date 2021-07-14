@@ -55,6 +55,10 @@
             background-color: #FAF8ED;
         }
 
+        nav {
+            overflow: scroll;
+        }
+
 .overlay {
     background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
