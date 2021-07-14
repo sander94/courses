@@ -328,7 +328,7 @@
         </div>
 
 
-        <div class="row mt-5" id="list" style="text-align: left;">
+        <div class="row mt-3" id="list" style="text-align: left;">
 
             <div class="col-12">
 
