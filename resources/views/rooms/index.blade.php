@@ -25,7 +25,7 @@
         <style>
             .hidedesktop {
                 display:  none;
-                font-size:  18px;
+                font-size:  20px;
             }
             .galleryboxImg {
                 height: 50px;
@@ -221,6 +221,9 @@
                 .room_name {
                     max-width: 80px;
                     word-break: break-all;
+                }
+                .smallgallery {
+                    grid-template-columns:  repeat(4, minmax(0, 1fr));
                 }
             }
         </style>
