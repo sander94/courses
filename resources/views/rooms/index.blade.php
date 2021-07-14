@@ -131,6 +131,7 @@
                 }
                 .property-data {
                     margin-top: 20px;
+                    word-break:  break-all;
                 }
                 .filter-container {
                     display: block;
