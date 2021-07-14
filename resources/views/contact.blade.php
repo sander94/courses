@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="mt-5">
-				<p><span class="text-orange text-bold">Koolitused.ee</span> on Eesti suurim koolituste andmebaas, mis sisaldab üle 100 000 kursuse Eesti parimatelt koolitajatelt!<br>
+				<p><span class="text-orange text-bold">Koolitused.ee</span> on Eesti suurim koolituste andmebaas, mis sisaldab tuhandeid koolitusi Eesti parimatelt koolitajatelt!<br>
 
 				Lisaks suur valik ruume Eesti parimatelt pakkujatelt! <br>
 
