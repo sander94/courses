@@ -25,6 +25,7 @@
         <style>
             .hidedesktop {
                 display:  none;
+                font-size:  18px;
             }
             .galleryboxImg {
                 height: 50px;
