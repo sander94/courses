@@ -183,6 +183,40 @@
             .desktopFilters {
                 display: flex;
             }
+
+            @media screen and (max-width: 500px) {
+                .roomstable img {
+                    width:  20px;
+                }
+                .roomstable tr td {
+                    padding:  5px;
+                    font-size:  10px;
+                }
+                .typebox label img {
+                    width:  15px;
+                }
+                .typebox label {
+                    font-size:  8px;
+                }
+                .roomstable tr td i {
+                    font-size:  8px;
+                }
+                .findServices, .findLocation, .findSubmit {
+                    width:  95%;
+                    height:  35px;
+                    display:  block;
+                    margin-bottom:  10px;
+                    padding:  7px 20px;
+                }
+                .findServicesContainer {
+                    padding:  15px 10px;
+                    font-size:  10px;
+                    margin-top:  0;
+                }
+                .desktopFilters {
+                    margin-bottom:  15px;
+                }
+            }
         </style>
 
         <div class="row">
