@@ -219,6 +219,7 @@
                 }
                 .room_name {
                     max-width: 80px;
+                    word-break: break-all;
                 }
             }
         </style>
