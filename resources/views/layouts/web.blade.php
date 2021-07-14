@@ -446,6 +446,7 @@ figure img {
 
         span.blog-title:hover {
             text-decoration: none;
+            color: #F66F4D;
         }
 
         .blog-archive .col-4, .company-archive .col-3 {
