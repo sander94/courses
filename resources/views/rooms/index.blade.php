@@ -224,7 +224,7 @@
             }
         </style>
 
-        <div class="row">
+        <div class="">
             <form action="" method="GET">
 
                 <div class="filter-container">
