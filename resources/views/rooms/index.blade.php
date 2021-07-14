@@ -217,7 +217,7 @@
                 .desktopFilters {
                     margin-bottom:  15px;
                 }
-                .room-name {
+                .room_name {
                     max-width: 80px;
                 }
             }
