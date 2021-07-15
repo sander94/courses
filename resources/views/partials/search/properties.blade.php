@@ -118,7 +118,7 @@
 
                 <!-- result element -->
 
-                @foreach($properties as $property)
+                @foreach($result as $property)
 
                     @php
                         $servicearray = $property->services->implode('title',',');
