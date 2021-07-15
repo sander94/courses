@@ -943,7 +943,7 @@ a.page-link {
     border: 0;
 }
 
-.page-item.active .page-link {
+.page-item.active .page-link, .page-item.disabled .page-link {
     border-color: #000000;
     background-color: #FFFFFF;
     color: #F66F4D;
@@ -959,7 +959,7 @@ a.page-link {
 
 .pagination {
     justify-content: center;
-    margin-top: 120px;
+    margin-top: 80px;
 }
 
 </style>
