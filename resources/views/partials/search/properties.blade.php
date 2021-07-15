@@ -1,6 +1,10 @@
 <div class="content pt-5">
     <div class="row company-archive mt-5">
-        <style>
+         <style>
+            .hidedesktop {
+                display:  none;
+                font-size:  20px;
+            }
             .galleryboxImg {
                 height: 50px;
                 width:  100%;
@@ -23,6 +27,7 @@
             .findServices {
                 width: 200px;
                 height: 50px;
+                cursor: pointer;
             }
 
             .findLocation {
@@ -80,6 +85,42 @@
                 background-position: center center;
             }
 
+            .smallgallery {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                column-gap: 5px;
+                row-gap: 5px;
+            }
+
+            @media screen and (max-width: 1250px) {
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                    display:  none;
+                }
+                .smallgallery {
+                    grid-template-columns: repeat(6, minmax(0, 1fr));
+                }
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
+                }
+                .property-data {
+                    margin-top: 20px;
+                    word-break:  break-all;
+                }
+                .filter-container {
+                    display: block;
+                    width: 100%;
+                    margin-top: 40px;
+                }
+                .typebox {
+                    width: 100%;
+                }
+            }
+
             .typebox label {
                 width: 100%;
                 height: 100%;
@@ -109,6 +150,63 @@
 
             .roomstable tr td {
                 padding: 5px 10px;
+            }
+            .roomstable i {
+                font-size:  10px;
+            }
+            .main li label {
+                cursor: pointer;
+            }
+            .main li:hover {
+                color:  #F66F4D;
+            }
+            .desktopFilters {
+                display: flex;
+            }
+
+            @media screen and (max-width: 500px) {
+                .roomstable img {
+                    width:  20px;
+                }
+                .roomstable tr td {
+                    padding:  5px;
+                    font-size:  10px;
+                }
+                .typebox label img {
+                    width:  15px;
+                }
+                .typebox label {
+                    font-size:  8px;
+                }
+                .roomstable tr td i {
+                    font-size:  8px;
+                    display:  block;
+                }
+                .findServices, .findLocation, .findSubmit {
+                    width:  95%;
+                    height:  35px;
+                    display:  block;
+                    margin-bottom:  10px;
+                    padding:  7px 20px;
+                }
+                .findServicesContainer {
+                    padding:  15px 10px;
+                    font-size:  10px;
+                    margin-top:  0;
+                }
+                .desktopFilters {
+                    margin-bottom:  15px;
+                }
+                .room_name {
+                    max-width: 80px;
+                    word-break: break-all;
+                }
+                .smallgallery {
+                    grid-template-columns:  repeat(4, minmax(0, 1fr));
+                }
+                .galleryboxImg {
+                    height:  35px;
+                }
             }
         </style>
 
