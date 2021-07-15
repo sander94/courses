@@ -962,6 +962,12 @@ a.page-link, .page-item.disabled .page-link {
     margin-top: 80px;
 }
 
+@media screen and (max-width:  700px) {
+    .pagination {
+        justify-content: left;
+    }
+}
+
 .page-item:first-child .page-link, .page-item:last-child .page-link {
     border-radius:  20px;
     font-size: 24px;
