@@ -930,12 +930,18 @@ width:  250px;
     }
 }
 
-@media screen and (max-width: 450px) {
-
-
-
+a.page-link {
+    border-radius: 20px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 3px;
+    background-color: #F66F4D;
+    color: #FFFFFF;
+    border: 0;
 }
-
 
 </style>
     @stack('css-after')
