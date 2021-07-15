@@ -215,7 +215,7 @@
                     word-break: break-all;
                 }
                 .smallgallery {
-                    grid-template-columns:  repeat(4, minmax(0, 1fr));
+                    grid-template-columns:  repeat(6, minmax(0, 1fr));
                 }
                 .galleryboxImg {
                     height:  35px;
