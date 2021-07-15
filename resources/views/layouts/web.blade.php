@@ -57,6 +57,7 @@
 
         nav {
             overflow: scroll;
+            overflow: hidden;
         }
 
 .overlay {
