@@ -962,8 +962,10 @@ a.page-link, .page-item.disabled .page-link {
     margin-top: 80px;
 }
 
-.page-item:last-child .page-link, .page-item:last-child .page-link {
+.page-item:first-child .page-link, .page-item:last-child .page-link {
     border-radius:  20px;
+    font-size: 24px;
+    line-height: 38px;
 }
 </style>
     @stack('css-after')
