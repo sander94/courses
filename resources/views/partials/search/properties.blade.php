@@ -1,5 +1,5 @@
-<div class="content pt-5">
-    <div class="row company-archive mt-5">
+<div class="content">
+    <div class="row company-archive">
          <style>
             .hidedesktop {
                 display:  none;
