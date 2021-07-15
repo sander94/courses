@@ -943,6 +943,20 @@ a.page-link {
     border: 0;
 }
 
+.page-item.active .page-link {
+    border-color: #000000;
+    background-color: #FFFFFF;
+    color: #F66F4D;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    margin-left: 4px;
+    border-width: 2px;
+    line-height: 35px;
+    text-align: center;
+    padding: 0;
+}
+
 </style>
     @stack('css-after')
 
