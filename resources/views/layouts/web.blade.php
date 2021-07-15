@@ -930,7 +930,7 @@ width:  250px;
     }
 }
 
-a.page-link {
+a.page-link, .page-item.disabled .page-link {
     border-radius: 20px;
     padding: 0;
     width: 40px;
@@ -943,7 +943,7 @@ a.page-link {
     border: 0;
 }
 
-.page-item.active .page-link, .page-item.disabled .page-link {
+.page-item.active .page-link {
     border-color: #000000;
     background-color: #FFFFFF;
     color: #F66F4D;
