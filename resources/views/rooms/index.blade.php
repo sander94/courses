@@ -23,7 +23,7 @@
             @endif
         </div>
         <style>
-            .hidedesktop {
+             .hidedesktop {
                 display:  none;
                 font-size:  20px;
             }
@@ -115,20 +115,15 @@
             }
 
             @media screen and (max-width: 1250px) {
+                .smallgallery {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+
                 .room-image {
                     width: 100%;
-                    height:  150px;
-                    display:  none;
+                    height:  200px;
                 }
-                .smallgallery {
-                    grid-template-columns: repeat(6, minmax(0, 1fr));
-                }
-                .hidemobile {
-                    display: none;
-                }
-                .hidedesktop { 
-                    display: block;
-                }
+
                 .property-data {
                     margin-top: 20px;
                     word-break:  break-all;
@@ -141,6 +136,24 @@
                 .typebox {
                     width: 100%;
                 }
+            }
+
+            @media screen and (max-width:  769px) {
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
+                }
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                    display:  none;
+                }
+                .smallgallery {
+                    grid-template-columns: repeat(8, minmax(0, 1fr));
+                }
+
             }
 
             .typebox label {
@@ -224,7 +237,7 @@
                     word-break: break-all;
                 }
                 .smallgallery {
-                    grid-template-columns:  repeat(4, minmax(0, 1fr));
+                    grid-template-columns:  repeat(6, minmax(0, 1fr));
                 }
                 .galleryboxImg {
                     height:  35px;
