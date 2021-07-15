@@ -937,6 +937,227 @@ width:  250px;
 }
 
 
+  .hidedesktop {
+                display:  none;
+                font-size:  20px;
+            }
+            .galleryboxImg {
+                height: 50px;
+                width:  100%;
+                cursor: pointer;
+            }
+            .filter-container {
+                display: flex;
+                width: 100%;
+                margin-top: 40px;
+            }
+
+            .filter {
+                padding: 10px 20px;
+                border: 2px solid #F66F4D;
+                border-radius: 30px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .findServices {
+                width: 200px;
+                height: 50px;
+                cursor: pointer;
+            }
+
+            .findLocation {
+                width: 200px;
+                height: 50px;
+                background: transparent;
+                -webkit-appearance: none;
+            }
+
+            .findDate {
+                width: 150px;
+            }
+
+            .findDate {
+                background: transparent;
+            }
+
+            .findSubmit {
+                background-color: #F66F4D;
+                border: 2px solid #F66F4D;
+                border-radius: 30px;
+                padding: 10px 30px;
+                color: #FFFFFF;
+                margin-left: 10px;
+                height: 50px;
+            }
+
+            .findServicesContainer {
+                background-color: #FFFFFF;
+                width: 100%;
+                display: none;
+                margin-top: 30px;
+                padding: 40px 40px;
+            }
+
+            ul, li {
+                list-style-type: none;
+            }
+
+            .typebox {
+                width: 90px;
+                text-align: center;
+                border-radius: 8px;
+                margin-right: 5px;
+                box-sizing: border-box;
+                border: 1px solid rgba(255, 255, 255, 0);
+            }
+
+            .room-image {
+                background-color: #FFFFFF;
+                width: 280px;
+                height: 280px;
+                background-size: 90%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
+            .smallgallery {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                column-gap: 5px;
+                row-gap: 5px;
+            }
+
+            @media screen and (max-width: 1250px) {
+                .smallgallery {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+
+                .room-image {
+                    width: 100%;
+                    height:  200px;
+                }
+
+                .property-data {
+                    margin-top: 20px;
+                    word-break:  break-all;
+                }
+                .filter-container {
+                    display: block;
+                    width: 100%;
+                    margin-top: 40px;
+                }
+                .typebox {
+                    width: 100%;
+                }
+            }
+
+            @media screen and (max-width:  769px) {
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
+                }
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                    display:  none;
+                }
+                .smallgallery {
+                    grid-template-columns: repeat(8, minmax(0, 1fr));
+                }
+
+            }
+
+            .typebox label {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                padding-top: 10px;
+                box-sizing: border-box;
+            }
+
+            .typebox:hover {
+                background-color: #FFFFFF;
+                color: #F66F4D;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            #teater:checked + .teater, #klass:checked + .klass, #diplomaat:checked + .diplomaat, #ushaped:checked + .ushaped, #vastuvott:checked + .vastuvott, #cabaret:checked + .cabaret {
+                background-color: #FFFFFF;
+                border: 1px solid #dadada;
+                color: #F66F4D;
+            }
+
+            .roomstable {
+                width: 100%;
+            }
+
+            .roomstable tr td {
+                padding: 5px 10px;
+            }
+            .roomstable i {
+                font-size:  10px;
+            }
+            .main li label {
+                cursor: pointer;
+            }
+            .main li:hover {
+                color:  #F66F4D;
+            }
+            .desktopFilters {
+                display: flex;
+            }
+
+            @media screen and (max-width: 500px) {
+                .roomstable img {
+                    width:  20px;
+                }
+                .roomstable tr td {
+                    padding:  5px;
+                    font-size:  10px;
+                }
+                .typebox label img {
+                    width:  15px;
+                }
+                .typebox label {
+                    font-size:  8px;
+                }
+                .roomstable tr td i {
+                    font-size:  8px;
+                    display:  block;
+                }
+                .findServices, .findLocation, .findSubmit {
+                    width:  95%;
+                    height:  35px;
+                    display:  block;
+                    margin-bottom:  10px;
+                    padding:  7px 20px;
+                }
+                .findServicesContainer {
+                    padding:  15px 10px;
+                    font-size:  10px;
+                    margin-top:  0;
+                }
+                .desktopFilters {
+                    margin-bottom:  15px;
+                }
+                .room_name {
+                    max-width: 80px;
+                    word-break: break-all;
+                }
+                .smallgallery {
+                    grid-template-columns:  repeat(6, minmax(0, 1fr));
+                }
+                .galleryboxImg {
+                    height:  35px;
+                }
+            }
+
 </style>
     @stack('css-after')
 
