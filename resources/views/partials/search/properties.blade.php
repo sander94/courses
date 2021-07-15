@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content pt-0">
     <div class="row company-archive">
          <style>
             .hidedesktop {
