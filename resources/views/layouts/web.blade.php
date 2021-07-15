@@ -957,6 +957,10 @@ a.page-link {
     padding: 0;
 }
 
+.pagination {
+    justify-content: center;
+}
+
 </style>
     @stack('css-after')
 
