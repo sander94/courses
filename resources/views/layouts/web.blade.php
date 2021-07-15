@@ -959,6 +959,7 @@ a.page-link {
 
 .pagination {
     justify-content: center;
+    margin-top: 120px;
 }
 
 </style>
