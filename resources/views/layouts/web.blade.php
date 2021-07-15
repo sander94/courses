@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ isset($title) ? $title : 'Koolitused.ee' }}</title>
+    <title>{{ isset($title) ? $title : 'Koolitused.ee | Eesti suurim koolituste andmebaas' }}</title>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
