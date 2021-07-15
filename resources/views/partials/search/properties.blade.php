@@ -93,20 +93,10 @@
             }
 
             @media screen and (max-width: 1250px) {
-                .room-image {
-                    width: 100%;
-                    height:  150px;
-                    display:  none;
-                }
                 .smallgallery {
                     grid-template-columns: repeat(6, minmax(0, 1fr));
                 }
-                .hidemobile {
-                    display: none;
-                }
-                .hidedesktop { 
-                    display: block;
-                }
+
                 .property-data {
                     margin-top: 20px;
                     word-break:  break-all;
@@ -118,6 +108,20 @@
                 }
                 .typebox {
                     width: 100%;
+                }
+            }
+
+            @media screen and (max-width:  769px) {
+                .hidemobile {
+                    display: none;
+                }
+                .hidedesktop { 
+                    display: block;
+                }
+                .room-image {
+                    width: 100%;
+                    height:  150px;
+                    display:  none;
                 }
             }
 
