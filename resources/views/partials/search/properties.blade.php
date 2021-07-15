@@ -94,7 +94,12 @@
 
             @media screen and (max-width: 1250px) {
                 .smallgallery {
-                    grid-template-columns: repeat(6, minmax(0, 1fr));
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+
+                .room-image {
+                    width: 100%;
+                    height:  200px;
                 }
 
                 .property-data {
@@ -123,6 +128,10 @@
                     height:  150px;
                     display:  none;
                 }
+                .smallgallery {
+                    grid-template-columns: repeat(8, minmax(0, 1fr));
+                }
+
             }
 
             .typebox label {
