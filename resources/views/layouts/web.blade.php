@@ -342,6 +342,7 @@ figure img {
             width: 100%;
             position: relative;
             overflow: scroll;
+            overflow: hidden;
         }
 
         .results-table {
