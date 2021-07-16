@@ -42,7 +42,7 @@ class PageController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function search(string $type = null, Request $request)
+    public function search(string $type = 'courses', Request $request)
     {
         /** @var Model $model */
         $model = app($this->getModelFroMType($type));
@@ -80,10 +80,8 @@ class PageController extends Controller
         }
         
         $max = array_keys($array, max($array));
-        if($type === null) {
-            $maxKey = $max[0];
-            $type = $counters[$maxKey] > 0 ? $max[0] : 'companies';
-        }
+        $type = $max[0];
+
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery'));
     }
