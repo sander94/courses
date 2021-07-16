@@ -826,12 +826,6 @@ width:  250px;
     .company-image-container {
         height:  100px;
     }
-    .results-table-container {
-            margin-top: 70px;
-            width: 100%;
-            position: relative;
-            overflow: scroll;
-    }
 }
 
 @media screen and (max-width: 550px) {
