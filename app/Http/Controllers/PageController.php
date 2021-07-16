@@ -42,16 +42,9 @@ class PageController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function search(string $type = 'courses', Request $request)
+    public function search(string $type = null, Request $request)
     {
-        /** @var Model $model */
-        $model = app($this->getModelFroMType($type));
-
         $searchQuery = $request->get('search');
-
-        $coursesClosure = function (Builder $query) use ($request, $type) {
-            return $query->featuredOrder();
-        };
 
         $companiesClosure = function (Builder $query) use ($searchQuery) {
             return $query
@@ -61,24 +54,34 @@ class PageController extends Controller
                 });
         };
 
+        $coursesClosure = function (Builder $query) use ($request, $type) {
+            return $query->featuredOrder();
+        };
+
+        $counters = [];
+        foreach (static::$types as $keyType => $model) {
+            $counters[$keyType] = app($model)->newQuery()
+                ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
+                ->when($keyType === 'companies', $companiesClosure)
+                ->when($keyType === 'courses', $coursesClosure)
+                ->count();
+        }
+
+        $max = array_keys($counters, max($counters));
+        if($type === null) {
+            $maxKey = $max[0];
+            $type = $counters[$maxKey] > 0 ? $max[0] : 'companies';
+        }
+
+        /** @var Model $model */
+        $model = app($this->getModelFromType($type));
+
+
         $result = $model->newQuery()
             ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
             ->when($type === 'companies', $companiesClosure)
             ->when($type === 'courses', $coursesClosure)
             ->paginate();
-
-
-        $counters[$type] = $result->total();
-        foreach (static::$types as $keyType => $model) {
-            if ($keyType !== $type) {
-                $counters[$keyType] = app($model)->newQuery()
-                    ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
-                    ->when($keyType === 'companies', $companiesClosure)
-                    ->when($keyType === 'courses', $coursesClosure)
-                    ->count();
-            }
-        }
-
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery'));
     }
