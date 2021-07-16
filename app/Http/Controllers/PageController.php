@@ -78,6 +78,9 @@ class PageController extends Controller
                     ->count();
             }
         }
+        
+        $max = array_keys($array, max($array));
+        $type = $max[0];
 
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery'));
