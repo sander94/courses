@@ -66,6 +66,8 @@ class Company extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
+            Text::make('Username')->exceptOnForms(),
+
             Number::make(__('Sort Order'), 'sort_order'),
 
             Boolean::make(__('Is Active'), 'is_active'),

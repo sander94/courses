@@ -82,7 +82,7 @@ figure img {
 }
 
 .centerbottom {
-    position: absolute; 
+    position: absolute;
     bottom: 0;
 }
 .centerbottom2 {
@@ -642,10 +642,10 @@ button.submit {
 }
 
 .home-image {
-    position: absolute; 
-    top: 0; 
-    z-index: -1; 
-    right: 0; 
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    right: 0;
     width: 80%;
     opacity:  0.5;
 }
@@ -985,7 +985,7 @@ a.page-link, .page-item.disabled .page-link {
 
 </head>
 <body>
-<div class="header-container" style="border-bottom: 1px solid #efecda; -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04); 
+<div class="header-container" style="border-bottom: 1px solid #efecda; -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);
 box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
     <div class="header">
         <div class="navigation">
@@ -1064,7 +1064,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 @guest('company')
                     <form action="{{ route('authenticate') }}" method="POST" class="login">
                         @csrf
-                        <input type="text" name="email" placeholder="E-mail">
+                        <input type="text" name="username" placeholder="Username">
                         <input type="password" name="password" placeholder="Parool">
                         <input type="submit" value="LOGI SISSE" class="">
                     </form>

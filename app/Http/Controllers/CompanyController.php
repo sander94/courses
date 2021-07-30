@@ -28,21 +28,19 @@ class CompanyController extends Controller
     public function authenticate(Request $request)
     {
         $request->validate([
-            'email' => [
+            'username' => [
                 'required',
-                'email'
             ],
             'password' => [
                 'required'
             ]
         ]);
 
-        $email = $request->get('email');
+        $username = $request->get('username');
         $password = $request->get('password');
 
 
-        if (Auth::guard('company')->attempt(['email' => $email, 'password' => $password], true)) {
-//            $request->session()->regenerate();
+        if (Auth::guard('company')->attempt(['username' => $username, 'password' => $password], true)) {
 
             return redirect()->to('/company/profile');
         }
