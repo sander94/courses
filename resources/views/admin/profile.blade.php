@@ -13,7 +13,7 @@
             @endif
         </div>
         <div class="title">
-            <h1 class="entry-title">Kasutaja: {{ Auth::user()->email }}</h1>
+            <h1 class="entry-title">Kasutaja: {{ Auth::user()->username }}</h1>
             <div class="separator-orange"></div>
         </div>
     </div>
@@ -41,9 +41,9 @@
                         <div class="col-12">
                             <label class="profile-input-row">
                                 <div class="input-desc">
-                                    Kontakttelefon
+                                    Aadress
                                 </div>
-                                <input type="text" value="{{ $company->phone }}" name="phone">
+                                <input type="text" value="{{ $company->street }}" name="street">
                             </label>
                         </div>
                     </div>
@@ -70,7 +70,22 @@
                         </div>
                     </div>
 
+                    <div class="row profile-row">
+                        <div class="col-12">
+                            <label class="profile-input-row">
+                                <div class="input-desc">
+                                    Kontakttelefon
+                                </div>
+                                <input type="text" value="{{ $company->phone }}" name="phone">
+                            </label>
+                        </div>
+                    </div>
 
+
+
+
+
+                    @if(false)
                     <div class="row profile-row">
                         <div class="col-12">
                             <label class="profile-input-row">
@@ -81,6 +96,7 @@
                             </label>
                         </div>
                     </div>
+                    @endif
 
                     <div class="row profile-row">
                         <div class="col-12">
@@ -94,10 +110,30 @@
                     </div>
 
 
+                    <div class="row profile-row">
+                        <div class="col-12">
+                            <label class="profile-input-row">
+                                <div class="input-desc">
+                                    Logo
+                                </div>
+                                <input type="file" name="cover">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12">
+                                <button class="submit">SALVESTA</button>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
                 <div class="col-12 col-md-6">
-
+                    @if(false)
                     <div class="row profile-row">
                         <div class="col-12">
                             <label class="profile-input-row">
@@ -125,16 +161,9 @@
                         </div>
                     </div>
 
-                    <div class="row profile-row">
-                        <div class="col-12">
-                            <label class="profile-input-row">
-                                <div class="input-desc">
-                                    Tänav, maja nr
-                                </div>
-                                <input type="text" value="{{ $company->street }}" name="street">
-                            </label>
-                        </div>
-                    </div>
+                    @endif
+
+                    @if(false)
 
                     <div class="row profile-row">
                         <div class="col-12">
@@ -147,24 +176,8 @@
                         </div>
                     </div>
 
-                    <div class="row profile-row">
-                        <div class="col-12">
-                            <label class="profile-input-row">
-                                <div class="input-desc">
-                                    Logo
-                                </div>
-                                <input type="file" name="cover">
-                            </label>
-                        </div>
-                    </div>
+                    @endif
 
-                    <div class="row">
-
-                        <div class="col-12">
-                                <button class="submit">SALVESTA</button>
-                        </div>
-
-                    </div>
 
                 </div>
 
