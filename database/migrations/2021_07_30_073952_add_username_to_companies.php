@@ -19,7 +19,9 @@ class AddUsernameToCompanies extends Migration
         });
 
         \App\Models\Company::query()->each(function (\App\Models\Company $company) {
-            $company->username = explode('@', $company->email)[0];
+            $emailParts = explode('@', $company->email);
+            $domainPart = explode('.', $emailParts[1])[0];
+            $company->username = "{$emailParts[0]}{$domainPart}";
             $company->save();
         });
     }
