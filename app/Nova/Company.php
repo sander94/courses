@@ -10,6 +10,7 @@ use Ek0519\Quilljs\Quilljs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -66,6 +67,8 @@ class Company extends Resource
             ID::make(__('ID'), 'id')->sortable(),
 
             Number::make(__('Sort Order'), 'sort_order'),
+
+            Boolean::make(__('Is Active'), 'is_active'),
 
             Text::make('Facebook Url')
                 ->rules([

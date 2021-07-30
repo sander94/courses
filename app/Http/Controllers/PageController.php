@@ -51,7 +51,8 @@ class PageController extends Controller
                 ->orWhere('brand', 'like', "%{$searchQuery}%")
                 ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
                     return $query->where('text', 'LIKE', "%$searchQuery%");
-                });
+                })
+                ->active();
         };
 
         $coursesClosure = function (Builder $query) use ($request, $type) {
@@ -68,7 +69,7 @@ class PageController extends Controller
         }
 
         $max = array_keys($counters, max($counters));
-        if($type === null) {
+        if ($type === null) {
             $maxKey = $max[0];
             $type = $counters[$maxKey] > 0 ? $max[0] : 'companies';
         }
@@ -102,6 +103,7 @@ class PageController extends Controller
                         return $query->where('text', 'LIKE', "%$search%");
                     });
             })
+            ->active()
             ->ordered()
             ->paginate(16);
 

@@ -33,6 +33,7 @@ class Company extends Authenticatable implements HasMedia, Viewable
         'city',
         'street',
         'postal',
+        'is_active',
     ];
 
     public function region()
@@ -49,6 +50,11 @@ class Company extends Authenticatable implements HasMedia, Viewable
     {
         $this->addMediaCollection('cover')
             ->singleFile();
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 
     /**
