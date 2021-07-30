@@ -22,7 +22,7 @@
                     <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $company->phone }}<br>
                     <i class="fa fa-envelope fa-fw"> </i> {{ $company->email }}<br><br>
                     <i class="fa fa-globe fa-fw"> </i> <a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a><br>
-                    <i class="fa fa-facebook fa-fw"> </i> <a href="{{ $company->facebook_url }}">Facebook</a>
+                    <i class="fa fa-facebook fa-fw"> </i> <a href="{{ $company->facebook_url }}" target="_blank">Facebook</a>
                 </div>
             </div>
             <div class="col-sm-6 company-page-logo">
