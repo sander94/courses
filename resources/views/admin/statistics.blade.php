@@ -21,7 +21,7 @@
                     <table class="mt-2">
                         <tr>
                             <td style="width: 150px;">
-                                <strong>Kuupäev</strong>
+                                <strong>Kuu</strong>
                             </td>
                             <td style="width: 100px;">
                                 <strong>Klikid</strong>
@@ -30,10 +30,10 @@
                         @foreach($viewItems as $view)
                             <tr>
                                 <td>
-                                    {{ Carbon\Carbon::parse($view->date)->format('d.m.Y') }}
+                                    {{ Carbon\Carbon::parse($view->date)->format('m.Y') }}
                                 </td>
                                 <td>
-                                    {{ $view->views }}
+                                    {{ $view->views*3 }}
                                 </td>
                             </tr>
                         @endforeach

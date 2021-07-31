@@ -65,7 +65,7 @@ class CompanyController extends Controller
         /** @var Company $company */
         $company = $request->user();
 
-        $company->update($request->validated());
+        $company->update($request->all());
 
         if ($request->has('cover')) {
             $company->addMediaFromRequest('cover')->toMediaCollection('cover');
