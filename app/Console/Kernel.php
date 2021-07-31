@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             (new PruneStaleAttachments)();
         })->daily();
+
+        $schedule->command('telescope:prune')->daily();
     }
 
     /**
