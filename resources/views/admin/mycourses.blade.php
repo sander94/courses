@@ -57,7 +57,7 @@
                         <td style="width: 250px;">Koolitus</td>
                         <td style="width: 100px;">Hind</td>
                         <td style="width: 100px;">Koht</td>
-                        <td style="width: 40px;">Clicks</td>
+                        <!-- <td style="width: 40px;">Clicks</td> -->
                         <td style="width: 120px;">&nbsp;</td>
                     </tr>
                     @forelse($courses as $course)
@@ -72,7 +72,7 @@
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                             <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                            <td>100</td>
+                           <!-- <td>100</td> -->
                             <td>
                                 <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm">
                                     @csrf
