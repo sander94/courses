@@ -1064,7 +1064,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 @guest('company')
                     <form action="{{ route('authenticate') }}" method="POST" class="login">
                         @csrf
-                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="username" placeholder="Kasutajanimi">
                         <input type="password" name="password" placeholder="Parool">
                         <input type="submit" value="LOGI SISSE" class="">
                     </form>
