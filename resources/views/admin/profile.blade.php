@@ -43,7 +43,7 @@
                                 <div class="input-desc">
                                     Aadress
                                 </div>
-                                <input type="text" value="{{ $company->street }}" name="street">
+                                <input type="text" value="{{ $company->city }}" name="street">
                             </label>
                         </div>
                     </div>
