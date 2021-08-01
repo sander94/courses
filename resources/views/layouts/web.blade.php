@@ -1055,7 +1055,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
             </div>
             <div class="col-12 col-sm-4 text-right">
                 @auth('company')
-                    <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->email }} <br>
+                    <p><span class="font-bold">Kasutaja: </span> {{ auth('company')->user()->username }} <br>
                         <span class="font-bold"><a href="{{ route('profile') }}">Muudan ettevõtte andmeid</a></span>
                         <br><br><br>
                         <a href="{{ route('logout') }}" class="logout">Logi välja</a>
