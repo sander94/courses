@@ -62,7 +62,7 @@ class Article extends Resource
 
             Images::make('Gallery'),
 
-            DateTime::make('Published at'),
+            DateTime::make('Lõppkuupäev', 'published_at'),
 
 
         ];
