@@ -166,7 +166,7 @@ class PageController extends Controller
             ->limit(15)
             ->get();
 
-        $articles = \App\Models\Article::orderBy('id', 'ASC')->take(3)->get();
+        $articles = \App\Models\Article::whereDate('published_at', '>=', Carbon::now())->orderBy('id', 'ASC')->take(3)->get();
 
         return view('home')->with([
             'courses' => $courses,
