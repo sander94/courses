@@ -51,10 +51,10 @@ class Article extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Title')
+            Text::make('Pealkiri', 'title')
                 ->rules('required', 'string', 'max:400'),
 
-            Quilljs::make('Content')
+            Quilljs::make('Sisu', 'content')
                 ->withFiles('public'),
 
 
