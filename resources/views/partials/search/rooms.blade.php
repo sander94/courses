@@ -15,7 +15,7 @@
     </div>
 
     <div class="pagination">
-        {{ $result->links() }}
+        {{ $result->appends(request()->query())->links() }}
     </div>
 
 </div>
