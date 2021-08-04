@@ -62,7 +62,7 @@ class PageController extends Controller
         $counters = [];
         foreach (static::$types as $keyType => $model) {
             $counters[$keyType] = app($model)->newQuery()
-                ->where(static::$titles[$keyType], 'LIKE', "{$searchQuery}%")
+                ->where(static::$titles[$keyType], 'LIKE', "%{$searchQuery}%")
                 ->when($keyType === 'companies', $companiesClosure)
                 ->when($keyType === 'courses', $coursesClosure)
                 ->count();
@@ -79,7 +79,7 @@ class PageController extends Controller
 
 
         $result = $model->newQuery()
-            ->where(static::$titles[$type], 'LIKE', "{$searchQuery}%")
+            ->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%")
             ->when($type === 'companies', $companiesClosure)
             ->when($type === 'courses', $coursesClosure)
             ->paginate();
