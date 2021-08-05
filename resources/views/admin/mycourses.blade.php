@@ -72,7 +72,7 @@
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                             <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                           <td>{{ views($course)->count()*3 }}</td>
+                           <td>{{ views($course)->count() }}</td>
                             <td>
                                 <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm">
                                     @csrf
