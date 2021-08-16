@@ -151,7 +151,7 @@ class PageController extends Controller
 
     public function articles(Request $request)
     {
-        $articles = Article::query()->orderBy('id', 'DESC')->paginate();
+        $articles = Article::whereDate('published_at', '>=', Carbon::now())->orderBy('id', 'DESC')->get();
 
         return view('articles', compact('articles'));
     }
