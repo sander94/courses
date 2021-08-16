@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::whereDate('published_at', '>=', Carbon::now())->paginate();
+        $articles = Article::whereDate('published_at', '>=', Carbon::now())->orderBy('id', 'DESC')->paginate();
 
         return view('articles.index', compact('articles'));
     }
