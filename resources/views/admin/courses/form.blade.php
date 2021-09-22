@@ -70,7 +70,7 @@
         </label>
     </div>
 </div>
-
+<!-- 
 <div class="row profile-row">
     <div class="col-6">
         <label class="profile-input-row">
@@ -81,7 +81,7 @@
         </label>
     </div>
 </div>
-
+-->
 <div class="row profile-row">
     <div class="col-6">
         <div class="profile-input-row">

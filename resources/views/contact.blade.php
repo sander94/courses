@@ -28,6 +28,7 @@
 			</div>
 		</div>
 
+@if(false)
 		<div class="col-12 col-sm-6 col-md-4">
 			<span style="color: green; margin-bottom: 10px; font-weight: 600;">@if(Session::get('success')) {{ Session::get('success') }} @endif </span>
 			<form action="{{ route('contact') }}" method="POST" class="contactform">
@@ -45,6 +46,7 @@
 			</form>
 
 		</div>
+@endif
 
 	</div>
 
