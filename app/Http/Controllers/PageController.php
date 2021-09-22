@@ -55,8 +55,12 @@ class PageController extends Controller
                 ->active();
         };
 
-        $coursesClosure = function (Builder $query) use ($request, $type) {
-            return $query->featuredOrder();
+        $coursesClosure = function (Builder $query) use ($request, $type, $searchQuery) {
+            return $query
+                ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
+                    return $builder->where('title', 'like', "%{$searchQuery}%");
+                })
+                ->featuredOrder();
         };
 
         $counters = [];
