@@ -60,6 +60,11 @@ class Course extends Model implements Viewable
         return $this->belongsToMany(CourseCategory::class, 'category_course');
     }
 
+    public function courseType(): BelongsTo
+    {
+        return $this->belongsTo(CourseType::class);
+    }
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);

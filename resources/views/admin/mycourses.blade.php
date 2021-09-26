@@ -45,15 +45,17 @@
 
         <div class="row">
             <div class="button-container">
-                <a href="?type=live" class="{{ request()->query('type') !== 'orderable' ? 'active' : null }}">Live-koolitused</a>
-                <a href="?type=orderable" class="{{ request()->query('type') === 'orderable' ? 'active' : null }}">Tellitavad koolitused</a>
+                @foreach($types as $type)
+                    <a href="?type={{ $type->getKey() }}" class="{{ request()->query('type') !== $type->getKey() ? 'active' : null }}">{{ $type->title }}</a>
+                @endforeach
             </div>
 
             <div class="results-table-container">
 
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                     <tr class="tableheader">
-                        @if(request()->query('type') == 'live')<td style="width: 50px;">Kuupäev</td> @endif
+                        @if(request()->query('type') == 'live')
+                            <td style="width: 50px;">Kuupäev</td> @endif
                         <td style="width: 250px;">Koolitus</td>
                         <td style="width: 100px;">Hind</td>
                         <td style="width: 100px;">Koht</td>
@@ -62,17 +64,18 @@
                     </tr>
                     @forelse($courses as $course)
                         <tr>
-                               @if($course->started_at) <td style="font-weight: 300;">
-                                     {{ $course->started_at->format('d.m.Y') }}
-                                   @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
-                                
-                                
+                            @if($course->started_at)
+                                <td style="font-weight: 300;">
+                                    {{ $course->started_at->format('d.m.Y') }}
+                                    @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
+
+
                                 </td> @endif
                             <td><a href="{{ $course->url }}" target="_blank">{{ $course->title }}</a>
                             </td>
                             <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
                             <td style="font-weight: 300;">{{ $course->region->title }}</td>
-                           <td>{{ views($course)->count() }}</td>
+                            <td>{{ views($course)->count() }}</td>
                             <td>
                                 <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm">
                                     @csrf
@@ -80,8 +83,10 @@
                                     <input type="hidden" value="clone" name="action">
                                     <button type="submit" name="submit"><i class="fa fa-clone"></i></button>
                                 </form>
-                                <a href="{{ route('edit_course', $course) }}" class="editbutton"><i class="fa fa-pencil"></i></a>
-                                <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm" onsubmit="return confirm('Kas oled kindel, et soovid koolituse kustutada?');">
+                                <a href="{{ route('edit_course', $course) }}" class="editbutton"><i
+                                        class="fa fa-pencil"></i></a>
+                                <form action="{{ route('modifyCourse') }}" method="post" class="duplicatorForm"
+                                      onsubmit="return confirm('Kas oled kindel, et soovid koolituse kustutada?');">
                                     @csrf
                                     <input type="hidden" value="{{ $course->id }}" name="course">
                                     <input type="hidden" value="delete" name="action">

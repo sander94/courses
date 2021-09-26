@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseType;
 use App\Models\Region;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -124,14 +125,14 @@ class CompanyController extends Controller
         $regions = Region::query()->get();
 
         $courses = $user->courses()
-            ->when($request->get('type') === 'orderable', function ($query) {
-                return $query->whereNull('started_at');
-            }, function ($query) {
-                return $query->whereNotNull('started_at');
+            ->when($request->has('type'), function ($query) use ($request) {
+                return $query->where('course_type_id', $request->get('type'));
             })
             ->paginate();
 
-        return view('admin.mycourses', compact('categories', 'regions', 'courses'));
+        $types = CourseType::query()->get();
+
+        return view('admin.mycourses', compact('categories', 'regions', 'courses', 'types'));
     }
 
     public function createCourse(Request $request)
@@ -158,7 +159,7 @@ class CompanyController extends Controller
         $action = $r->action;
         $id = $r->course;
         $course = Course::where('id', $id)->first();
-        if($action == 'clone') {
+        if ($action == 'clone') {
             $newCourse = new Course;
             $newCourse->title = $course->title;
             $newCourse->price = $course->price;
@@ -171,7 +172,7 @@ class CompanyController extends Controller
             $newCourse->url = $course->url;
             $newCourse->save();
         }
-        if($action == 'delete') {
+        if ($action == 'delete') {
             $course->delete();
         }
 

@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseType;
 use App\Models\Event;
 use App\Models\ExtraService;
 use App\Models\Property;
@@ -121,27 +122,21 @@ class PageController extends Controller
         $closure = function ($type) use ($request) {
             return function (Builder $query) use ($request, $type) {
                 return $query
-                    ->when($type === 'orderable', function ($query) {
-                        return $query->whereNull('started_at');
-                    }, function ($query) {
-                        return $query->whereNotNull('started_at');
+                    ->when($request->has('type'), function ($query) use ($request) {
+                        return $query->where('course_type_id', $request->get('type'));
                     });
             };
         };
 
-        $orderableCoursesCount = $company->courses()
-            ->where($closure('orderable'))
-            ->featuredOrder()
-            ->count();
-        $liveCoursesCount = $company->courses()
-            ->where($closure('live'))
-            ->featuredOrder()
-            ->count();
+        $types = CourseType::query()->get();
 
-        if ($liveCoursesCount === 0 && $orderableCoursesCount > 0 && $request->get('type') !== 'orderable') {
-            return redirect()->route($request->route()->getName(), array_merge($request->route()->parameters(), ['type' => 'orderable']));
+        $counts = [];
+        foreach ($types as $type) {
+            $counts[$type->getKey()] = $company->courses()
+                ->where('course_type_id', $type->getKey())
+                ->featuredOrder()
+                ->count();
         }
-
 
         $courses = $company->courses()
             ->where($closure($request->get('type', 'live')))
@@ -149,7 +144,7 @@ class PageController extends Controller
             ->paginate()
             ->fragment('calendar');
 
-        return view('companies.single', compact('company', 'courses', 'liveCoursesCount', 'orderableCoursesCount'));
+        return view('companies.single', compact('types', 'company', 'courses', 'counts'));
 
     }
 
