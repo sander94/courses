@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseType;
 use App\Models\Region;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,10 +38,15 @@ class CourseController extends Controller
             ->when($selectedStartedAt, function ($query, $selectedStartedAt) {
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
+            ->when($request->get('type'), function (Builder $query) use ($request) {
+                return $query->where('course_type_id', $request->get('type'));
+            })
             ->featuredOrder()
             ->paginate();
 
-        return view('courses.index', compact('categories', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
+        $types = CourseType::query()->get();
+
+        return view('courses.index', compact('categories','types', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }
 
 

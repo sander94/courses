@@ -32,6 +32,14 @@
                       onclick="$('#findCourseContainer').slideToggle();">{{ optional($selectedCategory)->title ?? 'Vali kategooria' }}</span>
 
 
+                <select id="findLocation" class="filter findLocation" name="type">
+                    <option value="">Asukoht</option>
+                    @foreach($types as $type)
+                        <option
+                            value="{{ $type->getKey() }}" {{ request()->get('type') == $type->getKey() ? 'selected' : null }}>{{ $type->title }}</option>
+                    @endforeach
+                </select>
+
                 <select id="findLocation" class="filter findLocation" name="region">
                     <option value="">Asukoht</option>
                     @foreach($regions as $region)
@@ -48,7 +56,7 @@
 
             <div class="text-center mt-4">
 
-                <a href="https://www.koolitused.ee/courses">Kõik koolitused</a> | 
+                <a href="https://www.koolitused.ee/courses">Kõik koolitused</a> |
                 <a href="https://www.koolitused.ee/courses?region=&started_at=&category=129">24/7 e-koolitused</a>
 
             </div>
@@ -64,7 +72,7 @@
                             </label>
                             <ul class="sub">
                                 @foreach($category->children as $child)
-                                    <li><label><input type="radio" name="category" data-name="{{ $child->title }}" onclick="return changeCategoryValue();" 
+                                    <li><label><input type="radio" name="category" data-name="{{ $child->title }}" onclick="return changeCategoryValue();"
                                                       {{ optional($selectedCategory) === $child->getKey() ? 'checked' : null }}
                                                       value="{{ $child->getKey() }}">{{ $child->title }}</label></li>
                                 @endforeach

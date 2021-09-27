@@ -86,7 +86,7 @@ class Course extends Resource
                 ->searchable()
                 ->prepopulate(),
 
-            BelongsTo::make('Course Type')
+            BelongsTo::make('Course Type', 'courseType')
                 ->searchable()
                 ->prepopulate(),
 
