@@ -8,7 +8,8 @@ use Laravel\Nova\Fields\BelongsTo;
 class CourseType extends Model
 {
     protected $fillable = [
-        'title'
+        'title',
+        'show_on_search_page'
     ];
 
     public function course(): BelongsTo

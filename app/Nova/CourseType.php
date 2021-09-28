@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -22,7 +23,7 @@ class CourseType extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -45,6 +46,8 @@ class CourseType extends Resource
             ID::make(__('ID'), 'id')->sortable(),
 
             Text::make('Title'),
+
+            Boolean::make('Show on Search Page', 'show_on_search_page'),
 
             HasMany::make('Courses', 'courses', Course::class)
         ];

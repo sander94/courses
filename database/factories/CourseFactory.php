@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Company;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseType;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -34,7 +35,8 @@ class CourseFactory extends Factory
             'started_at' => now(),
             'ended_at' => now()->addWeek(),
             'region_id' => Region::factory()->create(),
-            'company_id' => Company::factory()->create(),
+            'company_id' => Company::query()->inRandomOrder()->first(),
+            'course_type_id' => CourseType::query()->inRandomOrder()->first(),
         ];
     }
 

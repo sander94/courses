@@ -11,6 +11,7 @@ class CreateCourseTypesTable extends Migration
         Schema::create('course_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->boolean('show_on_search_page');
             $table->timestamps();
         });
         Schema::table('courses', function (Blueprint $table) {
@@ -19,14 +20,15 @@ class CreateCourseTypesTable extends Migration
 
 
         $types = [
-            '24/7 courses',
-            'Orderable courses',
-            'Live courses'
+            '24/7 courses' => true,
+            'Orderable courses' => true,
+            'Live courses' => false
         ];
 
-        foreach ($types as $type) {
+        foreach ($types as $type => $isSearchable) {
             \App\Models\CourseType::query()->create([
-                'title' => $type
+                'title' => $type,
+                'show_on_search_page' => $isSearchable
             ]);
         }
 

@@ -25,15 +25,15 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public static $types = [
-        'courses' => Course::class,
         'articles' => Article::class,
+        'courses' => Course::class,
         'companies' => Company::class,
         'properties' => Property::class,
     ];
 
     public static $titles = [
-        'courses' => 'title',
         'articles' => 'title',
+        'courses' => 'title',
         'companies' => 'name',
         'properties' => 'name',
     ];
@@ -46,12 +46,15 @@ class PageController extends Controller
     public function search(string $type = null, Request $request)
     {
         $searchQuery = $request->get('search');
+        $selectedCourseType = $request->query('course_type');
 
         $companiesClosure = function (Builder $query) use ($searchQuery) {
             return $query
                 ->orWhere('brand', 'like', "%{$searchQuery}%")
                 ->orWhereHas('tags', function (Builder $query) use ($searchQuery) {
-                    return $query->where('text', 'LIKE', "%$searchQuery%");
+                    return $query->when($searchQuery !== null, function (Builder $query) use ($searchQuery) {
+                        return $query->where('text', 'LIKE', "%$searchQuery%");
+                    });
                 })
                 ->active();
         };
@@ -64,32 +67,72 @@ class PageController extends Controller
                 ->featuredOrder();
         };
 
+        $types = CourseType::query()->where('show_on_search_page', true)->get();
+
+        $counterTypes = $types->toBase()->merge(static::$types);
         $counters = [];
-        foreach (static::$types as $keyType => $model) {
+        foreach ($counterTypes as $keyType => $model) {
+            if ($keyType === 'courses') {
+                continue;
+            }
+
+            if ($model instanceof CourseType) {
+                $counters["courses/{$model->getKey()}"] = Course::query()
+                    ->when($searchQuery !== null, function (Builder $query) use ($searchQuery) {
+                        return $query->where('title', 'LIKE', "%{$searchQuery}%");
+                    })
+                    ->where($coursesClosure)
+                    ->where('course_type_id', $model->getKey())
+                    ->count();
+
+                continue;
+            }
+
             $counters[$keyType] = app($model)->newQuery()
-                ->where(static::$titles[$keyType], 'LIKE', "%{$searchQuery}%")
+                ->when($searchQuery !== null, function (Builder $query) use ($searchQuery, $keyType) {
+                    return $query->where(static::$titles[$keyType], 'LIKE', "%{$searchQuery}%");
+                })
                 ->when($keyType === 'companies', $companiesClosure)
-                ->when($keyType === 'courses', $coursesClosure)
                 ->count();
+
         }
 
         $max = array_keys($counters, max($counters));
+
         if ($type === null) {
             $maxKey = $max[0];
             $type = $counters[$maxKey] > 0 ? $max[0] : 'companies';
+
+            if (str_contains($type, '/')) {
+                [$type, $meta] = explode('/', $type);
+
+                if ($type === 'courses') {
+                    $selectedCourseType = $meta;
+                }
+            }
         }
 
         /** @var Model $model */
         $model = app($this->getModelFromType($type));
 
-
         $result = $model->newQuery()
-            ->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%")
+            ->when($searchQuery !== null, function (Builder $query) use ($searchQuery, $type) {
+                return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
+            })
             ->when($type === 'companies', $companiesClosure)
-            ->when($type === 'courses', $coursesClosure)
-            ->paginate();
+            ->when($type === 'courses', function (Builder $query) use ($selectedCourseType, $coursesClosure) {
+                return $query
+                    ->where($coursesClosure);
+            });
 
-        return view('search', compact('result', 'type', 'counters', 'searchQuery'));
+        if ($type === 'courses') {
+            $result = $result
+                ->where('course_type_id', $selectedCourseType);
+        }
+
+        $result = $result->paginate();
+
+        return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
     }
 
     public function courses(Request $request)

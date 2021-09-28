@@ -11,9 +11,11 @@
             <a href="{{ route('search', ['type' => 'companies', 'search' => $searchQuery]) }}"
                class="{{ $type ==='companies' ? 'active' : null }}">Koolitajad
                 ({{ $counters['companies'] }})</a>
-            <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='courses' ? 'active' : null }}">Koolitused
-                ({{ $counters['courses'] }})</a>
+            @foreach($types as $courseType)
+                <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery, 'course_type' => $courseType->getKey()]) }}"
+                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }}"> {{ $courseType->title }}
+                    ({{ $counters["courses/{$courseType->getKey()}"] }})</a>
+            @endforeach
             <a href="{{ route('search', ['type' => 'articles', 'search' => $searchQuery]) }}"
                class="{{ $type ==='articles' ? 'active' : null }}">Artiklid
                 ({{ $counters['articles'] }})</a>
