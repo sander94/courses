@@ -71,7 +71,7 @@
         <div class="row company-archive mt-5">
             @foreach($companies as $company)
                 <div class="col-6 col-sm-3 companyhover">
-                <a href="{{ route('company', $company) }}?type=live" style="text-decoration: none">
+                <a href="{{ route('company', $company) }}" style="text-decoration: none">
                     <div style="background-color: #FFFFFF; position: relative;">
                     <div class="overlay">
                         {{ $company->name }}

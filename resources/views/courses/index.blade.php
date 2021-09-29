@@ -33,7 +33,7 @@
 
 
                 <select id="findLocation" class="filter findLocation" name="type">
-                    <option value="">Asukoht</option>
+                    <option value="">Koolituse tüüp</option>
                     @foreach($types as $type)
                         <option
                             value="{{ $type->getKey() }}" {{ request()->get('type') == $type->getKey() ? 'selected' : null }}>{{ $type->title }}</option>
