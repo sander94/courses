@@ -162,32 +162,39 @@ class PageController extends Controller
     {
         views($company)->record();
 
-        $closure = function ($type) use ($request) {
-            return function (Builder $query) use ($request, $type) {
-                return $query
-                    ->when($request->has('type'), function ($query) use ($request) {
-                        return $query->where('course_type_id', $request->get('type'));
-                    });
-            };
-        };
-
         $types = CourseType::query()->get();
 
-        $counts = [];
+        $counters = [];
         foreach ($types as $type) {
-            $counts[$type->getKey()] = $company->courses()
+            $counters[$type->getKey()] = $company->courses()
                 ->where('course_type_id', $type->getKey())
-                ->featuredOrder()
+                ->orWhere(function ($query) {
+                    return $query->featuredOrder();
+                })
                 ->count();
         }
 
+        $max = array_keys($counters, max($counters));
+
+        $maxKey = $max[0];
+
+        $selectedType = $request->query('course_type');
+
+        if ($maxKey && $selectedType !== (string)$maxKey) {
+            return redirect(route('company', ['company' => $company, 'course_type' => $maxKey]));
+        }
+
+
         $courses = $company->courses()
-            ->where($closure($request->get('type', 'live')))
-            ->featuredOrder()
+            ->where('course_type_id', $selectedType)
+            ->orWhere(function ($query) {
+                return $query->featuredOrder();
+            })
             ->paginate()
             ->fragment('calendar');
 
-        return view('companies.single', compact('types', 'company', 'courses', 'counts'));
+
+        return view('companies.single', compact('types', 'company', 'courses', 'counters', 'selectedType'));
 
     }
 
