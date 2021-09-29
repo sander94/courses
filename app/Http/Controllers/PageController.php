@@ -160,41 +160,47 @@ class PageController extends Controller
 
     public function company(Company $company, Request $request)
     {
+        $selectedCourseType = $request->get('type');
+
+
         views($company)->record();
+
+        $closure = function ($type) use ($selectedCourseType) {
+            return function (Builder $query) use ($selectedCourseType) {
+                return $query
+                    ->when($selectedCourseType !== null, function ($query) use ($selectedCourseType) {
+                        return $query->where('course_type_id', $selectedCourseType);
+                    });
+            };
+        };
 
         $types = CourseType::query()->get();
 
-        $counters = [];
+        $counts = [];
         foreach ($types as $type) {
-            $counters[$type->getKey()] = $company->courses()
+            $counts[$type->getKey()] = $company->courses()
                 ->where('course_type_id', $type->getKey())
-                ->orWhere(function ($query) {
-                    return $query->featuredOrder();
-                })
+                ->featuredOrder()
                 ->count();
         }
 
-        $max = array_keys($counters, max($counters));
+        $max = array_keys($counts, max($counts));
 
-        $maxKey = $max[0];
+        $maxCourseType = $max[0];
 
-        $selectedType = $request->query('course_type');
-
-        if ($maxKey && $selectedType !== (string)$maxKey) {
-            return redirect(route('company', ['company' => $company, 'course_type' => $maxKey]));
+        if (!$request->has('type')) {
+            return redirect(route('company', ['company' => $company, 'type' => $maxCourseType]));
         }
 
 
         $courses = $company->courses()
-            ->where('course_type_id', $selectedType)
-            ->orWhere(function ($query) {
-                return $query->featuredOrder();
-            })
+            ->where($closure($request->get('type', 'live')))
+            ->featuredOrder()
             ->paginate()
             ->fragment('calendar');
 
 
-        return view('companies.single', compact('types', 'company', 'courses', 'counters', 'selectedType'));
+        return view('companies.single', compact('types', 'company', 'courses', 'counts', 'selectedCourseType'));
 
     }
 
