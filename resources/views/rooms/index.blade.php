@@ -101,7 +101,7 @@
             .room-image {
                 background-color: #FFFFFF;
                 width: 280px;
-                height: 280px;
+                height: auto;
                 background-size: 90%;
                 background-repeat: no-repeat;
                 background-position: center center;
