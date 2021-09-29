@@ -13,7 +13,7 @@
 
     <style>
         ul, li {
-            list-style-type: auto;
+            list-style-type: inherit;
         }
     </style>
     <div class="content pb-5">
