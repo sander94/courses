@@ -121,7 +121,7 @@
 
                 .room-image {
                     width: 100%;
-                    height:  200px;
+                   /* height:  200px; */
                 }
 
                 .property-data {
