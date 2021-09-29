@@ -12,8 +12,8 @@ class CourseType extends Model
         'show_on_search_page'
     ];
 
-    public function course(): BelongsTo
+    public function courses(): BelongsTo
     {
-        return $this->belongsTo(Course::class);
+        return $this->hasMany(Course::class);
     }
 }
