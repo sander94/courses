@@ -10,6 +10,12 @@
     }
 
     ?>
+
+    <style>
+        ul, li {
+            list-style-type: auto;
+        }
+    </style>
     <div class="content pb-5">
         <div class="row">
             <div class="col-sm-6">
