@@ -44,7 +44,7 @@ class CourseController extends Controller
             ->featuredOrder()
             ->paginate();
 
-        $types = CourseType::query()->get();
+        $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
 
         return view('courses.index', compact('categories','types', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }

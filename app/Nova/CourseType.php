@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class CourseType extends Resource
@@ -44,6 +45,8 @@ class CourseType extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Number::make(__('Järjekord'), 'sort_order'),
 
             Text::make('Title'),
 

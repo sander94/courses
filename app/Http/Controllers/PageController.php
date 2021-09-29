@@ -67,7 +67,7 @@ class PageController extends Controller
                 ->featuredOrder();
         };
 
-        $types = CourseType::query()->where('show_on_search_page', true)->get();
+        $types = CourseType::query()->where('show_on_search_page', true)->orderBy('sort_order', 'ASC')->get();
 
         $counterTypes = $types->toBase()->merge(static::$types);
         $counters = [];
@@ -174,7 +174,7 @@ class PageController extends Controller
             };
         };
 
-        $types = CourseType::query()->get();
+        $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
 
         $counts = [];
         foreach ($types as $type) {
