@@ -99,9 +99,9 @@
             }
 
             .room-image {
-                background-color: #FFFFFF;
+                /* background-color: #FFFFFF; */
                 width: 280px;
-                height: auto;
+                /* height: 280px; */
                 background-size: 90%;
                 background-repeat: no-repeat;
                 background-position: center center;
