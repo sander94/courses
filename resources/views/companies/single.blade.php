@@ -49,9 +49,9 @@
             <div class="button-container">
                 @foreach($types as $type)
 
-                    <a href="?course_type={{ $type->getKey() }}#calendar"
-                       class="{{ $selectedType == $type->getKey() ? 'active' : null }}">{{ $type->title }}
-                        ({{ $counters[$type->getKey()] }})</a>
+                    <a href="?type={{ $type->getKey() }}#calendar"
+                       class="{{ $selectedCourseType == $type->getKey() ? 'active' : null }}">{{ $type->title }}
+                        ({{ $counts[$type->getKey()] }})</a>
                 @endforeach
             </div>
             <div class="results-table-container">
