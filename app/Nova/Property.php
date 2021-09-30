@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
@@ -58,6 +59,8 @@ class Property extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Boolean::make('Aktiivne', 'active'),
 
             Images::make(__('Cover'), 'cover'),
 

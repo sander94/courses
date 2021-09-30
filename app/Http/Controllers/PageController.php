@@ -130,6 +130,11 @@ class PageController extends Controller
                 ->where('course_type_id', $selectedCourseType);
         }
 
+        if($type === 'properties') {
+            $result = $result
+                ->where('active', '1');
+        }
+
         $result = $result->paginate();
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
@@ -243,7 +248,7 @@ class PageController extends Controller
         $regions = PropertyRegion::all();
         $services = ExtraService::all();
 
-        $properties = Property::query()->orderBy('sort_order', 'ASC');
+        $properties = Property::query()->where('active', '1')->orderBy('sort_order', 'ASC');
 
 
         $properties = $properties
