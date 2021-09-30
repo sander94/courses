@@ -76,11 +76,16 @@ class PageController extends Controller
             if ($model instanceof CourseType) {
                 $counters["courses/{$model->getKey()}"] = Course::query()
                     ->when($searchQuery !== null, function (Builder $query) use ($searchQuery) {
-                        return $query
-                            ->where('title', 'LIKE', "%{$searchQuery}%")
-                            ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
-                                return $builder->where('title', 'like', "%{$searchQuery}%");
+                        if ($type === 'courses') {
+                            return $query->where(function (Builder $query) use ($searchQuery) {
+                                return $query->where('title', 'LIKE', "%{$searchQuery}%")
+                                    ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
+                                        return $builder->where('title', 'like', "%{$searchQuery}%");
+                                    });
                             });
+                        }
+
+                        return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
                     })
                     ->where($coursesClosure)
                     ->where('course_type_id', $model->getKey())
