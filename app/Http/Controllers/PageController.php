@@ -61,10 +61,6 @@ class PageController extends Controller
 
         $coursesClosure = function (Builder $query) use ($request, $type, $searchQuery) {
             return $query
-                ->where('title', 'like', "%{$searchQuery}%")
-                ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
-                    return $builder->where('title', 'like', "%{$searchQuery}%");
-                })
                 ->featuredOrder();
         };
 
@@ -80,7 +76,11 @@ class PageController extends Controller
             if ($model instanceof CourseType) {
                 $counters["courses/{$model->getKey()}"] = Course::query()
                     ->when($searchQuery !== null, function (Builder $query) use ($searchQuery) {
-                        return $query->where('title', 'LIKE', "%{$searchQuery}%");
+                        return $query
+                            ->where('title', 'LIKE', "%{$searchQuery}%")
+                            ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
+                                return $builder->where('title', 'like', "%{$searchQuery}%");
+                            });
                     })
                     ->where($coursesClosure)
                     ->where('course_type_id', $model->getKey())
@@ -118,7 +118,15 @@ class PageController extends Controller
 
         $result = $model->newQuery()
             ->when($searchQuery !== null, function (Builder $query) use ($searchQuery, $type) {
-                return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
+                $query = $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
+
+                if ($type === 'courses') {
+                    $query = $query->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
+                        return $builder->where('title', 'like', "%{$searchQuery}%");
+                    });
+                }
+
+                return $query;
             })
             ->when($type === 'companies', $companiesClosure)
             ->when($type === 'courses', function (Builder $query) use ($selectedCourseType, $coursesClosure) {
@@ -131,7 +139,7 @@ class PageController extends Controller
                 ->where('course_type_id', $selectedCourseType);
         }
 
-        if($type === 'properties') {
+        if ($type === 'properties') {
             $result = $result
                 ->where('active', '1');
         }
