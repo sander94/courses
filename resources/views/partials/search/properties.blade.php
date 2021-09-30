@@ -282,7 +282,18 @@
                                 </tr>
                                 @foreach($property->rooms as $room)
                                     <tr style="height: 40px;">
-                                        <td class="room_name">{{ $room->name }}</td>
+                                        <td class="room_name"> 
+                                            @if($room->url)
+                                                <a href="{{ $room->url }}" target="_blank">
+                                            @endif
+
+                                                    {{ $room->name }}
+
+                                            @if($room->url)
+                                                <i class="fas fa-external-link-alt"> </i>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $room->square_meters }}</td>
                                         <td class="text-center"><i
                                                 class="fa fa-user"></i> {{ $room->theatre_style_capacity ?? 0 }}</td>
