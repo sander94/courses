@@ -73,7 +73,7 @@ class Room extends Resource
             Text::make('Cabaret style capacity')
                 ->rules('nullable', 'string'),
 
-            Link::make('Url')->rules('url'),
+            Link::make('Url')->rules('nullable', 'url'),
 
             BelongsTo::make('Property'),
         ];
