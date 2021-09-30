@@ -240,9 +240,13 @@
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
                             <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
+                           @if(false)
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
+                            @endif
+
+                            <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image">
 
                             @php
                                 $media = $property->getMedia('gallery');
