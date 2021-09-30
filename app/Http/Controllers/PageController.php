@@ -118,15 +118,16 @@ class PageController extends Controller
 
         $result = $model->newQuery()
             ->when($searchQuery !== null, function (Builder $query) use ($searchQuery, $type) {
-                $query = $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
-
                 if ($type === 'courses') {
-                    $query = $query->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
-                        return $builder->where('title', 'like', "%{$searchQuery}%");
+                    return $query->where(function (Builder $query) {
+                        return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%")
+                            ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
+                                return $builder->where('title', 'like', "%{$searchQuery}%");
+                            });
                     });
                 }
 
-                return $query;
+                return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
             })
             ->when($type === 'companies', $companiesClosure)
             ->when($type === 'courses', function (Builder $query) use ($selectedCourseType, $coursesClosure) {
