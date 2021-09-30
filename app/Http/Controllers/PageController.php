@@ -130,10 +130,7 @@ class PageController extends Controller
                 return $query->where(static::$titles[$type], 'LIKE', "%{$searchQuery}%");
             })
             ->when($type === 'companies', $companiesClosure)
-            ->when($type === 'courses', function (Builder $query) use ($selectedCourseType, $coursesClosure) {
-                return $query
-                    ->where($coursesClosure);
-            });
+            ->when($type === 'courses', $coursesClosure);
 
         if ($type === 'courses') {
             $result = $result
