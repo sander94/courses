@@ -75,7 +75,7 @@ class PageController extends Controller
 
             if ($model instanceof CourseType) {
                 $counters["courses/{$model->getKey()}"] = Course::query()
-                    ->when($searchQuery !== null, function (Builder $query) use ($searchQuery) {
+                    ->when($searchQuery !== null, function (Builder $query) use ($searchQuery, $type) {
                         if ($type === 'courses') {
                             return $query->where(function (Builder $query) use ($searchQuery) {
                                 return $query->where('title', 'LIKE', "%{$searchQuery}%")
