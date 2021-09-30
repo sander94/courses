@@ -61,6 +61,7 @@ class PageController extends Controller
 
         $coursesClosure = function (Builder $query) use ($request, $type, $searchQuery) {
             return $query
+                ->where('title', 'like', "%{$searchQuery}%")
                 ->orWhereHas('courseCategories', function (Builder $builder) use ($searchQuery) {
                     return $builder->where('title', 'like', "%{$searchQuery}%");
                 })
