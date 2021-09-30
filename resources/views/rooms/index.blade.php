@@ -100,7 +100,7 @@
 
             .room-image {
                 /* background-color: #FFFFFF; */
-                width: 280px;
+                width: 100%;
                 /* height: 280px; */
                 background-size: 90%;
                 background-repeat: no-repeat;

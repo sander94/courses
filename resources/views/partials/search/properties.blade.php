@@ -77,9 +77,9 @@
             }
 
             .room-image {
-                background-color: #FFFFFF;
-                width: 280px;
-                height: 280px;
+                /* background-color: #FFFFFF; */
+                width: 100%;
+                /* height: 280px; */
                 background-size: 90%;
                 background-repeat: no-repeat;
                 background-position: center center;
@@ -99,7 +99,7 @@
 
                 .room-image {
                     width: 100%;
-                    height:  200px;
+                    /* height:  200px; */
                 }
 
                 .property-data {
