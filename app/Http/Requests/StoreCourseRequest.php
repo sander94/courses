@@ -46,6 +46,9 @@ class StoreCourseRequest extends FormRequest
                 'required',
                 'exists:course_categories,id'
             ],
+            'course_type_id' => [
+                'required',
+            ]
         ];
     }
 }

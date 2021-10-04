@@ -16,6 +16,23 @@
 
 <div class="row profile-row">
     <div class="col-6">
+        <div class="profile-input-row">
+            <div class="input-desc">
+                Koolituse tüüp
+            </div>
+            <select name="course_type_id" onchange="checkIfHide(this);">
+                @foreach($coursetypes as $coursetype)
+                    <option value="{{ $coursetype->id }}" @isset($course->course_type_id) @if($coursetype->id == $course->course_type_id) selected @endif @endisset>{{ $coursetype->title }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row profile-row">
+    <div class="col-6">
         <label class="profile-input-row">
             <div class="input-desc">
                 Koolituse nimi
@@ -38,18 +55,8 @@
     </div>
 </div>
 
+<div id="datefields">
 <div class="row profile-row">
-    <div class="col-6">
-        <label class="profile-input-row">
-            <div class="input-desc">
-                <label for="is_buyable">Tellitav kursus?</label>
-            </div>
-            <input type="checkbox" id="is_buyable" name="is_buyable" v-model="model.is_buyable">
-        </label>
-    </div>
-</div>
-
-<div class="row profile-row" v-if="!model.is_buyable">
     <div class="col-6">
         <label class="profile-input-row">
             <div class="input-desc">
@@ -60,7 +67,7 @@
     </div>
 </div>
 
-<div class="row profile-row" v-if="!model.is_buyable">
+<div class="row profile-row">
     <div class="col-6">
         <label class="profile-input-row">
             <div class="input-desc">
@@ -69,6 +76,7 @@
             <datepicker v-model="model.ended_at" type="date" value-type="format"></datepicker>
         </label>
     </div>
+</div>
 </div>
 <!-- 
 <div class="row profile-row">
@@ -97,7 +105,7 @@
     <div class="col-6">
         <label class="profile-input-row">
             <div class="input-desc">
-                Hind:
+                Hind
             </div>
             <input type="text" name="price" value="{{ old('price') ?? optional($course)->price }}">
         </label>
@@ -134,3 +142,19 @@
     </div>
 </div>
 </div>
+
+
+<script>
+
+function checkIfHide(select) {
+     var value = select.options[select.selectedIndex].value;
+
+     if(value == 3) {
+        $('#datefields').show();
+     }
+     else {
+        $('#datefields').hide();
+     }
+}
+
+</script>

@@ -130,7 +130,8 @@ class CompanyController extends Controller
             })
             ->paginate();
 
-        $types = CourseType::query()->get();
+        $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
+
 
         return view('admin.mycourses', compact('categories', 'regions', 'courses', 'types'));
     }
@@ -143,7 +144,9 @@ class CompanyController extends Controller
 
         $course = null;
 
-        return view('admin.courses.create', compact('categories', 'regions', 'course'));
+        $coursetypes = CourseType::orderBy('sort_order', 'ASC')->get();
+
+        return view('admin.courses.create', compact('categories', 'regions', 'course', 'coursetypes'));
     }
 
     public function editCourse(Course $course)
@@ -151,7 +154,9 @@ class CompanyController extends Controller
         $categories = CourseCategory::query()->with('children')->get()->keyBy('id');
         $regions = Region::query()->get()->keyBy('id');
 
-        return view('admin.courses.edit', compact('categories', 'regions', 'course'));
+        $coursetypes = CourseType::get();
+
+        return view('admin.courses.edit', compact('categories', 'regions', 'course', 'coursetypes'));
     }
 
     public function modifyCourse(Request $r)
@@ -170,6 +175,7 @@ class CompanyController extends Controller
             $newCourse->company_id = $course->company_id;
             $newCourse->region_id = $course->region_id;
             $newCourse->url = $course->url;
+            $newCourse->course_type_id = $course->course_type_id;
             $newCourse->save();
         }
         if ($action == 'delete') {
@@ -191,7 +197,9 @@ class CompanyController extends Controller
 
         $course->courseCategories()->sync($request->get('categories'));
 
-        return redirect()->route('profile');
+        $type = $course->course_type_id;
+
+        return redirect()->route('mycourses', ['type'=>$type]);
     }
 
     public function updateCourse(Course $course, StoreCourseRequest $request)
@@ -202,7 +210,9 @@ class CompanyController extends Controller
 
         $course->save();
 
-        return redirect()->route('profile');
+        $type = $course->course_type_id;
+
+        return redirect()->route('mycourses', ['type'=>$type]);
     }
 
 }

@@ -26,6 +26,27 @@
         .profile-input-row input[type="text"].mx-input {
             width: 100%;
         }
+
+        .button-container {
+            margin-top: 0;
+        }
+
+        .button-container a {
+            background: none;
+            color: #000000;
+            border: 0;
+            padding: 10px 25px;
+            margin: 0;
+        }
+
+        .button-container a.active2 {
+            font-weight: 900;
+            border-bottom: 2px solid black;
+            border-radius: 0;
+            margin: 0;
+            background: #FFFFFF;
+            
+        }
     </style>
 
 
@@ -33,40 +54,47 @@
 
         <div class="row">
 
-            <div class="col-12">
 
-                <a href="{{ route('createCourse') }}"><i class="fas fa-plus mr-2"> </i>Lisa uus koolitus</a>
-
-            </div>
 
 
         </div>
 
 
         <div class="row">
-            <div class="button-container">
-                @foreach($types as $type)
-                    <a href="?type={{ $type->getKey() }}" class="{{ request()->query('type') !== $type->getKey() ? 'active' : null }}">{{ $type->title }}</a>
-                @endforeach
+            <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 50px;">
+                <div class="button-container">
+                    @foreach($types as $type)
+                            <a href="?type={{ $type->getKey() }}" class="@if(request()->query('type') == $type->getKey()) active2 @endif">{{ $type->title }}</a>
+                    @endforeach
+                </div>
+
+                <div style="width: 200px;">
+
+                    <a href="{{ route('createCourse') }}"><i class="fas fa-plus mr-2"> </i>Lisa uus koolitus</a>
+
+                </div>
             </div>
 
             <div class="results-table-container">
 
                 <table border="0" cellpadding="0" cellspacing="0" class="results-table">
+                    @if($courses->count() > 0)
                     <tr class="tableheader">
-                        @if(request()->query('type') == 'live')
-                            <td style="width: 50px;">Kuupäev</td> @endif
+                        @if(request()->query('type') == '3')
+                        <td style="width: 50px;">Kuupäev</td> @endif
                         <td style="width: 250px;">Koolitus</td>
                         <td style="width: 100px;">Hind</td>
                         <td style="width: 100px;">Koht</td>
                         <td style="width: 40px;">Klikke</td>
                         <td style="width: 120px;">&nbsp;</td>
                     </tr>
-                    @forelse($courses as $course)
+                    @endif
+
+                        @forelse($courses as $course)
                         <tr>
-                            @if($course->started_at)
+                            @if(request()->query('type') == '3')
                                 <td style="font-weight: 300;">
-                                    {{ $course->started_at->format('d.m.Y') }}
+                                    @if($course->started_at) {{ $course->started_at->format('d.m.Y') }} @endif
                                     @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
 
 
