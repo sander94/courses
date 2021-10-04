@@ -38,7 +38,8 @@ class Course extends Model implements Viewable
         'started_at',
         'is_active',
         'ended_at',
-        'url'
+        'url',
+        'course_type_id',
     ];
 
     /**

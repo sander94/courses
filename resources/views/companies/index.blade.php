@@ -65,9 +65,6 @@
 
         </div>
 
-<style>
-
-</style>
         <div class="row company-archive mt-5">
             @foreach($companies as $company)
                 <div class="col-6 col-sm-3 companyhover">
