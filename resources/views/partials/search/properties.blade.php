@@ -77,9 +77,9 @@
             }
 
             .room-image {
-                background-color: #FFFFFF;
-                width: 280px;
-                height: 280px;
+                /* background-color: #FFFFFF; */
+                width: 100%;
+                /* height: 280px; */
                 background-size: 90%;
                 background-repeat: no-repeat;
                 background-position: center center;
@@ -99,7 +99,7 @@
 
                 .room-image {
                     width: 100%;
-                    height:  200px;
+                    /* height:  200px; */
                 }
 
                 .property-data {
@@ -240,9 +240,13 @@
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
                             <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
+                           @if(false)
                             <div class="room-image"
                                  style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
                             </div>
+                            @endif
+
+                            <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image">
 
                             @php
                                 $media = $property->getMedia('gallery');
@@ -282,7 +286,18 @@
                                 </tr>
                                 @foreach($property->rooms as $room)
                                     <tr style="height: 40px;">
-                                        <td class="room_name">{{ $room->name }}</td>
+                                        <td class="room_name"> 
+                                            @if($room->url)
+                                                <a href="{{ $room->url }}" target="_blank">
+                                            @endif
+
+                                                    {{ $room->name }}
+
+                                            @if($room->url)
+                                                <i class="fas fa-external-link-alt"> </i>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $room->square_meters }}</td>
                                         <td class="text-center"><i
                                                 class="fa fa-user"></i> {{ $room->theatre_style_capacity ?? 0 }}</td>

@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Khalin\Nova\Field\Link;
 use Laravel\Nova\Fields\BelongsTo;
 
 class Room extends Resource
@@ -71,6 +72,8 @@ class Room extends Resource
 
             Text::make('Cabaret style capacity')
                 ->rules('nullable', 'string'),
+
+            Link::make('Url')->rules('nullable', 'url'),
 
             BelongsTo::make('Property'),
         ];
