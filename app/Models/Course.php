@@ -99,6 +99,9 @@ class Course extends Model implements Viewable
     {
         return $query
             ->where('is_active', true)
+            ->whereHas('company', function (Builder $query) {
+                return $query->where('is_active', true);
+            })
             ->where(function (Builder $query) {
                 return $query
                     ->where(function (Builder $query) {
