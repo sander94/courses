@@ -6,6 +6,7 @@ use App\Nova\Actions\DuplicateCourse;
 use App\Nova\Actions\DuplicateResource;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -75,6 +76,8 @@ class Course extends Resource
 
             Date::make('Started At')->nullable(),
             Date::make('Ended At')->hideFromIndex()->nullable(),
+
+            Boolean::make('Is Active'),
 
             BelongsToMany::make('Course Category', 'courseCategories')->hideFromIndex(),
 

@@ -36,6 +36,7 @@ class Course extends Model implements Viewable
         'course_category_id',
         'region_id',
         'started_at',
+        'is_active',
         'ended_at',
         'url'
     ];
@@ -97,6 +98,7 @@ class Course extends Model implements Viewable
     public function scopeFeaturedOrder($query)
     {
         return $query
+            ->where('is_active', true)
             ->where(function (Builder $query) {
                 return $query
                     ->where(function (Builder $query) {
