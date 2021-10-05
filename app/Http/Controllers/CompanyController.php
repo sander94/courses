@@ -124,11 +124,16 @@ class CompanyController extends Controller
         $categories = CourseCategory::query()->with('children')->get();
         $regions = Region::query()->get();
 
+        if($request->type == '3') {
+            $courses = $user->courses()->where('course_type_id', '3')->where('started_at', '>=', Carbon::now())->orderBy('started_at', 'ASC')->paginate();
+        }
+        else {
         $courses = $user->courses()
             ->when($request->has('type'), function ($query) use ($request) {
                 return $query->where('course_type_id', $request->get('type'));
             })
             ->paginate();
+        }
 
         $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
 
