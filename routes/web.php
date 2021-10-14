@@ -49,7 +49,7 @@ Route::prefix('company')->group(function () {
 
     Route::middleware('auth:company')->group(function () {
         Route::get('profile', 'CompanyController@profile')->name('profile');
-        Route::post('profile', 'CompanyController@update')->name('company.update');
+        Route::post('profile', 'CompanyController@profileUpdate')->name('company.update');
         Route::get('statistics', 'CompanyController@statistics')->name('statistics');
         Route::get('courses', 'CompanyController@mycourses')->name('mycourses');
         Route::get('courses/create', 'CompanyController@createCourse')->name('createCourse');

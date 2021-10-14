@@ -13,6 +13,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\CompanyUpdatesInfo;
+use App\Mail\CompanyUpdatesProfile;
+use App\Mail\CompanyAddsCourse;
+
 
 class CompanyController extends Controller
 {
@@ -71,9 +76,44 @@ class CompanyController extends Controller
         if ($request->has('cover')) {
             $company->addMediaFromRequest('cover')->toMediaCollection('cover');
         }
+    
+        Mail::to('info@koolitused.ee')->send(new CompanyUpdatesInfo($company->name));
 
         return redirect()->back()
             ->with('success', 'Company updated');
+    }
+
+
+ public function profileUpdate(Request $r)
+    {
+      
+      if(!$r->description) {
+          $company = Company::where('id', Auth::user()->id)->first();
+          $company->name = $r->name;
+          $company->city = $r->city;
+          $company->website = $r->website;
+          $company->email = $r->email;
+          $company->phone = $r->phone;
+          $company->brand = $r->brand;
+            if ($r->has('cover')) {
+                $company->addMediaFromRequest('cover')->toMediaCollection('cover');
+            }
+          $company->save();
+
+          Mail::to('info@koolitused.ee')->send(new CompanyUpdatesProfile($company->name));
+        }
+
+        else {
+        $company = Company::where('id', Auth::user()->id)->first();
+        $company->description = $r->description;
+        $company->save();
+
+        Mail::to('info@koolitused.ee')->send(new CompanyUpdatesInfo($company->name));
+
+        }
+
+      return redirect()->back();
+
     }
 
     public function statistics(Request $request)
@@ -203,6 +243,8 @@ class CompanyController extends Controller
         $course->courseCategories()->sync($request->get('categories'));
 
         $type = $course->course_type_id;
+
+        Mail::to('info@koolitused.ee')->send(new CompanyAddsCourse($company->name));
 
         return redirect()->route('mycourses', ['type'=>$type]);
     }
