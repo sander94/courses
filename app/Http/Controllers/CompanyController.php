@@ -17,6 +17,7 @@ use Mail;
 use App\Mail\CompanyUpdatesInfo;
 use App\Mail\CompanyUpdatesProfile;
 use App\Mail\CompanyAddsCourse;
+use App\Mail\CompanyChangesCourse;
 
 
 class CompanyController extends Controller
@@ -258,6 +259,8 @@ class CompanyController extends Controller
         $course->save();
 
         $type = $course->course_type_id;
+
+        Mail::to('info@koolitused.ee')->send(new CompanyChangesCourse($course->title));
 
         return redirect()->route('mycourses', ['type'=>$type]);
     }
