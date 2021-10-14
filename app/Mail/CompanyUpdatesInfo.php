@@ -30,7 +30,6 @@ class CompanyUpdatesInfo extends Mailable
      */
     public function build()
     {
-        dd(request()->all());
         return $this->from('info@koolitused.ee')
             ->subject('Ettevõte uuendas infot')
             ->view('emails.companyUpdatesInfo');
