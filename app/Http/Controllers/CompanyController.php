@@ -258,9 +258,12 @@ class CompanyController extends Controller
 
         $course->save();
 
+        $companyName = Company::where('id', Auth::user()->id)->first();
+        $company = $companyName->name;
+
         $type = $course->course_type_id;
 
-        Mail::to('info@koolitused.ee')->send(new CompanyChangesCourse($course->title));
+        Mail::to('info@koolitused.ee')->send(new CompanyChangesCourse($course->title, $company));
 
         return redirect()->route('mycourses', ['type'=>$type]);
     }

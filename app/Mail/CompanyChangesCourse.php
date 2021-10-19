@@ -18,9 +18,10 @@ class CompanyChangesCourse extends Mailable
      *
      * @return void
      */
-    public function __construct($course)
+    public function __construct($course, $company)
     {
         $this->course = $course;
+        $this->company = $company;
     }
 
     /**
@@ -31,7 +32,7 @@ class CompanyChangesCourse extends Mailable
     public function build()
     {
         return $this->from('info@koolitused.ee')
-            ->subject('Ettevõte uuendas koolitust')
+            ->subject('Ettevõte '.$this->company.' uuendas koolitust')
             ->view('emails.companyChangesCourse');
     }
 }
