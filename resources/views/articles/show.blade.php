@@ -1,6 +1,14 @@
 @extends('layouts.web')
 
 @section('content')
+
+<style>
+img {
+    max-width: 100%;
+    height: auto;
+}
+</style>
+
     <div class="content">
         <h1 class="entry-title">{{ $article->title }}</h1>
         <div class="separator-orange"></div>
