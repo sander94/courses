@@ -7,6 +7,7 @@
 .has-results {
     background-color: #bf4f33;
     border-color: #bf4f33;
+    color: #FFFFFF;
 }
 
 </style>
