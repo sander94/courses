@@ -5,9 +5,8 @@
 <style>
 
 .has-results {
-    background-color: #bf4f33;
+    background-color: rgb(246 111 77 / 60%);
     border-color: #bf4f33;
-    color: #FFFFFF !important;
 }
 
 </style>
