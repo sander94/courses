@@ -2,6 +2,14 @@
 
 @section('content')
 
+<style>
+
+.has-results {
+    background-color: red;
+}
+
+</style>
+
     <div class="content">
         @if($searchQuery)
             <h1 class="entry-title">Otsingu tulemused “<span class="text-orange">{{ $searchQuery }}</span>”</h1>
@@ -9,18 +17,18 @@
         @endif
         <div class="button-container">
             <a href="{{ route('search', ['type' => 'companies', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='companies' ? 'active' : null }}">Koolitajad
+               class="{{ $type ==='companies' ? 'active' : null }} @if($counters['companies'] > 0) has-results @endif">Koolitajad
                 ({{ $counters['companies'] }})</a>
             @foreach($types as $courseType)
                 <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery, 'course_type' => $courseType->getKey()]) }}"
-                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }}"> {{ $courseType->title }}
+                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }} @if($counters['courses/{$courseType->getKey()}'] > 0) has-results @endif"> {{ $courseType->title }}
                     ({{ $counters["courses/{$courseType->getKey()}"] }})</a>
             @endforeach
             <a href="{{ route('search', ['type' => 'articles', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='articles' ? 'active' : null }}">Artiklid
+               class="{{ $type ==='articles' ? 'active' : null }} @if($counters['articles'] > 0) has-results @endif">Artiklid
                 ({{ $counters['articles'] }})</a>
             <a href="{{ route('search', ['type' => 'properties', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='properties' ? 'active' : null }}">Ruumid
+               class="{{ $type ==='properties' ? 'active' : null }} @if($counters['properties'] > 0) has-results @endif">Ruumid
                 ({{ $counters['properties'] }})</a>
 
         </div>
