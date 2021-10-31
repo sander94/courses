@@ -21,7 +21,7 @@
                 ({{ $counters['companies'] }})</a>
             @foreach($types as $courseType)
                 <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery, 'course_type' => $courseType->getKey()]) }}"
-                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }} @if($counters['courses/{$courseType->getKey()}'] > 0) has-results @endif"> {{ $courseType->title }}
+                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }}"> {{ $courseType->title }}
                     ({{ $counters["courses/{$courseType->getKey()}"] }})</a>
             @endforeach
             <a href="{{ route('search', ['type' => 'articles', 'search' => $searchQuery]) }}"
