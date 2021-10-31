@@ -25,11 +25,11 @@
 
             @php 
 
-            $thecount = $counters["courses/{$courseType->getKey()}"];
+                $thecount = $counters["courses/{$courseType->getKey()}"];
 
             @endphp
                 <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery, 'course_type' => $courseType->getKey()]) }}"
-                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }}"> {{ $courseType->title }}
+                   class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }} @if($thecount > 0) has-results @endif"> {{ $courseType->title }}
                     ({{ $counters["courses/{$courseType->getKey()}"] }})</a>
             @endforeach
             <a href="{{ route('search', ['type' => 'articles', 'search' => $searchQuery]) }}"
