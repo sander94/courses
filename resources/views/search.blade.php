@@ -6,7 +6,7 @@
 
 .has-results {
     background-color: rgb(246 111 77 / 60%);
-    border-color: #bf4f33;
+    border-color: rgb(246 111 77 / 60%);
 }
 
 </style>
