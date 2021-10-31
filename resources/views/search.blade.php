@@ -28,7 +28,7 @@
                class="{{ $type ==='articles' ? 'active' : null }} @if($counters['articles'] > 0) has-results @endif">Artiklid
                 ({{ $counters['articles'] }})</a>
             <a href="{{ route('search', ['type' => 'properties', 'search' => $searchQuery]) }}"
-               class="{{ $type ==='properties' ? 'active' : null }} @if($counters['properties'] > 0) has-results @endif">Ruumid
+               class="{{ $type ==='properties' ? 'active' : null }}">Ruumid
                 ({{ $counters['properties'] }})</a>
 
         </div>
