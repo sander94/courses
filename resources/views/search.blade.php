@@ -22,6 +22,12 @@
                class="{{ $type ==='companies' ? 'active' : null }} @if($counters['companies'] > 0) has-results @endif">Koolitajad
                 ({{ $counters['companies'] }})</a>
             @foreach($types as $courseType)
+
+            @php 
+
+            $thecount = $counters["courses/{$courseType->getKey()}"];
+
+            @endphp
                 <a href="{{ route('search', ['type' => 'courses', 'search' => $searchQuery, 'course_type' => $courseType->getKey()]) }}"
                    class="{{ $courseType->getKey() == $selectedCourseType ? 'active' : null }}"> {{ $courseType->title }}
                     ({{ $counters["courses/{$courseType->getKey()}"] }})</a>
