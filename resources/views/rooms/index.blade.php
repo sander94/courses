@@ -17,7 +17,7 @@
             @if($banner)
                 <div class="col-sm-8">
                     <a href="{{ route('ad', $banner) }}">
-                        <img src="{{ $banner->getFirstMediaUrl('banner') }}" class="advert">
+                        <img src="{{ $banner->getFirstMediaUrl('banner') }}" class="advert" target="_blank">
                     </a>
                 </div>
             @endif
