@@ -39,12 +39,12 @@ class CourseController extends Controller
                 return $query->where('started_at', '>=', $selectedStartedAt);
             })
             ->when($request->get('type'), function (Builder $query) use ($request) {
-                return $query->where('course_type_id', $request->get('type'));
+                return $query->where('course_type_id', $request->get('type'))->orderBy('id', 'DESC');
             })
             ->featuredOrder()
             ->paginate();
 
-        $types = CourseType::query()->orderBy('id', 'DESC')->get();
+        $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
 
         return view('courses.index', compact('categories','types', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }
