@@ -145,8 +145,14 @@ class PageController extends Controller
 
         $result = $result->paginate();
 
-        if (collect($counters)->sum() === 1 && $result->items()[0]) {
-            return redirect()->route("{$type}.show", $result->items()[0]);
+        if (collect($counters)->sum() === 1 && $resource = $result->items()[0]) {
+            $link = route("{$type}.show", $resource);
+
+            if ($type === 'course') {
+                $link = route('course.track', $resource);
+            }
+
+            return redirect()->to($link);
         }
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
