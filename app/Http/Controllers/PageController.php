@@ -145,6 +145,10 @@ class PageController extends Controller
 
         $result = $result->paginate();
 
+        if (collect($counters)->sum() === 1) {
+            return redirect()->route("{$type}.show", $result->data->first())
+        }
+
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
     }
 
