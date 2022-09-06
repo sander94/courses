@@ -104,7 +104,7 @@
                                     {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
 
 
-                        <!-- <td> <a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
+                        <!-- <td> <a href="{{ route('companies.show', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
                         </tr>
                     @empty
                         <p>Koolitusi ei leitud</p>

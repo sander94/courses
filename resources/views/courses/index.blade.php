@@ -125,7 +125,7 @@
 
 
 
-                                <!-- <td> <a href="{{ route('company', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
+                                <!-- <td> <a href="{{ route('companies.show', $course->company->slug)}}?type=live" class="table-readmore">Loe lisa</a></td> -->
                     </tr>
                 @empty
                     <p style="font-size: 18px; color: red; text-align: center; margin-bottom: 50px;">Koolitusi ei
