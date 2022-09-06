@@ -38,10 +38,11 @@ class PageController extends Controller
         'properties' => 'name',
     ];
 
+
     /**
-     * @param string $type
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param string|null $type
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function search(string $type = null, Request $request)
     {
@@ -146,13 +147,11 @@ class PageController extends Controller
         $result = $result->paginate();
 
         if (collect($counters)->sum() === 1 && $resource = $result->items()[0]) {
-            $link = route("{$type}.show", $resource);
-
             if ($type === 'course') {
-                $link = route('course.track', $resource);
+                return redirect()->to(route('course.track', $resource));
             }
 
-            return redirect()->to($link);
+            return redirect()->to(route("{$type}.show", $resource));
         }
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
