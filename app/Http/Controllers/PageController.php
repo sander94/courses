@@ -147,10 +147,6 @@ class PageController extends Controller
         $result = $result->paginate();
 
         if (collect($counters)->sum() === 1 && $resource = $result->items()[0]) {
-            if ($type === 'course') {
-                return redirect()->to(route('course.track', $resource));
-            }
-
             return redirect()->to(route("{$type}.show", $resource));
         }
 

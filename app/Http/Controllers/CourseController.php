@@ -46,18 +46,17 @@ class CourseController extends Controller
 
         $types = CourseType::query()->orderBy('sort_order', 'ASC')->get();
 
-        return view('courses.index', compact('categories','types', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
+        return view('courses.index', compact('categories', 'types', 'selectedCategory', 'regions', 'selectedRegion', 'courses'));
     }
 
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @param Course $course
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Request $request, Course $course)
+    public function show(Course $course)
     {
-        return view('course.show', compact('course'));
+        return redirect()->to(route('course.track', $course));
     }
 
 }
