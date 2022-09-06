@@ -207,7 +207,7 @@ class PageController extends Controller
         $maxCourseType = $max[0];
 
         if (!$request->has('type')) {
-            return redirect(route('company', ['company' => $company, 'type' => $maxCourseType]));
+            return redirect(route('companies.show', ['company' => $company, 'type' => $maxCourseType]));
         }
 
 

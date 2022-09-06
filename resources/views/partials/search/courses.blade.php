@@ -32,7 +32,7 @@
                 <td style="font-weight: 300;">{{ $course->region->title }}</td>
                 <td style="font-weight: 300;">
                     @if($course->company)
-                        <a class="normal" href="{{ route('company', $course->company)}}?type=live">
+                        <a class="normal" href="{{ route('companies.show', $course->company)}}?type=live">
                             @if($course->company->getFirstMediaUrl('cover'))
                                 <div class="small-logo"
                                      style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});">
