@@ -147,7 +147,8 @@ class PageController extends Controller
         $result = $result->paginate();
 
         if (collect($counters)->sum() === 1 && $resource = $result->items()[0] && $type !== 'properties') {
-            return redirect()->to(route("{$type}.show", $resource->getRouteKey()));
+            dd($resource);
+            return redirect()->to(route("{$type}.show", $resource));
         }
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
