@@ -98,7 +98,7 @@
                                 <a class="normal" href="{{ route('companies.show', $course->company->slug)}}">
                                     @if($course->company->getFirstMediaUrl('cover'))
                                         <div class="small-logo"
-                                             style="background-image: url({{ $course->company->getFirstMediaUrl('cover')  }});">
+                                             style="background-image: url('{{ $course->company->getFirstMediaUrl('cover')  }}');">
                                         </div>
                                     @endif
                                     {{ mb_strimwidth($course->company->name, 0, 20, "...") }}</a></td>
