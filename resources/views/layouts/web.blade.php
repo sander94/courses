@@ -8,7 +8,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ isset($title) ? $title : 'Koolitused.ee | Eesti suurim koolituste andmebaas' }}</title>
+    <title>
+    @isset($company->page_title_tag)
+        {{ $company->page_title_tag }}
+    @else
+        {{ isset($title) ? $title : 'Koolitused.ee | Eesti suurim koolituste andmebaas' }}
+    @endisset
+    </title>
+
+    @isset($company->meta_description)
+        <meta name="description" itemprop="description" content="{{ $company->meta_description }}" />
+        <meta property="og:description" content="{{ $company->meta_description }}" />
+    @endisset
+
+
+    @isset($company->page_title_tag)
+            <meta property="og:title" content="{{ $company->page_title_tag }}" />
+    @endisset
+    <meta name="robots" content="index,follow"/> 
+
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

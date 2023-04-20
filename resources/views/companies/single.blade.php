@@ -34,7 +34,7 @@
             </div>
             <div class="col-sm-6 company-page-logo">
                 @if($company->getFirstMediaUrl('cover'))
-                    <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="Company Logo" class="img-responsive"
+                    <img src="{{ $company->getFirstMediaUrl('cover') }}" alt="{{ $company->logo_title_tag ?? $company->name }}" title="{{ $company->logo_title_tag ?? $company->name }}" class="img-responsive"
                          style="max-width: 100%; max-height: 200px;">
                 @endif
             </div>

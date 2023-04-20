@@ -19,6 +19,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
+use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Textarea;
+
 
 /**
  * Class Company
@@ -110,6 +113,14 @@ class Company extends Resource
             Text::make(__('Website'), 'website')->hideFromIndex(),
 
             BelongsToManyField::make('Tags')->hideFromIndex(),
+
+            Heading::make('SEO seaded'),
+
+
+            Textarea::make(__('Meta kirjeldus'), 'meta_description')->hideFromIndex(),
+            Text::make(__('Lehe title tag'), 'page_title_tag')->hideFromIndex(),
+            Text::make(__('Logo title tag'), 'logo_title_tag')->hideFromIndex(),
+
 
             HasMany::make('Courses')
 
