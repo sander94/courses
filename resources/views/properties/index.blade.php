@@ -248,7 +248,7 @@
                             <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
                        
 
-                            <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image" title="{{ $property->logo_title_tag }}">
+                            <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image" title="{{ $property->logo_title_tag ?? $property->name }}">
 
                             @php
                                 $media = $property->getMedia('gallery');
@@ -260,11 +260,10 @@
                             @foreach($thumbUrls as $index => $url)
                                 <img @click="showImg({{ json_encode($urls) }}, {!! $index !!})" class="galleryboxImg" src="{{ $url }}">
                             @endforeach
-
                             </div>
-
-
-
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
                             <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
@@ -277,11 +276,6 @@
                                     <br><strong>Teenused: </strong> {{ $servicearray }}
                                 @endif
                             </p>
-                            
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
-
 
                             {!! $property->description !!}
 
