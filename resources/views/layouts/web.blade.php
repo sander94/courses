@@ -1078,7 +1078,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 Mahla 82-78, Tallinn 11215<br>
                 info@koolitused.ee<br>
                 +372 5646 0814<br>
-            <p class="centerbottom2">Koolitused.ee © 2021 - Ka Company OÜ</p>
+            <p class="centerbottom2">Koolitused.ee © 2023 - Ka Company OÜ</p>
             </div>
             <div class="col-12 col-sm-4 col-xs-2"> <!--
                 <a href="{{ route('login') }}">User log in</a><br><br>
@@ -1087,7 +1087,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <a href="{{ route('articles.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
                 <a href="#">Contact</a> -->
-                <p class="centerbottom">Koolitused.ee © 2021 - Ka Company OÜ</p>
+                <p class="centerbottom">Koolitused.ee © 2023 - Ka Company OÜ</p>
             </div>
             <div class="col-12 col-sm-4 text-right">
                 @auth('company')

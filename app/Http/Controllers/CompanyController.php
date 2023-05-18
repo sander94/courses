@@ -47,7 +47,7 @@ class CompanyController extends Controller
         $password = $request->get('password');
 
 
-        if (Auth::guard('company')->attempt(['username' => $username, 'password' => $password], true)) {
+        if (Auth::guard('company')->attempt(['email' => $username, 'password' => $password], true)) {
 
             return redirect()->to('/company/profile');
         }
@@ -167,6 +167,7 @@ class CompanyController extends Controller
 
         if($request->type == '3') {
             $courses = $user->courses()->where('course_type_id', '3')->where('started_at', '>=', Carbon::now())->orderBy('started_at', 'ASC')->paginate();
+            // dd(count($courses));
         }
         else {
         $courses = $user->courses()

@@ -127,7 +127,7 @@
     <div class="col-6">
         <label class="profile-input-row">
             <div class="input-desc">
-                E-mail:
+                E-mail
             </div>
             <input type="text" name="email"
                    value="{{ old('email') ?? optional($course)->email ?? Auth::user()->email }}">
