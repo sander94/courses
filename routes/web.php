@@ -40,6 +40,8 @@ Route::get('/companies', 'PageController@companies')->name('companies');
 
 Route::get('/rooms', 'PageController@rooms')->name('rooms');
 
+Route::get('/property/{slug}', 'PageController@property')->name('property');
+
 Route::get('/companies/{company}/', 'PageController@company')->name('companies.show');
 
 Route::prefix('company')->group(function () {

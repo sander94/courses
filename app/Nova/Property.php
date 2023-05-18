@@ -13,6 +13,9 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
+use Ek0519\Quilljs\Quilljs;
+use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Textarea;
 
 /**
  * Class Property
@@ -78,7 +81,10 @@ class Property extends Resource
             Text::make('Url')
                 ->rules('nullable', 'url')->hideFromIndex(),
 
-            Text::make('Facebook Url')
+            Text::make('Facebook URL')
+                ->rules('nullable', 'url')->hideFromIndex(),
+
+            Text::make('Instagram URL')
                 ->rules('nullable', 'url')->hideFromIndex(),
 
             Text::make('Phone')
@@ -91,7 +97,22 @@ class Property extends Resource
 
             HasMany::make('Rooms'),
 
-            BelongsToMany::make('Services', 'services', ExtraService::class)
+            BelongsToMany::make('Services', 'services', ExtraService::class),
+
+            Quilljs::make(__('Description'), 'description')
+                ->paddingBottom(30)
+                ->withFiles('public')
+                ->height(650)
+                ->rules('required'),
+
+            Heading::make('SEO seaded'),
+
+            Textarea::make(__('Meta kirjeldus'), 'meta_description')->hideFromIndex(),
+            Text::make(__('Lehe title tag'), 'page_title_tag')->hideFromIndex(),
+            Text::make(__('Logo title tag'), 'logo_title_tag')->hideFromIndex(),
+
+
+
         ];
     }
 

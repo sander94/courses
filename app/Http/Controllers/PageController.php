@@ -290,6 +290,41 @@ class PageController extends Controller
 
     }
 
+
+    public function property(Request $request)
+    {
+        $regions = PropertyRegion::all();
+        $services = ExtraService::all();
+
+        $properties = Property::query()->where('active', '1')->where('slug', $request->slug);
+
+
+        $properties = $properties
+            ->when($request->get('services'), function (Builder $query, $services) {
+                return $query->whereHas('services', function (Builder $query) use ($services) {
+                    return $query->whereIn('id', $services);
+                });
+            })
+            ->when($request->get('capacity'), function (Builder $query, $capacity) {
+                return $query->whereHas('rooms', function (Builder $query) use ($capacity) {
+
+                    foreach (array_keys($capacity) as $column) {
+                        $query = $query->where($column, '>', 0);
+                    }
+
+                    return $query;
+                });
+            })
+            ->when($request->get('region'), function (Builder $query, $region) {
+                return $query->where('property_region_id', $region);
+            });
+
+        $properties = $properties->with(['rooms', 'services'])->paginate(5);
+
+        return view('properties.index', compact('services', 'regions', 'properties'));
+
+    }
+
     private function getModelFromType(string $type)
     {
         return static::$types[$type];
