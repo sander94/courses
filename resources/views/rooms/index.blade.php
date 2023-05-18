@@ -112,6 +112,7 @@
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 column-gap: 5px;
                 row-gap: 5px;
+                margin-top: 20px;
             }
 
             @media screen and (max-width: 1250px) {
@@ -358,12 +359,8 @@
 
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
-                            <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
+                            <a href="{{ route('property', ['slug' => $property->slug]) }}" style="text-decoration: none;"><h3 class="text-orange hidedesktop">{{ $property->name }}</h3></a>
                             
-                            <div class="room-image"
-                                 style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
-                            </div>
-                           
 
                             <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image">
 
@@ -380,13 +377,14 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-9">
-                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
+                            <a href="{{ route('property', ['slug' => $property->slug]) }}" style="text-decoration: none;"><h3 class="text-orange hidemobile">{{ $property->name }}</h3></a>
                             <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif
                                 @if($property->phone) <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $property->phone }}<br> @endif
                                 @if($property->url) <i class="fa fa-globe fa-fw"> </i> <a href="{{ $property->url }}" target="_blank">{{ $property->url }}</a><br> @endif
                                 @if($property->facebook_url) <i class="fa fa-facebook fa-fw"> </i> <a href="{{ $property->facebook_url }}" target="_blank"> Facebook </a> <br> @endif
+                                @if($property->instagram_url) <i class="fa fa-instagram fa-fw"> </i> <a href="{{ $property->instagram_url }}" target="_blank"> Instagram </a> <br> @endif
 
                                 @if($servicearray != "")
                                     <br><strong>Teenused: </strong> {{ $servicearray }}

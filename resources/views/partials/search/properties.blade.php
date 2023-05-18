@@ -239,12 +239,7 @@
 
                     <div class="row mt-5">
                         <div class="col-12 col-md-3">
-                            <h3 class="text-orange hidedesktop">{{ $property->name }}</h3>
-                           @if(false)
-                            <div class="room-image"
-                                 style="background-image: url('{{ $property->getFirstMediaUrl('cover') }}');">
-                            </div>
-                            @endif
+                           <a href="{{ route('property', ['slug' => $property->slug]) }}" style="text-decoration: none;"><h3 class="text-orange hidedesktop">{{ $property->name }}</h3></a>
 
                             <img src="{{ $property->getFirstMediaUrl('cover') }}" class="room-image">
 
@@ -261,7 +256,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-9">
-                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
+                            <a href="{{ route('property', ['slug' => $property->slug]) }}" style="text-decoration: none;"><h3 class="text-orange hidemobile">{{ $property->name }}</h3></a>
                             <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif

@@ -95,6 +95,7 @@
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 column-gap: 5px;
                 row-gap: 5px;
+                margin-top: 20px;
             }
 
             @media screen and (max-width: 1250px) {
@@ -263,7 +264,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-9">
-                            <h3 class="text-orange hidemobile">{{ $property->name }}</h3>
+                            <h1 class="text-orange hidemobile">{{ $property->name }}</h1>
                             <p class="property-data"><i class="fa fa-home fa-fw"> </i> {{ $property->address }}<br>
                                 <i class="fa fa-briefcase fa-fw"> </i> {{ $property->company_name }}<br>
                                 @if($property->email) <i class="fa fa-envelope fa-fw"> </i> {{ $property->email }}<br> @endif

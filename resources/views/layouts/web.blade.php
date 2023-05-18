@@ -9,11 +9,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-    @isset($company->page_title_tag)
-        {{ $company->page_title_tag }}
-    @else
-        {{ isset($title) ? $title : 'Koolitused.ee | Eesti suurim koolituste andmebaas' }}
-    @endisset
+
+
+@php 
+    if(isset($company->page_title_tag)) {
+        echo $company->page_title_tag;
+    }
+    elseif(isset($property->page_title_tag)) {
+        echo $property->page_title_tag;
+    }
+    else {
+        echo isset($title) ? $title : 'Koolitused.ee | Eesti suurim koolituste andmebaas';
+    }
+@endphp
     </title>
 
     @isset($company->meta_description)
@@ -21,9 +29,18 @@
         <meta property="og:description" content="{{ $company->meta_description }}" />
     @endisset
 
+    @isset($property->meta_description)
+        <meta name="description" itemprop="description" content="{{ $property->meta_description }}" />
+        <meta property="og:description" content="{{ $property->meta_description }}" />
+    @endisset
+
+
 
     @isset($company->page_title_tag)
             <meta property="og:title" content="{{ $company->page_title_tag }}" />
+    @endisset
+    @isset($property->page_title_tag)
+            <meta property="og:title" content="{{ $property->page_title_tag }}" />
     @endisset
     <meta name="robots" content="index,follow"/> 
 
