@@ -69,13 +69,13 @@ class Company extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-         //   Text::make('Username'),
+            Text::make('Username'),
 
-        //    Number::make(__('Sort Order'), 'sort_order'),
+            Number::make(__('Sort Order'), 'sort_order'),
 
             Boolean::make(__('Is Active'), 'is_active'),
 
-          /*  Text::make('Facebook Url')
+            Text::make('Facebook Url')
                 ->rules([
                     'nullable',
                     'string',
@@ -84,12 +84,12 @@ class Company extends Resource
 
             Text::make('Clicks Count', function () {
                 return views($this->model())->count();
-            })->exceptOnForms(), */
+            })->exceptOnForms(),
 
-      //      Password::make(__('Password'), 'password')->hideFromIndex(),
+            Password::make(__('Password'), 'password')->hideFromIndex(),
 
             Text::make(__('Name'), 'name')->required(),
-/*
+
             Text::make(__('Email'), 'email')->required(),
 
             Quilljs::make(__('Description'), 'description')
@@ -120,9 +120,9 @@ class Company extends Resource
             Textarea::make(__('Meta kirjeldus'), 'meta_description')->hideFromIndex(),
             Text::make(__('Lehe title tag'), 'page_title_tag')->hideFromIndex(),
             Text::make(__('Logo title tag'), 'logo_title_tag')->hideFromIndex(),
-*/
 
-        //    HasMany::make('Courses')
+
+            HasMany::make('Courses')
 
         ];
     }
