@@ -86,10 +86,10 @@ class Company extends Resource
                 return views($this->model())->count();
             })->exceptOnForms(),
 
-            Password::make(__('Password'), 'password')->hideFromIndex(),
+      //      Password::make(__('Password'), 'password')->hideFromIndex(),
 
             Text::make(__('Name'), 'name')->required(),
-
+/*
             Text::make(__('Email'), 'email')->required(),
 
             Quilljs::make(__('Description'), 'description')
@@ -120,7 +120,7 @@ class Company extends Resource
             Textarea::make(__('Meta kirjeldus'), 'meta_description')->hideFromIndex(),
             Text::make(__('Lehe title tag'), 'page_title_tag')->hideFromIndex(),
             Text::make(__('Logo title tag'), 'logo_title_tag')->hideFromIndex(),
-
+*/
 
             HasMany::make('Courses')
 
