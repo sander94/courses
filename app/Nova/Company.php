@@ -100,7 +100,7 @@ class Company extends Resource
 
             Text::make(__('Brand'), 'brand')->required()->hideFromIndex(),
 
-            BelongsTo::make(__('Region'), 'region')->hideFromIndex(),
+            
 
             Images::make(__('Cover'), 'cover')->hideFromIndex(),
 
