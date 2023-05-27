@@ -222,6 +222,9 @@
                     height:  35px;
                 }
             }
+                a:hover h3.text-orange {
+                    color: #0056b3;
+                }
         </style>
 
         <div class="row mt-3" id="list" style="text-align: left;">
