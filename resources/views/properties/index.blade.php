@@ -228,7 +228,7 @@
                 }
             }
 
-            a.h3.text-orange:hover {
+            a h3.text-orange:hover {
                 color: #0056b3;
             }
         </style>
