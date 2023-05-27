@@ -227,6 +227,10 @@
                     height:  35px;
                 }
             }
+
+            a.h3.text-orange:hover {
+                color: #0056b3;
+            }
         </style>
 
 

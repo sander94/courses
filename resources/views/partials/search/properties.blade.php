@@ -90,6 +90,7 @@
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 column-gap: 5px;
                 row-gap: 5px;
+                margin-top: 20px;
             }
 
             @media screen and (max-width: 1250px) {
