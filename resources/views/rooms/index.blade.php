@@ -243,7 +243,7 @@
                 .galleryboxImg {
                     height:  35px;
                 }
-                a h3:hover .text-orange {
+                a:hover h3.text-orange {
                     color: #0056b3;
                 }
             }
