@@ -72,6 +72,9 @@ class Property extends Resource
             Text::make('Name')
                 ->rules('required', 'string'),
 
+            Text::make('Slug')
+                ->rules('required', 'string'),
+
             Text::make('Company name')
                 ->rules('required', 'string'),
 
