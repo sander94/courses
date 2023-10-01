@@ -146,14 +146,17 @@ class PageController extends Controller
 
         $result = $result->paginate();
 
-        if (collect($counters)->sum() === 1 && ($resource = $result->items()[0]) && $type !== 'courses') {
-            $routeParams = $resource;
+        if ($type === 'properties' && $result->count() === 1) {
+            $property = $result->items()[0];
 
-            if ($resource instanceof Property) {
-                $routeParams = ['slug' => $resource->slug];
-            }
+            return redirect()->to(route('properties.show', ['slug' => $property->slug]));
+        }
 
-            return redirect()->to(route("{$type}.show", $routeParams));
+        if (
+            collect($counters)->sum() === 1 && ($resource = $result->items()[0])
+            && !in_array($type, ['courses', 'properties'])
+        ) {
+            return redirect()->to(route("{$type}.show", $resource));
         }
 
         return view('search', compact('result', 'type', 'counters', 'searchQuery', 'types', 'selectedCourseType'));
