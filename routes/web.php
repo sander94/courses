@@ -40,7 +40,7 @@ Route::get('/companies', 'PageController@companies')->name('companies');
 
 Route::get('/rooms', 'PageController@rooms')->name('rooms');
 
-Route::get('/rooms/{slug}', 'PageController@property')->name('property');
+Route::get('/rooms/{slug}', 'PageController@property')->name('properties.show');
 
 Route::get('/companies/{company}/', 'PageController@company')->name('companies.show');
 
