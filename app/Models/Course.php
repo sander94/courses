@@ -121,6 +121,7 @@ class Course extends Model implements Viewable
                 `courses`.*")
             )
             ->orderBy('order_column', 'DESC')
-            ->orderBy('started_at', 'ASC');
+            ->orderBy('started_at', 'ASC')
+            ->orderBy('id', 'DESC');
     }
 }
