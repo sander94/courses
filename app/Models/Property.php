@@ -68,4 +68,8 @@ class Property extends Model implements HasMedia
         return $this->belongsToMany(ExtraService::class, 'property_extra_service');
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
