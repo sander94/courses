@@ -16,6 +16,7 @@ class Room extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
         'square_meters',
         'theatre_style_capacity',
         'classroom_style_capacity',
@@ -40,4 +41,8 @@ class Room extends Model
         return $this->belongsTo(\App\Models\Property::class);
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
