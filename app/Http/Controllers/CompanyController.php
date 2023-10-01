@@ -47,7 +47,7 @@ class CompanyController extends Controller
         $password = $request->get('password');
 
 
-        if (Auth::guard('company')->attempt(['email' => $username, 'password' => $password], true)) {
+        if (Auth::guard('company')->attempt(['username' => $username, 'password' => $password], true)) {
 
             return redirect()->to('/company/profile');
         }
@@ -77,7 +77,7 @@ class CompanyController extends Controller
         if ($request->has('cover')) {
             $company->addMediaFromRequest('cover')->toMediaCollection('cover');
         }
-    
+
         Mail::to('info@koolitused.ee')->send(new CompanyUpdatesInfo($company->name));
 
         return redirect()->back()
@@ -87,7 +87,7 @@ class CompanyController extends Controller
 
  public function profileUpdate(Request $r)
     {
-      
+
       if(!$r->description) {
           $company = Company::where('id', Auth::user()->id)->first();
           $company->name = $r->name;
