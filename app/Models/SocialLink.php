@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Enums\SocialLinkTypeEnum;
-use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class SocialLink extends Model
 {
-    use HasFactory, CastsEnums;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
