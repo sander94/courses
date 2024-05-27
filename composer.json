@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "benjacho/belongs-to-many-field": "^1.9",
+        "bensampo/laravel-enum": "^5.3",
         "classic-o/nova-media-library": "^1.0",
         "cviebrock/eloquent-sluggable": "^9.0",
         "cyrildewit/eloquent-viewable": "^6.0",
