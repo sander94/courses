@@ -44,7 +44,7 @@ class PageController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function search(string $type = null, Request $request)
+    public function search(Request $request, string $type = null)
     {
         $searchQuery = $request->get('search');
         $selectedCourseType = $request->query('course_type');
