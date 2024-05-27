@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\AdTypeEnum;
-use BenSampo\Enum\Traits\CastsEnums;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class AdvertisementBanner extends Model implements Viewable, HasMedia
 {
-    use HasFactory, InteractsWithViews, InteractsWithMedia, CastsEnums;
+    use HasFactory, InteractsWithViews, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
