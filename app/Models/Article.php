@@ -22,6 +22,8 @@ class Article extends Model implements HasMedia
         'published_at',
     ];
 
+    protected $table = 'articles';
+
     /**
      * The attributes that should be cast to native types.
      *
