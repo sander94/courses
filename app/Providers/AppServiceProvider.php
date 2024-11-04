@@ -26,5 +26,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         \Debugbar::disable();
+
+        Route::resourceVerbs([
+            'articles' => 'artiklid',
+            'article' => 'artikkel',
+        ]);
     }
 }
