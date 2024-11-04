@@ -16,13 +16,14 @@ class Article extends Model implements HasMedia
      *
      * @var array
      */
+    
+    protected $table = 'articles';
+
     protected $fillable = [
         'title',
         'content',
         'published_at',
     ];
-
-    protected $table = 'articles';
 
     /**
      * The attributes that should be cast to native types.
