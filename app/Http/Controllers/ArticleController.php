@@ -17,7 +17,7 @@ class ArticleController extends Controller
     {
         $articles = Article::whereDate('published_at', '>=', Carbon::now())->orderBy('id', 'DESC')->paginate();
 
-        return view('artiklid.index', compact('articles'));
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -27,6 +27,6 @@ class ArticleController extends Controller
      */
     public function show(Request $request, Article $article)
     {
-        return view('artiklid.show', compact('article'));
+        return view('articles.show', compact('article'));
     }
 }
