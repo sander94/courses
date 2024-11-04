@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Disallow: /nova/login
+Disallow: /nova-api
+Disallow: /nova/password/reset
+Disallow: /statistika
+Disallow: /js
+Disallow: /css/app.css
+
+Sitemap: https://koolitused.ee/sitemap.xml
