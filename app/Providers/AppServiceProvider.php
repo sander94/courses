@@ -28,8 +28,7 @@ class AppServiceProvider extends ServiceProvider
         \Debugbar::disable();
 
         Route::resourceVerbs([
-            'articles' => 'artiklid',
-            'article' => 'artikkel',
+            'articles' => 'artiklid'
         ]);
     }
 }
