@@ -18,31 +18,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('articles', 'ArticleController');
+Route::resource('artiklid', 'ArticleController');
 
 Route::resource('events', 'EventController');
 
-Route::resource('courses', 'CourseController');
+Route::resource('koolitused', 'CourseController');
 
 Route::post('contact', 'ContactController')->name('contact');
 
 Route::get('/', 'PageController@home')->name('home');
 
-Route::get('/contact', 'PageController@contact')->name('contact');
+Route::get('/kontakt', 'PageController@contact')->name('contact');
 
-Route::get('/search/{type?}', 'PageController@search')->name('search');
+Route::get('/otsing/{type?}', 'PageController@search')->name('search');
 
 Route::get('ad/{advertisement_banner}', 'AdvertisementController')->name('ad');
 
 Route::get('course/{course}/track', 'PageController@trackCourse')->name('course.track');
 
-Route::get('/companies', 'PageController@companies')->name('companies');
+Route::get('/koolitajad', 'PageController@companies')->name('companies');
 
-Route::get('/rooms', 'PageController@rooms')->name('rooms');
+Route::get('/ruumid', 'PageController@rooms')->name('rooms');
 
-Route::get('/rooms/{slug}', 'PageController@property')->name('properties.show');
+Route::get('/ruumid/{slug}', 'PageController@property')->name('properties.show');
 
-Route::get('/companies/{company}/', 'PageController@company')->name('companies.show');
+Route::get('/koolitajad/{company}/', 'PageController@company')->name('companies.show');
 
 Route::prefix('company')->group(function () {
 

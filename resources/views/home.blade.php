@@ -8,7 +8,7 @@
                 <h1 class="text-3xl">Eesti suurim <br>koolituste andmebaas</h1>
                 <p class="mt-4 text-2xl">PARIM VALIK RUUME KOOLITUSTEKS</p>
                 <div class="button-container">
-                    <a href="{{ route('courses.index') }}" class="home-1 active xl">Vaata koolitusi</a>
+                    <a href="{{ route('koolitused.index') }}" class="home-1 active xl">Vaata koolitusi</a>
                     <a href="{{ route('companies') }}" class="home-1 xl">Koolitajad</a>
                     <a href="{{ route('rooms') }}" class="home-1 xl">Ruumid</a>
                 </div>
@@ -125,7 +125,7 @@
 
                     @forelse($articles as $article)
                         <div class="col-12 col-sm-4">
-                            <a href="{{ route('articles.show', $article) }}" style="text-decoration: none">
+                            <a href="{{ route('artiklid.show', $article) }}" style="text-decoration: none">
                                 <div class="blog-image-container"
                                      style="background-image: url('{{ $article->getFirstMediaUrl('cover') }}');"></div>
                                 <span class="blog-title px-2">{{ $article->title }}</span></a>
@@ -141,7 +141,7 @@
 
 
                 <div class="button-container text-center">
-                    <a href="{{ route('articles.index') }}" class="table-readmore">Vaata kõiki</a>
+                    <a href="{{ route('artiklid.index') }}" class="table-readmore">Vaata kõiki</a>
                 </div>
 
             </div>
