@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('artiklid', 'ArticleController');
+Route::resource('articles', 'ArticleController');
 
 Route::resource('events', 'EventController');
 
