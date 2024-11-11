@@ -5,9 +5,9 @@ namespace App\Enums;
 enum SearchSlugEnum: string
 {
     case Articles = 'artiklid';
-    const Courses = 'koolitused';
-    const Companies = 'koolitajad';
-    const Properties = 'ruumid';
+    case Courses = 'koolitused';
+    case Companies = 'koolitajad';
+    case Properties = 'ruumid';
 
 
     public function getNotLocalizedValue(): string

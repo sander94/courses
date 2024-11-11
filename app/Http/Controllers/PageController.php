@@ -47,7 +47,6 @@ class PageController extends Controller
      */
     public function search(Request $request, string $type = null)
     {
-        dd($type, SearchSlugEnum::from($type));
         $type = $type === null ? null : SearchSlugEnum::from($type)->getNotLocalizedValue();
 
         $searchQuery = $request->get('search');
