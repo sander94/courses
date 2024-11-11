@@ -155,10 +155,8 @@ class PageController extends Controller
             return redirect()->to(route('properties.show', ['slug' => $property->slug]));
         }
 
-        dd($result);
-
         if (
-            collect($counters)->sum() === 1 && ($resource = $result->items()[0])
+            collect($counters)->sum() === 1 && ($resource = $result->items()[0] ?? false)
             && !in_array($type, ['courses', 'properties'])
         ) {
             return redirect()->to(route("{$type}.show", $resource));
