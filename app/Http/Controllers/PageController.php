@@ -47,8 +47,8 @@ class PageController extends Controller
      */
     public function search(Request $request, string $type = null)
     {
-        dd(SearchSlugEnum::Articles->value);
-        $type = $type === null ? null : SearchSlugEnum::Articles->value->getNotLocalizedValue();
+        dd($type, SearchSlugEnum::from($type));
+        $type = $type === null ? null : SearchSlugEnum::from($type)->getNotLocalizedValue();
 
         $searchQuery = $request->get('search');
         $selectedCourseType = $request->query('course_type');
