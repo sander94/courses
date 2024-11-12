@@ -25,7 +25,7 @@ class ArticleController extends Controller
      * @param Article $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Article $article)
+    public function show(Request $request, $article)
     {
         dd($article);
 
