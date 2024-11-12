@@ -25,9 +25,9 @@ class ArticleController extends Controller
      * @param Article $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $article)
+    public function show(Request $request, string $article)
     {
-        dd($article);
+        $article = Article::query()->where('slug', $article)->firstOrFail();
 
         return view('articles.show', compact('article'));
     }
