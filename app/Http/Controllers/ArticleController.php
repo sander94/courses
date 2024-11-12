@@ -26,8 +26,9 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Article $article)
-    {        
-        
+    {
+        dd($article);
+
         return view('articles.show', compact('article'));
     }
 }
