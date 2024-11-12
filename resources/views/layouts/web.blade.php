@@ -21,7 +21,7 @@
     <title>
 
 
-@php 
+@php
     if(isset($company->page_title_tag)) {
         echo $company->page_title_tag;
     }
@@ -52,7 +52,7 @@
     @isset($property->page_title_tag)
             <meta property="og:title" content="{{ $property->page_title_tag }}" />
     @endisset
-    <meta name="robots" content="index,follow"/> 
+    <meta name="robots" content="index,follow"/>
 
 
     <!-- Scripts -->
@@ -1056,7 +1056,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <div class="menu">
                     <a href="{{ route('koolitused.index') }}" class="{{ Route::is('koolitused.index') ? 'active' : '' }}">Koolitused</a>
                     <a href="{{ route('companies') }}" class="{{ Route::is('companies') ? 'active' : '' }}">Koolitajad</a>
-                    <a href="{{ route('articles.index') }}" class="{{ Route::is('articles.index') ? 'active' : '' }}">Artiklid</a>
+                    <a href="{{ route('artiklid.index') }}" class="{{ Route::is('articles.index') ? 'active' : '' }}">Artiklid</a>
                     <a href="{{ route('rooms') }}" class="{{ Route::is('rooms') ? 'active' : '' }}">Ruumid</a>
                     <a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Kontakt</a>
                 </div>
@@ -1069,7 +1069,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <div class="mobile-menu" id="mobileMenu">
                     <a href="{{ route('koolitused.index') }}">Koolitused</a>
                     <a href="{{ route('companies') }}">Koolitajad</a>
-                    <a href="{{ route('articles.index') }}">Artiklid</a>
+                    <a href="{{ route('artiklid.index') }}">Artiklid</a>
                     <a href="{{ route('rooms') }}">Ruumid</a>
                     <a href="{{ route('contact') }}">Kontakt</a>
                 </div>
@@ -1094,7 +1094,7 @@ box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);">
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('koolitused.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
-                <a href="{{ route('articles.index') }}">Articles</a><br>
+                <a href="{{ route('artiklid.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
                 <a href="#">Contact</a> -->
                 <p class="centerbottom">Koolitused.ee © 2023 - Ka Company OÜ</p>

@@ -286,7 +286,7 @@
             <div class="menu">
                 <a href="{{ route('courses.index') }}">Courses</a>
                 <a href="{{ route('companies') }}">Companies</a>
-                <a href="{{ route('articles.index') }}">Articles</a>
+                <a href="{{ route('artiklid.index') }}">Articles</a>
                 <a href="#">Rooms</a>
                 <a href="#">Contact</a>
                 @auth('company')
@@ -326,7 +326,7 @@
                 <a href="{{ route('login') }}">User log in</a><br><br>
                 <a href="{{ route('courses.index') }}">Courses</a><br>
                 <a href="{{ route('companies') }}">Companies</a><br>
-                <a href="{{ route('articles.index') }}">Articles</a><br>
+                <a href="{{ route('artiklid.index') }}">Articles</a><br>
                 <a href="#">Rooms</a><br>
                 <a href="#">Contact</a>
             </div>
