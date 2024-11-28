@@ -99,8 +99,7 @@
                 </tr>
                 @forelse($courses as $course)
                     <tr>
-                        @if(isset($_GET['type']))
-                            @if($_GET['type'] == 3)
+                    @if(!$_GET['type'] || $_GET['type'] == 3)
                                 @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                        @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
@@ -113,7 +112,6 @@
                                         @endif
                                     </td>
                                 @endif
-                            @endif
                         @endif
                                 <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
                                 </td>
