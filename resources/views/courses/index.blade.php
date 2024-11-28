@@ -126,6 +126,8 @@
                                             Tellitav koolitus
                                         @elseif($type->getKey() == 1)
                                             24/7 koolitus
+                                        @else
+                                            &nbsp
                                         @endif
                                     </td>
                                 @endif
