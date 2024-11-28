@@ -107,7 +107,7 @@
                                         @if($_GET['type'] != 1)
                                             Tellitav koolitus
                                         @else
-                                            -
+                                            24/7 koolitus
                                         @endif
                                     </td>
                                 @endif
