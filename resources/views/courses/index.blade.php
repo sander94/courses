@@ -88,7 +88,7 @@
 
             <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                 <tr class="tableheader">
-                    @if(!isset($_GET['type']) || $_GET['type'] == 3)
+                    @if(!$_GET['type'] || $_GET['type'] == 3)
                         <td class="table_course_date">Kuupäev</td>
                     @endif
                     <td class="table_course_name">Pealkiri</td>
