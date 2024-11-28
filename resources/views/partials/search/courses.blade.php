@@ -2,7 +2,9 @@
 
     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
         <tr class="tableheader">
-            <td class="table_course_date">Kuupäev</td>
+            @if(!isset($_GET['type']) || $_GET['type'] == 3)
+                <td class="table_course_date">Kuupäev</td>
+            @endif
             <td class="table_course_name">Pealkiri</td>
             <td class="table_course_price">Hind</td>
             <td class="table_course_region">Koht</td>
@@ -11,14 +13,20 @@
         </tr>
         @foreach($result as $course)
             <tr>
-                @if($course->started_at)
-                    <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
-                        @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
+                        @if(!isset($_GET['type']) || $_GET['type'] == 3)
+                                @if($course->started_at)
+                                    <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
+                                       @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
 
-                    </td>
-                @else
-                    <td>Tellitav koolitus</td>
-                @endif
+                                    </td>
+                                @else
+                                    <td>
+                                        @if($type->getKey() == 2)
+                                            Tellitav koolitus
+                                        @endif
+                                    </td>
+                                @endif
+                        @endif
                 <td><a class="normal" href="{{ route('course.track', $course) }}"
                        target="_blank">{{ $course->title }}</a>
                 </td>
