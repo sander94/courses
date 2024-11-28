@@ -101,7 +101,7 @@
                 </tr>
                 @forelse($courses as $course)
                     <tr>
-                        @if(isset($_GET['type'])
+                        @if(isset($_GET['type']))
                             @if($_GET['type'] == 1 || $_GET['type'] == 2)
                                 @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
