@@ -89,7 +89,7 @@
             <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                 <tr class="tableheader">
                     @if(isset($_GET['type']))
-                        @if($_GET['type'] == 1 || $_GET['type'] == 2)
+                        @if($_GET['type'] == 3)
                             <td class="table_course_date">Kuupäev</td>
                         @endif
                     @endif
@@ -102,7 +102,7 @@
                 @forelse($courses as $course)
                     <tr>
                         @if(isset($_GET['type']))
-                            @if($_GET['type'] == 1 || $_GET['type'] == 2)
+                            @if($_GET['type'] == 3)
                                 @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                        @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
