@@ -2,7 +2,7 @@
 
     <table border="0" cellpadding="0" cellspacing="0" class="results-table">
         <tr class="tableheader">
-            @if(!isset($_GET['type']) || $_GET['type'] == 3)
+            @if(!isset($_GET['course_type']) || $_GET['course_type'] == 3)
                 <td class="table_course_date">Kuupäev</td>
             @endif
             <td class="table_course_name">Pealkiri</td>
@@ -13,7 +13,7 @@
         </tr>
         @foreach($result as $course)
             <tr>
-                        @if(!isset($_GET['type']) || $_GET['type'] == 3)
+                        @if(!isset($_GET['course_type']) || $_GET['course_type'] == 3)
                                 @if($course->started_at)
                                     <td style="font-weight: 300;">{{ $course->started_at->format('d.m.Y') }}
                                        @if($course->ended_at) - {{ $course->ended_at->format('d.m.Y') }} @endif
