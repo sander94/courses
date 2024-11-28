@@ -104,7 +104,7 @@
                                     </td>
                                 @else
                                     <td>
-                                        @if(!_GET['type'])
+                                        @if(!$_GET['type'])
                                             &nbsp;
                                         @else
                                             @if($_GET['type'] == 2)
