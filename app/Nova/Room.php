@@ -53,7 +53,7 @@ class Room extends Resource
 
 
             Text::make('Square meters')
-                ->rules('string'),
+                ->rules('nullable', 'string'),
 
             Text::make('Theatre style capacity')
                 ->rules('nullable', 'string'),
