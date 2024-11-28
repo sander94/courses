@@ -103,7 +103,7 @@
 
                                     </td>
                                 @else
-                                    @if($type !=1)
+                                    @if($type->getKey() != 1)
                                         <td>Tellitav koolitus</td>
                                     @endif
                                 @endif
