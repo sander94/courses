@@ -103,7 +103,7 @@
 
                                     </td>
                                 @else
-                                    <td>
+                                    <td><!--
                                         @if($type->getKey() == 3)
                                             Tellitav koolitus
                                         @endif
@@ -113,7 +113,7 @@
                                         @if($type->getKey() == 1)
                                             24/7 koolitus
                                         @endif
-                                        {{ $type->getKey() }}
+                                        {{ $type->getKey() }} -->
                                     </td>
                                 @endif
                                 <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
