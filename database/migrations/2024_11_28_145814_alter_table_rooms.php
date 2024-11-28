@@ -14,7 +14,7 @@ class AlterTableRooms extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->string('square_meters')->nullable()->default(null);
+            $table->string('square_meters')->nullable()->default(null)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterTableRooms extends Migration
     public function down()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->string('square_meters');
+            $table->string('square_meters')->change();
         });
     }
 };
