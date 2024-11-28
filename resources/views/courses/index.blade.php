@@ -110,9 +110,9 @@
                                     </td>
                                 @else
                                     <td>
-                                        
-                                        {{ $type->getKey() }}
-
+                                        @if($type->getKey() == 2)
+                                            Tellitav koolitus
+                                        @endif
                                     </td>
                                 @endif
                             @endif
