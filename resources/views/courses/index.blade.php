@@ -103,9 +103,11 @@
 
                                     </td>
                                 @else
-                                    @if($_GET['type'] != 1)
-                                        <td>Tellitav koolitus</td>
-                                    @endif
+                                    <td>
+                                        @if($_GET['type'] != 1)
+                                            Tellitav koolitus
+                                        @endif    
+                                    </td>
                                 @endif
                                 <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
                                 </td>
