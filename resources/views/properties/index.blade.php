@@ -311,7 +311,11 @@
                                                 </a>
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $room->square_meters }}</td>
+                                        <td class="text-center">
+                                            @if($room->square_meters)
+                                                {{ $room->square_meters }}
+                                            @endif
+                                        </td>
                                         <td class="text-center"><i
                                                 class="fa fa-user"></i> {{ $room->theatre_style_capacity ?? 0 }}</td>
                                         <td class="text-center"><i
