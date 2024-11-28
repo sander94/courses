@@ -107,7 +107,13 @@
                                 @endif
                                 <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
                                 </td>
-                                <td style="font-weight: 300;">{{ number_format($course->price, 2) }} €</td>
+                                <td style="font-weight: 300;">
+                                    @if($course->price <= 0)
+                                        Hind kokkuleppel
+                                    @else
+                                        {{ number_format($course->price, 2) }} €
+                                    @endif
+                                </td>
                                 @if(false)
                                 <td style="font-weight: 300;">
                                     @if($course->started_at) {{ $course->ended_at->diffInDays($course->started_at) }}
