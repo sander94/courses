@@ -396,7 +396,9 @@
                             <table class="roomstable">
                                 <tr style="background-color: #FFFFFF; height: 40px">
                                     <td class="room_name">Ruum</td>
-                                    <td class="text-center">m2</td>
+                                    @if($room->square_meters) 
+                                        <td class="text-center">m2</td>
+                                    @endif
                                     <td class="text-center"><img src="{{ asset('images/teater.png') }}"></td>
                                     <td class="text-center"><img src="{{ asset('images/klass.png') }}"></td>
                                     <td class="text-center"><img src="{{ asset('images/diplomaadistiil.png') }}"></td>
@@ -418,7 +420,7 @@
                                                 </a>
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $room->square_meters }}</td>
+                                        <td class="text-center">@if($room->square_meters) {{ $room->square_meters }} @endif</td>
                                         <td class="text-center"><i
                                                 class="fa fa-user"></i> {{ $room->theatre_style_capacity ?? 0 }}</td>
                                         <td class="text-center"><i
