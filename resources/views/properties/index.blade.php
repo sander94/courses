@@ -314,6 +314,8 @@
                                         <td class="text-center">
                                             @if($room->square_meters)
                                                 {{ $room->square_meters }}
+                                            @else
+                                                -
                                             @endif
                                         </td>
                                         <td class="text-center"><i
