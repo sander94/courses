@@ -122,12 +122,12 @@
 
                                         @if($type->getKey() == 3)
                                             Tellitav koolitus
-                                        @elseif($type->getKey() == 2)
+                                        @endif
+                                        @if($type->getKey() == 2)
                                             Tellitav koolitus
-                                        @elseif($type->getKey() == 1)
+                                        @endif
+                                        @if($type->getKey() == 1)
                                             24/7 koolitus
-                                        @else
-                                            &nbsp
                                         @endif
                                     </td>
                                 @endif
