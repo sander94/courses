@@ -88,7 +88,7 @@
 
             <table border="0" cellpadding="0" cellspacing="0" class="results-table">
                 <tr class="tableheader">
-                    @if(isset($_GET['type'])
+                    @if(isset($_GET['type']))
                         @if($_GET['type'] == 1 || $_GET['type'] == 2)
                             <td class="table_course_date">Kuupäev</td>
                         @endif
