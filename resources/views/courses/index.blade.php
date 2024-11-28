@@ -109,7 +109,11 @@
 
                                     </td>
                                 @else
-                                    <td></td>
+                                    <td>
+                                        
+                                        {{ $type->getKey() }}
+
+                                    </td>
                                 @endif
                             @endif
                         @endif
