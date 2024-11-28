@@ -104,6 +104,7 @@
                                     </td>
                                 @else
                                     <td>
+                                        <!--
                                         @if(empty($_GET['type']))
                                             {{ $type->getKey() }}
                                         @else
@@ -116,6 +117,15 @@
                                             @if($_GET['type'] == 1)
                                                 24/7 koolitus
                                             @endif
+                                        @endif
+                                        -->
+
+                                        @if($type->getKey() == 3)
+                                            Tellitav koolitus
+                                        @elseif($type->getKey() == 2)
+                                            Tellitav koolitus
+                                        @else
+                                            24/7 koolitus
                                         @endif
                                     </td>
                                 @endif
