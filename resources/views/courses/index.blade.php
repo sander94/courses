@@ -105,7 +105,7 @@
                                 @else
                                     <td>
                                         @if(empty($_GET['type']))
-                                            &nbsp;
+                                            {{ $type->getKey() }}
                                         @else
                                             @if($_GET['type'] == 3)
                                                 Tellitav koolitus
