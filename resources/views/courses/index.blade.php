@@ -103,13 +103,15 @@
 
                                     </td>
                                 @else
-                                    <td>Tellitav koolitus</td>
+                                    @if($type !=1)
+                                        <td>Tellitav koolitus</td>
+                                    @endif
                                 @endif
                                 <td><a class="normal" href="{{ route('course.track', $course) }}" target="_blank">{{ $course->title }}</a>
                                 </td>
                                 <td style="font-weight: 300;">
                                     @if($course->price <= 0)
-                                        Hind kokkuleppel
+                                        Kokkuleppel
                                     @else
                                         {{ number_format($course->price, 2) }} €
                                     @endif
