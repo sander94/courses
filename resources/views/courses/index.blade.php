@@ -109,6 +109,7 @@
                                         @else
                                             @if($_GET['type'] == 2)
                                                 Tellitav koolitus
+                                            @endif
                                             @if($_GET['type'] == 1)
                                                 24/7 koolitus
                                             @endif
