@@ -27,6 +27,6 @@ class AlterTableRooms extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->string('square_meters');
-        }
+        });
     }
 };
