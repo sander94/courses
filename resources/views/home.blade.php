@@ -82,7 +82,7 @@
                                 <td style="font-weight: 300;">
                                     @if($course->price <= 0)
                                         @if(isset($course->started_at))
-                                            0.00
+                                            0.00 €
                                         @else
                                             Kokkuleppel
                                         @endif
