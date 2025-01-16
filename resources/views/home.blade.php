@@ -81,7 +81,11 @@
                                 </td>
                                 <td style="font-weight: 300;">
                                     @if($course->price <= 0)
-                                        Kokkuleppel
+                                        @if(isset($course->started_at))
+                                            0.00
+                                        @else
+                                            Kokkuleppel
+                                        @endif
                                     @else
                                         {{ number_format($course->price, 2) }} €
                                     @endif
